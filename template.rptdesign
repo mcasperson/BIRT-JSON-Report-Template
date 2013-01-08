@@ -12,7 +12,7 @@
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
-                <value type="constant">http://skynet.usersys.redhat.com:8080/TopicIndex/seam/resource/rest/1/topics/get/json/query;topicIds=33,44?expand=%7B"branches"%3A%5B%7B"trunk"%3A%7B"name"%3A"topics"%7D%7D%5D%7D</value>
+                <value type="constant">http://skynet.usersys.redhat.com:8080/TopicIndex/seam/resource/rest/1/topics/get/json/query;topicIds=33,44?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22topics%22%7D%7D%5D%7D</value>
             </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -90,7 +90,8 @@ totalCount = controller.getChildCount("items");]]></method>
                 </list-property>
             </structure>
             <property name="dataSource">PressGang CCMS REST Data Source</property>
-            <method name="fetch"><![CDATA[if(count < totalCount){
+            <method name="fetch"><![CDATA[if(count < totalCount)
+{
     row["TopicID"] = controller.getValue("items", "item/id", count);
     row["TopicTitle"] = controller.getValue("items", "item/title", count);
     row["TopicTags"] = "";
@@ -146,4 +147,68 @@ return false;]]></method>
             </page-footer>
         </simple-master-page>
     </page-setup>
+    <body>
+        <table id="10">
+            <property name="dataSet">PressGang CCMS REST Data Set</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">TopicID</property>
+                    <text-property name="displayName">ID</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicID"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicTitle</property>
+                    <text-property name="displayName">Title</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicTitle"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicTags</property>
+                    <text-property name="displayName">Tags</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicTags"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="23"/>
+            <column id="24"/>
+            <column id="25"/>
+            <header>
+                <row id="11">
+                    <cell id="12"/>
+                    <cell id="13"/>
+                    <cell id="14"/>
+                </row>
+            </header>
+            <detail>
+                <row id="15">
+                    <cell id="16">
+                        <text-data id="26">
+                            <expression name="valueExpr">row["TopicID"]</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                    <cell id="17">
+                        <text-data id="27">
+                            <expression name="valueExpr">row["TopicTitle"]</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                    <cell id="18">
+                        <text-data id="28">
+                            <expression name="valueExpr">row["TopicTags"]</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="19">
+                    <cell id="20"/>
+                    <cell id="21"/>
+                    <cell id="22"/>
+                </row>
+            </footer>
+        </table>
+    </body>
 </report>
