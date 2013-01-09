@@ -21,19 +21,36 @@ Array.prototype.customIndexOf = function(item) {
 };
 
 /*
+	Globals used by other scripts
+*/
+
+// This will track your current row later on
+totalCount = 0;
+
+/*
 	Perform REST query
 */
 
-// Create instance of the Controller class
-controller = new Packages.com.actuate.json.JSONParser();
-
-// Load the JSON Source
-controller.loadData(params["JSONURL"]);
-
-// Calculate the total rows we will have
-totalCount = controller.getChildCount("items");
-
-Packages.java.lang.System.out.println("[END] PressGang CCMS REST Data Source - open");]]></method>
+try
+{
+	// Create instance of the Controller class
+	controller = new Packages.com.actuate.json.JSONParser();
+	
+	// Load the JSON Source
+	controller.loadData(params["JSONURL"]);
+	
+	// Calculate the total rows we will have
+	totalCount = controller.getChildCount("items");
+}
+catch (exception)
+{
+	Packages.java.lang.System.out.println("An exception was thrown: " + exception);
+	Packages.java.lang.System.out.println("Make sure the JSONParser class is available in the class path");
+}
+finally
+{
+	Packages.java.lang.System.out.println("[END] PressGang CCMS REST Data Source - open");
+}]]></method>
         </script-data-source>
     </data-sources>
     <data-sets>
