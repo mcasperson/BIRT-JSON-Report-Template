@@ -27,16 +27,17 @@
             <method name="open"><![CDATA[Packages.java.lang.System.out.println("[START] PressGang CCMS REST Data Source - open");
 
 /* Add the ability to search an array */
-if(!Array.prototype.indexOf) {
-    Array.prototype.indexOf = function(item) {
-        for(var i = 0; i < this.length; i++) {
-            if(this[i] === item) {
-                return i;
-            }
+
+Array.prototype.customIndexOf = function(item) {    
+
+    for(var i = 0; i < this.length; ++i) {
+    
+        if(this[i] == item) {
+            return i;
         }
-        return -1;
-    };
-}
+    }
+    return -1;
+};
 
 /*
 	Perform REST query
@@ -235,7 +236,7 @@ for (var topicIndex = 0; topicIndex < totalCount; ++topicIndex)
 		var tagName = controller.getValue([topic, topicTags], "item/name");
 		
 		// test to see if we have encountered this tag before
-		var tagNameIndex = tagNames.indexOf(tagName);
+		var tagNameIndex = tagNames.customIndexOf(tagName);
 		// if not, add it to the collections
 		if (tagNameIndex == -1)
 		{
