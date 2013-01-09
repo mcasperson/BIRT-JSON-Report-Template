@@ -93,11 +93,22 @@ finally
             </structure>
             <property name="dataSource">PressGang CCMS REST Data Source</property>
             <method name="open"><![CDATA[/*
-	Globals used by other scripts
+	BIRT Data Sets generally expect to see the kinds of tables produced from SQL queries. Since the tags
+	assigned to the topics are exposed as comma seperated lists, some processing has to be done
+	to expose aggregate counts.
+	
+	This work could be done in the chart or table, but since getting a count of the tags assigned to the
+	topics returned by the REST API is a fairly common use case, the TagSummary Data Set is provided
+	to present this data. 
 */
+
 
 Packages.java.lang.System.out.println("[START] TagSummary - open");
 Packages.java.lang.System.out.println("Total number of topics: " + totalCount);
+
+/*
+	Globals used by other scripts
+*/
 
 // an array to save all the tag names we come across
 tagNames = [];
@@ -130,14 +141,12 @@ for (var topicIndex = 0; topicIndex < totalCount; ++topicIndex)
 		// if not, add it to the collections
 		if (tagNameIndex == -1)
 		{
-			Packages.java.lang.System.out.println("Found new tag " + tagName);
 			tagNames.push(tagName);
 			tagCounts[tagName] = 1;
 		}
 		// if so, increment the counter
 		else
 		{
-			Packages.java.lang.System.out.println("Found existing tag " + tagName);
 			tagCounts[tagName] = tagCounts[tagName] + 1;
 		}
 	}
