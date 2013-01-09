@@ -348,7 +348,7 @@ return false;]]></method>
       <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Chart Title</Value>
+          <Value>Topic Tag Summary with Custom Groups</Value>
           <Font>
             <Size>16.0</Size>
             <Bold>true</Bold>
@@ -1165,9 +1165,17 @@ return false;]]></method>
         <Visible>false</Visible>
       </Label>
       <DataDefinition>
-        <Definition>groupName = &quot;Other&quot;&#xD;
+        <Definition>// The default group that a tag will be placed into is &quot;Other&quot;&#xD;
+groupName = &quot;Other&quot;&#xD;
+&#xD;
+// If the tag is one that we are specifically interested in (&quot;Application Server&quot; in this case),&#xD;
+// set the groupName to the name of the tag.&#xD;
 if (row[&quot;TagName&quot;] == &quot;Application Server&quot;)&#xD;
-	groupName = &quot;Application Server&quot;;&#xD;
+	groupName = row[&quot;TagName&quot;];&#xD;
+&#xD;
+// The last statement defines the name of the group. The last statement here is just groupName. &#xD;
+// You can think of this last statement as being the return value.&#xD;
+// This means that the group name will be &quot;Other&quot; unless we have manually set it to something else.&#xD;
 groupName;</Definition>
       </DataDefinition>
       <SeriesIdentifier></SeriesIdentifier>
