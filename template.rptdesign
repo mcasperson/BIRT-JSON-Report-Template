@@ -818,6 +818,9 @@ return false;]]></method>
     <SeriesDefinitions>
       <Query>
         <Definition></Definition>
+        <Grouping>
+          <GroupType>Text</GroupType>
+        </Grouping>
       </Query>
       <SeriesPalette>
         <Entries xsi:type="attribute:ColorDefinition">
@@ -1074,6 +1077,16 @@ return false;]]></method>
             </Value>
           </Action>
         </Triggers>
+        <Triggers>
+          <Condition>onmouseover</Condition>
+          <Action>
+            <Type>Show_Tooltip</Type>
+            <Value xsi:type="attribute:TooltipValue">
+              <Text></Text>
+              <Delay>200</Delay>
+            </Value>
+          </Action>
+        </Triggers>
         <Explosion>0</Explosion>
         <Title>
           <Caption>
@@ -1152,7 +1165,10 @@ return false;]]></method>
         <Visible>false</Visible>
       </Label>
       <DataDefinition>
-        <Definition>row[&quot;TagName&quot;]</Definition>
+        <Definition>groupName = &quot;Other&quot;&#xD;
+if (row[&quot;TagName&quot;] == &quot;Application Server&quot;)&#xD;
+	groupName = &quot;Application Server&quot;;&#xD;
+groupName;</Definition>
       </DataDefinition>
       <SeriesIdentifier></SeriesIdentifier>
       <DataPoint>
