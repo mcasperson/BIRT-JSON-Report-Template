@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.2.1.v201209101448 Build &lt;4.2.1.v20120912-1721></property>
+    <property name="units">in</property>
+    <property name="theme">defaultTheme</property>
+    <data-sources>
+        <script-data-source name="PressGang CCMS REST Data Source" id="8">
+            <method name="open"><![CDATA[Packages.java.lang.System.out.println("[START] PressGang CCMS REST Data Source - open");
+
+/* Add the ability to search an array */
+
+Array.prototype.customIndexOf = function(item) {    
+
+    for(var i = 0; i < this.length; ++i) {
+    
+        if(this[i] == item) {
+            return i;
+        }
+    }
+    return -1;
+};
+
+/*
+	Perform REST query
+*/
+
+// Create instance of the Controller class
+controller = new Packages.com.actuate.json.JSONParser();
+
+// Load the JSON Source
+controller.loadData(params["JSONURL"]);
+
+// Calculate the total rows we will have
+totalCount = controller.getChildCount("items");
+
+Packages.java.lang.System.out.println("[END] PressGang CCMS REST Data Source - open");]]></method>
+        </script-data-source>
+    </data-sources>
+    <data-sets>
+        <script-data-set name="TagSummary" id="84">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">0</property>
+                    <property name="name">TagName</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">TagCount</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">TagName</property>
+                    <text-property name="displayName">Name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TagCount</property>
+                    <text-property name="displayName">Count</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">TagName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">TagCount</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">PressGang CCMS REST Data Source</property>
+            <method name="open"><![CDATA[/*
+	Globals used by other scripts
+*/
+
+Packages.java.lang.System.out.println("[START] TagSummary - open");
+Packages.java.lang.System.out.println("Total number of topics: " + totalCount);
+
+// an array to save all the tag names we come across
+tagNames = [];
+// a map to associate the tag names to their frequency
+tagCounts = {};
+// a variable to keep track of how many of the rows in this secondary data set we have processed in the fetch script
+currentTag = 0;
+
+/*
+	When the data set is opened we go through all the topics and count the instances
+	of all their tags.
+*/
+
+for (var topicIndex = 0; topicIndex < totalCount; ++topicIndex)
+{
+	// a reference to the topic
+	var topic = new Packages.com.actuate.json.JSONArrayIndex(topicIndex, "items");
+	// how many tags this topic has assigned to it
+	var tagCount = parseInt(controller.getValue("items", "item/tags/size", topicIndex));
+	
+	for (var tagIndex = 0; tagIndex < tagCount; ++tagIndex)
+    {
+		// a reference to the tag in the topic
+		var topicTags = new Packages.com.actuate.json.JSONArrayIndex(tagIndex, "item/tags/items");
+		// the tags name
+		var tagName = controller.getValue([topic, topicTags], "item/name");
+		
+		// test to see if we have encountered this tag before
+		var tagNameIndex = tagNames.customIndexOf(tagName);
+		// if not, add it to the collections
+		if (tagNameIndex == -1)
+		{
+			Packages.java.lang.System.out.println("Found new tag " + tagName);
+			tagNames.push(tagName);
+			tagCounts[tagName] = 1;
+		}
+		// if so, increment the counter
+		else
+		{
+			Packages.java.lang.System.out.println("Found existing tag " + tagName);
+			tagCounts[tagName] = tagCounts[tagName] + 1;
+		}
+	}
+}
+
+Packages.java.lang.System.out.println("[END] TagSummary - open");]]></method>
+            <method name="fetch"><![CDATA[if(currentTag < tagNames.length)
+{    
+    row["TagName"] = tagNames[currentTag];
+    row["TagCount"] = tagCounts[tagNames[currentTag]];
+
+	++currentTag;
+    return true;
+}
+
+return false;]]></method>
+        </script-data-set>
+        <script-data-set name="TopicAndTag" id="9">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">TopicID</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">TopicTitle</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">TopicTags</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">TopicTagNames</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">TopicID</property>
+                    <text-property name="displayName">ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicTitle</property>
+                    <text-property name="displayName">Title</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicTags</property>
+                    <text-property name="displayName">Tags</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicTagNames</property>
+                    <text-property name="displayName">TagNames</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">TopicID</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">TopicTitle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">TopicTags</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">TopicTagNames</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">PressGang CCMS REST Data Source</property>
+            <method name="open"><![CDATA[/*
+	Globals used by other scripts
+*/
+
+// This will track your current row later on
+count = 0;]]></method>
+            <method name="fetch"><![CDATA[if(count < totalCount)
+{
+    row["TopicID"] = controller.getValue("items", "item/id", count);
+    row["TopicTitle"] = controller.getValue("items", "item/title", count);
+    
+    var tags = "";
+    var tagNames = "";
+    
+    var topic = new Packages.com.actuate.json.JSONArrayIndex(count, "items");
+
+	var tagCount = parseInt(controller.getValue("items", "item/tags/size", count));
+    for (var i = 0; i < tagCount; ++i)
+    {
+    	if (tags != "")
+    		tags += ",";
+    	if (tagNames != "")
+    		tagNames += ",";
+    		
+	    var topicTags = new Packages.com.actuate.json.JSONArrayIndex(i, "item/tags/items");
+
+	    var tag = controller.getValue([topic, topicTags], "item/id");	    
+	    tags += tag;
+	    
+	    var tagName = controller.getValue([topic, topicTags], "item/name");	    
+	    tagNames += tagName;
+    }
+    
+    row["TopicTags"] = tags;
+    row["TopicTagNames"] = tagNames;
+
+    count++;
+    return true;
+}
+
+return false;]]></method>
+        </script-data-set>
+    </data-sets>
+    <themes>
+        <theme name="defaultTheme" id="4"/>
+    </themes>
+    <page-setup>
+        <simple-master-page name="NewSimpleMasterPage" id="3"/>
+    </page-setup>
+</library>
