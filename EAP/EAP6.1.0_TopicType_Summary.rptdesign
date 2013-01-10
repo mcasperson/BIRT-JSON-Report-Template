@@ -275,7 +275,7 @@ return false;]]></method>
     <body>
         <grid id="70">
             <property name="marginBottom">1em</property>
-            <property name="height">1.3020833333333333in</property>
+            <property name="height">1.03125in</property>
             <property name="width">7.947916666666667in</property>
             <column id="71">
                 <property name="width">2.625in</property>
@@ -284,7 +284,7 @@ return false;]]></method>
                 <property name="width">5.322916666666667in</property>
             </column>
             <row id="73">
-                <property name="height">1.0208333333333333in</property>
+                <property name="height">1.03125in</property>
                 <cell id="74">
                     <property name="backgroundColor">#A40104</property>
                     <image id="76">
@@ -303,20 +303,6 @@ return false;]]></method>
                         <property name="source">file</property>
                         <expression name="uri" type="constant">Images/pressgang_logo_600px.png</expression>
                     </image>
-                </cell>
-            </row>
-            <row id="77">
-                <property name="height">0.28125in</property>
-                <cell id="78">
-                    <property name="colSpan">2</property>
-                    <property name="rowSpan">1</property>
-                    <property name="backgroundColor">#A40104</property>
-                    <label id="32">
-                        <property name="fontWeight">bold</property>
-                        <property name="color">#FFFFFF</property>
-                        <property name="textAlign">center</property>
-                        <text-property name="text">RHEV Topics and Content Specifications</text-property>
-                    </label>
                 </cell>
             </row>
         </grid>
@@ -1246,19 +1232,21 @@ return false;]]></method>
                     </cell>
                 </row>
                 <row id="92">
+                    <property name="backgroundColor">#A40104</property>
+                    <property name="color">#FFFFFF</property>
                     <cell id="93">
                         <property name="borderBottomColor">#C0C0C0</property>
                         <property name="borderBottomStyle">solid</property>
-                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderBottomWidth">thin</property>
                         <property name="borderLeftColor">#C0C0C0</property>
                         <property name="borderLeftStyle">solid</property>
-                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderLeftWidth">thin</property>
                         <property name="borderRightColor">#C0C0C0</property>
                         <property name="borderRightStyle">solid</property>
-                        <property name="borderRightWidth">medium</property>
+                        <property name="borderRightWidth">thin</property>
                         <property name="borderTopColor">#C0C0C0</property>
                         <property name="borderTopStyle">solid</property>
-                        <property name="borderTopWidth">medium</property>
+                        <property name="borderTopWidth">thin</property>
                         <label id="106">
                             <property name="fontWeight">bold</property>
                             <text-property name="text">Topic Type</text-property>
@@ -1267,16 +1255,16 @@ return false;]]></method>
                     <cell id="94">
                         <property name="borderBottomColor">#C0C0C0</property>
                         <property name="borderBottomStyle">solid</property>
-                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderBottomWidth">thin</property>
                         <property name="borderLeftColor">#C0C0C0</property>
                         <property name="borderLeftStyle">solid</property>
-                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderLeftWidth">thin</property>
                         <property name="borderRightColor">#C0C0C0</property>
                         <property name="borderRightStyle">solid</property>
-                        <property name="borderRightWidth">medium</property>
+                        <property name="borderRightWidth">thin</property>
                         <property name="borderTopColor">#C0C0C0</property>
                         <property name="borderTopStyle">solid</property>
-                        <property name="borderTopWidth">medium</property>
+                        <property name="borderTopWidth">thin</property>
                         <label id="107">
                             <property name="fontWeight">bold</property>
                             <text-property name="text">Number of topics with this tag</text-property>
@@ -1285,16 +1273,16 @@ return false;]]></method>
                     <cell id="109">
                         <property name="borderBottomColor">#C0C0C0</property>
                         <property name="borderBottomStyle">solid</property>
-                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderBottomWidth">thin</property>
                         <property name="borderLeftColor">#C0C0C0</property>
                         <property name="borderLeftStyle">solid</property>
-                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderLeftWidth">thin</property>
                         <property name="borderRightColor">#C0C0C0</property>
                         <property name="borderRightStyle">solid</property>
-                        <property name="borderRightWidth">medium</property>
+                        <property name="borderRightWidth">thin</property>
                         <property name="borderTopColor">#C0C0C0</property>
                         <property name="borderTopStyle">solid</property>
-                        <property name="borderTopWidth">medium</property>
+                        <property name="borderTopWidth">thin</property>
                         <label id="113">
                             <property name="fontWeight">bold</property>
                             <text-property name="text">Percentage of topics with this tag</text-property>
@@ -1307,16 +1295,16 @@ return false;]]></method>
                     <cell id="96">
                         <property name="borderBottomColor">#C0C0C0</property>
                         <property name="borderBottomStyle">solid</property>
-                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderBottomWidth">thin</property>
                         <property name="borderLeftColor">#C0C0C0</property>
                         <property name="borderLeftStyle">solid</property>
-                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderLeftWidth">thin</property>
                         <property name="borderRightColor">#C0C0C0</property>
                         <property name="borderRightStyle">solid</property>
-                        <property name="borderRightWidth">medium</property>
+                        <property name="borderRightWidth">thin</property>
                         <property name="borderTopColor">#C0C0C0</property>
                         <property name="borderTopStyle">solid</property>
-                        <property name="borderTopWidth">medium</property>
+                        <property name="borderTopWidth">thin</property>
                         <text-data id="114">
                             <expression name="valueExpr">row["TagName"]</expression>
                             <property name="contentType">html</property>
@@ -1325,16 +1313,16 @@ return false;]]></method>
                     <cell id="97">
                         <property name="borderBottomColor">#C0C0C0</property>
                         <property name="borderBottomStyle">solid</property>
-                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderBottomWidth">thin</property>
                         <property name="borderLeftColor">#C0C0C0</property>
                         <property name="borderLeftStyle">solid</property>
-                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderLeftWidth">thin</property>
                         <property name="borderRightColor">#C0C0C0</property>
                         <property name="borderRightStyle">solid</property>
-                        <property name="borderRightWidth">medium</property>
+                        <property name="borderRightWidth">thin</property>
                         <property name="borderTopColor">#C0C0C0</property>
                         <property name="borderTopStyle">solid</property>
-                        <property name="borderTopWidth">medium</property>
+                        <property name="borderTopWidth">thin</property>
                         <text-data id="115">
                             <property name="textAlign">center</property>
                             <expression name="valueExpr">row["TagCount"]</expression>
@@ -1344,16 +1332,16 @@ return false;]]></method>
                     <cell id="110">
                         <property name="borderBottomColor">#C0C0C0</property>
                         <property name="borderBottomStyle">solid</property>
-                        <property name="borderBottomWidth">medium</property>
+                        <property name="borderBottomWidth">thin</property>
                         <property name="borderLeftColor">#C0C0C0</property>
                         <property name="borderLeftStyle">solid</property>
-                        <property name="borderLeftWidth">medium</property>
+                        <property name="borderLeftWidth">thin</property>
                         <property name="borderRightColor">#C0C0C0</property>
                         <property name="borderRightStyle">solid</property>
-                        <property name="borderRightWidth">medium</property>
+                        <property name="borderRightWidth">thin</property>
                         <property name="borderTopColor">#C0C0C0</property>
                         <property name="borderTopStyle">solid</property>
-                        <property name="borderTopWidth">medium</property>
+                        <property name="borderTopWidth">thin</property>
                         <text-data id="118">
                             <property name="textAlign">center</property>
                             <expression name="valueExpr">// totalCount is the total number of topics returned by the REST query&#13;
