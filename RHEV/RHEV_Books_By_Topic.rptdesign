@@ -273,7 +273,7 @@ return false;]]></method>
                     </image>
                 </cell>
                 <cell id="75">
-                    <property name="backgroundColor">#A40104</property>
+                    <property name="backgroundColor">#FFFFFF</property>
                     <property name="textAlign">right</property>
                     <image id="89">
                         <property name="height">87px</property>
@@ -288,10 +288,8 @@ return false;]]></method>
                 <cell id="78">
                     <property name="colSpan">2</property>
                     <property name="rowSpan">1</property>
-                    <property name="backgroundColor">#A40104</property>
                     <label id="32">
                         <property name="fontWeight">bold</property>
-                        <property name="color">#FFFFFF</property>
                         <property name="textAlign">center</property>
                         <text-property name="text">RHEV Topics and Content Specifications</text-property>
                     </label>
