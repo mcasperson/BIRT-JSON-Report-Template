@@ -184,16 +184,23 @@ for (var controllerIndex = 0; controllerIndex < controllers.length; ++controller
 		if (processedTopicIndex == -1)
 		{
 			topicsIds.push(topicId);
-			topics.push({id: topicId.toString(), title: topicTitle, csps: csp.toString()});
+			topics.push({id: topicId.toString(), title: topicTitle, csps: csp.toString(), cspCount: 1});
 		}
 		// otherwise append the CSP id
 		else
 		{
 			topics[processedTopicIndex].csps += "," + csp.toString();
+			topics[processedTopicIndex].cspCount = topics[processedTopicIndex].cspCount + 1;
 		}
 	}
 }]]></method>
-            <method name="fetch"><![CDATA[if(currentTopic < topics.length)
+            <method name="fetch"><![CDATA[// only return reos where the topic is included in more than 1 csp
+while (currentTopic < topics.length &amp;&amp; topics[currentTopic].cspCount < 2)
+{
+	++currentTopic;
+}
+
+if(currentTopic < topics.length)
 {    
     row["TopicID"] = topics[currentTopic].id;
     row["TopicTitle"] = topics[currentTopic].title;
@@ -289,7 +296,7 @@ return false;]]></method>
             <property name="marginTop">0em</property>
             <property name="marginBottom">1em</property>
             <property name="textAlign">center</property>
-            <text-property name="text">RHEV Topics and Content Specifications</text-property>
+            <text-property name="text">RHEV Topics Included in More Than One Content Specifications</text-property>
         </label>
         <table id="10">
             <property name="canShrink">false</property>
