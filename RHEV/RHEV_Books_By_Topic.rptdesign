@@ -253,7 +253,7 @@ return false;]]></method>
     <body>
         <grid id="70">
             <property name="marginBottom">1em</property>
-            <property name="height">1.3020833333333333in</property>
+            <property name="height">1.0520833333333333in</property>
             <property name="width">7.947916666666667in</property>
             <column id="71">
                 <property name="width">2.625in</property>
@@ -262,7 +262,7 @@ return false;]]></method>
                 <property name="width">5.322916666666667in</property>
             </column>
             <row id="73">
-                <property name="height">1.0208333333333333in</property>
+                <property name="height">1.0520833333333333in</property>
                 <cell id="74">
                     <property name="backgroundColor">#A40104</property>
                     <image id="76">
@@ -283,19 +283,14 @@ return false;]]></method>
                     </image>
                 </cell>
             </row>
-            <row id="77">
-                <property name="height">0.28125in</property>
-                <cell id="78">
-                    <property name="colSpan">2</property>
-                    <property name="rowSpan">1</property>
-                    <label id="32">
-                        <property name="fontWeight">bold</property>
-                        <property name="textAlign">center</property>
-                        <text-property name="text">RHEV Topics and Content Specifications</text-property>
-                    </label>
-                </cell>
-            </row>
         </grid>
+        <label id="32">
+            <property name="fontWeight">bold</property>
+            <property name="marginTop">0em</property>
+            <property name="marginBottom">1em</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">RHEV Topics and Content Specifications</text-property>
+        </label>
         <table id="10">
             <property name="canShrink">false</property>
             <property name="width">100%</property>
