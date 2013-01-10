@@ -4,7 +4,7 @@
     <property name="units">in</property>
     <property name="theme">defaultTheme</property>
     <data-sources>
-        <script-data-source name="PressGang CCMS REST Data Source" id="8">
+        <script-data-source name="By Query" id="8">
             <method name="open"><![CDATA[Packages.java.lang.System.out.println("[START] PressGang CCMS REST Data Source - open");
 
 /* Add the ability to search an array */
@@ -52,6 +52,83 @@ finally
 	Packages.java.lang.System.out.println("[END] PressGang CCMS REST Data Source - open");
 }]]></method>
         </script-data-source>
+        <script-data-source name="By Specs" id="202">
+            <method name="open"><![CDATA[/*
+	This data source make use of the custom JSONParser class to peform a request of
+	the CCMS REST API using the URL saved in the JSONURL parameter. It will then parse
+	the result, the details of which can then be extracted by the Data Sets.
+*/
+
+Packages.java.lang.System.out.println("[START] By Specs - open");
+
+/* Add the ability to search an array */
+
+Array.prototype.customIndexOf = function(item) {    
+
+    for(var i = 0; i < this.length; ++i) {
+    
+        if(this[i] == item) {
+            return i;
+        }
+    }
+    return -1;
+};
+
+/*
+	Globals used by other scripts
+*/
+var restUrl = "http://skynet.usersys.redhat.com:8080/TopicIndex/seam/resource/rest/1/topics/get/json/";
+var restExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22topics%22%7D%2C%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D%5D%7D";
+// The controllers holds the JSON results
+controllers = [];
+// The CSPIDs that were used to create the controllers
+controllerCSPIDs = [];
+
+/*
+	Perform REST query
+*/
+
+try
+{
+	var cspIds = params["CSPIDS"];
+	if (cspIds != null)
+	{
+		var cspIdsArray = cspIds.split(",");
+		
+		for (var cspIndex = 0; cspIndex < cspIdsArray.length; ++cspIndex)
+		{
+			var csp = parseInt(cspIdsArray[cspIndex]);
+			if (csp != NaN)
+			{
+				var completeRestUrl = restUrl + "query;topicIncludedInSpec=" + csp + restExpansion;
+				
+				Packages.java.lang.System.out.println("REST URL: " + completeRestUrl);
+				
+				// Create instance of the Controller class
+				var controller = new Packages.com.actuate.json.JSONParser();
+				
+				// Load the JSON Source
+				controller.loadData(completeRestUrl);
+				
+				// save the controller
+				controllers.push(controller);
+				
+				// save the csp ID
+				controllerCSPIDs.push(csp);
+			}
+		}
+	}
+}
+catch (exception)
+{
+	Packages.java.lang.System.out.println("An exception was thrown: " + exception);
+	Packages.java.lang.System.out.println("Make sure the JSONParser class is available in the class path");
+}
+finally
+{
+	Packages.java.lang.System.out.println("[END] By Specs - open");
+}]]></method>
+        </script-data-source>
     </data-sources>
     <data-sets>
         <script-data-set name="TagSummary" id="84">
@@ -91,7 +168,7 @@ finally
                     </structure>
                 </list-property>
             </structure>
-            <property name="dataSource">PressGang CCMS REST Data Source</property>
+            <property name="dataSource">By Query</property>
             <method name="open"><![CDATA[/*
 	BIRT Data Sets generally expect to see the kinds of tables produced from SQL queries. Since the tags
 	assigned to the topics are exposed as comma seperated lists, some processing has to be done
@@ -229,7 +306,7 @@ return false;]]></method>
                     </structure>
                 </list-property>
             </structure>
-            <property name="dataSource">PressGang CCMS REST Data Source</property>
+            <property name="dataSource">By Query</property>
             <method name="open"><![CDATA[/*
 	Globals used by other scripts
 */
@@ -268,6 +345,147 @@ count = 0;]]></method>
 
     count++;
     return true;
+}
+
+return false;]]></method>
+        </script-data-set>
+        <script-data-set name="SpecTopicAndTag" id="203">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">0</property>
+                    <property name="name">SpecID</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">TopicID</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">TopicTitle</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">TopicTags</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">SpecID</property>
+                    <text-property name="displayName">Spec ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicID</property>
+                    <text-property name="displayName">Topic ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicTitle</property>
+                    <text-property name="displayName">Topic Title</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicTags</property>
+                    <text-property name="displayName">Topic Tags</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">SpecID</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">TopicID</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">TopicTitle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">TopicTags</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">By Specs</property>
+            <method name="open"><![CDATA[/*
+	--------------------- Global variables ---------------------
+*/
+
+// specs mapped to topics
+specTopics = [];
+
+// This will track your current row later on
+specTopicAndTagCount = 0;
+
+/*
+	--------------------- Processing ---------------------
+*/
+
+// here we take the results of the queries against the spec ids
+// and combine them into a single table
+
+// use a function to limit variable scopes
+(function()
+{
+	// process the results of each query against a spec
+	for (var specIndex = 0; specIndex < controllerCSPIDs.length; ++specIndex)
+	{		
+		var controller = controllers[specIndex];
+		var specId = controllerCSPIDs[specIndex];
+		var controllerTopicCount = controller.getChildCount("items");
+		
+		// process the topics in each spec query
+		for (var topicIndex = 0; topicIndex < controllerTopicCount; ++topicIndex)
+		{
+		    var topicId = controller.getValue("items", "item/id", topicIndex);
+		    var topicTitle = controller.getValue("items", "item/title", topicIndex);
+		    
+		    var tags = "";
+		    var tagNames = "";
+		    
+		    var topic = new Packages.com.actuate.json.JSONArrayIndex(topicIndex, "items");
+		
+			var tagCount = parseInt(controller.getValue("items", "item/tags/size", topicIndex));
+		    for (var i = 0; i < tagCount; ++i)
+		    {
+		    	if (tags != "")
+		    		tags += ",";
+		    	if (tagNames != "")
+		    		tagNames += ",";
+		    		
+			    var topicTags = new Packages.com.actuate.json.JSONArrayIndex(i, "item/tags/items");
+		
+			    var tag = controller.getValue([topic, topicTags], "item/id");	    
+			    tags += tag;
+			    
+			    var tagName = controller.getValue([topic, topicTags], "item/name");	    
+			    tagNames += tagName;
+		    }
+		    
+		    // save the row
+		    specTopics.push({specId: specId.toString(), topicId: topicId.toString(), topicTags: tagNames, topicTitle: topicTitle.toString()});
+		}
+	}
+})();
+
+]]></method>
+            <method name="fetch"><![CDATA[if(specTopicAndTagCount < specTopics.length)
+{
+	row["SpecID"] = specTopics[specTopicAndTagCount].specId;
+	row["TopicID"] = specTopics[specTopicAndTagCount].topicId;
+	row["TopicTitle"] = specTopics[specTopicAndTagCount].topicTitle;
+	row["TopicTags"] = specTopics[specTopicAndTagCount].topicTags;
+	
+	++specTopicAndTagCount;
+	return true;
 }
 
 return false;]]></method>

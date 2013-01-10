@@ -3,8 +3,15 @@
     <property name="createdBy">Eclipse BIRT Designer Version 4.2.1.v201209101448 Build &lt;4.2.1.v20120912-1721></property>
     <property name="units">in</property>
     <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="layoutPreference">fixed layout</property>
     <property name="bidiLayoutOrientation">ltr</property>
     <property name="imageDPI">96</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">data_library.rptlibrary</property>
+            <property name="namespace">data_library</property>
+        </structure>
+    </list-property>
     <parameters>
         <scalar-parameter name="CSPIDS" id="8">
             <property name="hidden">true</property>
@@ -23,83 +30,7 @@
         </scalar-parameter>
     </parameters>
     <data-sources>
-        <script-data-source name="RHEV PressGang CCMS REST Data Source" id="7">
-            <method name="open"><![CDATA[/*
-	This data source make use of the custom JSONParser class to peform a request of
-	the CCMS REST API using the URL saved in the JSONURL parameter. It will then parse
-	the result, the details of which can then be extracted by the Data Sets.
-*/
-
-Packages.java.lang.System.out.println("[START] RHEV PressGang CCMS REST Data Source - open");
-
-/* Add the ability to search an array */
-
-Array.prototype.customIndexOf = function(item) {    
-
-    for(var i = 0; i < this.length; ++i) {
-    
-        if(this[i] == item) {
-            return i;
-        }
-    }
-    return -1;
-};
-
-/*
-	Globals used by other scripts
-*/
-var restUrl = "http://skynet.usersys.redhat.com:8080/TopicIndex/seam/resource/rest/1/topics/get/json/";
-var restExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22topics%22%7D%7D%5D%7D";
-// The controllers holds the JSON results
-controllers = [];
-// The CSPIDs that were used to create the controllers
-controllerCSPIDs = [];
-
-/*
-	Perform REST query
-*/
-
-try
-{
-	var cspIds = params["CSPIDS"];
-	if (cspIds != null)
-	{
-		var cspIdsArray = cspIds.split(",");
-		
-		for (var cspIndex = 0; cspIndex < cspIdsArray.length; ++cspIndex)
-		{
-			var csp = parseInt(cspIdsArray[cspIndex]);
-			if (csp != NaN)
-			{
-				var completeRestUrl = restUrl + "query;topicIncludedInSpec=" + csp + restExpansion;
-				
-				Packages.java.lang.System.out.println("REST URL: " + completeRestUrl);
-				
-				// Create instance of the Controller class
-				var controller = new Packages.com.actuate.json.JSONParser();
-				
-				// Load the JSON Source
-				controller.loadData(completeRestUrl);
-				
-				// save the controller
-				controllers.push(controller);
-				
-				// save the csp ID
-				controllerCSPIDs.push(csp);
-			}
-		}
-	}
-}
-catch (exception)
-{
-	Packages.java.lang.System.out.println("An exception was thrown: " + exception);
-	Packages.java.lang.System.out.println("Make sure the JSONParser class is available in the class path");
-}
-finally
-{
-	Packages.java.lang.System.out.println("[END] RHEV PressGang CCMS REST Data Source - open");
-}]]></method>
-        </script-data-source>
+        <script-data-source name="By Specs" id="90" extends="data_library.By Specs"/>
     </data-sources>
     <data-sets>
         <script-data-set name="Data Set" id="9">
@@ -153,7 +84,7 @@ finally
                     </structure>
                 </list-property>
             </structure>
-            <property name="dataSource">RHEV PressGang CCMS REST Data Source</property>
+            <property name="dataSource">By Specs</property>
             <method name="open"><![CDATA[// the topics that were returned by the REST query, with the CSP ids that
 // they belong to
 topics = [];
