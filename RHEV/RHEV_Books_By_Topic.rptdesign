@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.2.1.v201209101448 Build &lt;4.2.1.v20120912-1721></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="CSPIDS" id="8">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <script-data-source name="RHEV PressGang CCMS REST Data Source" id="7">
+            <method name="open"><![CDATA[/*
+	This data source make use of the custom JSONParser class to peform a request of
+	the CCMS REST API using the URL saved in the JSONURL parameter. It will then parse
+	the result, the details of which can then be extracted by the Data Sets.
+*/
+
+Packages.java.lang.System.out.println("[START] RHEV PressGang CCMS REST Data Source - open");
+
+/* Add the ability to search an array */
+
+Array.prototype.customIndexOf = function(item) {    
+
+    for(var i = 0; i < this.length; ++i) {
+    
+        if(this[i] == item) {
+            return i;
+        }
+    }
+    return -1;
+};
+
+/*
+	Globals used by other scripts
+*/
+var restUrl = "http://skynet.usersys.redhat.com:8080/TopicIndex/seam/resource/rest/1/topics/get/json/";
+var restExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22topics%22%7D%2C%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D%5D%7D";
+// The controllers holds the JSON results
+controllers = [];
+// The CSPIDs that were used to create the controllers
+controllerCSPIDs = [];
+
+/*
+	Perform REST query
+*/
+
+try
+{
+	var cspIds = params["CSPIDS"];
+	if (cspIds != null)
+	{
+		var cspIdsArray = cspIds.split(",");
+		
+		for (var cspIndex = 0; cspIndex < cspIdsArray.length; ++cspIndex)
+		{
+			var csp = parseInt(cspIdsArray[cspIndex]);
+			if (csp != NaN)
+			{
+				var completeRestUrl = restUrl + "query;topicIncludedInSpec=" + csp + restExpansion;
+				
+				// Create instance of the Controller class
+				var controller = new Packages.com.actuate.json.JSONParser();
+				
+				// Load the JSON Source
+				controller.loadData(restUrl);
+				
+				// save the controller
+				controllers.push(controller);
+				
+				// save the csp ID
+				controllerCSPIDs.push(csp);
+			}
+		}
+	}
+}
+catch (exception)
+{
+	Packages.java.lang.System.out.println("An exception was thrown: " + exception);
+	Packages.java.lang.System.out.println("Make sure the JSONParser class is available in the class path");
+}
+finally
+{
+	Packages.java.lang.System.out.println("[END] RHEV PressGang CCMS REST Data Source - open");
+}]]></method>
+        </script-data-source>
+    </data-sources>
+    <data-sets>
+        <script-data-set name="Data Set" id="9">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">TopicID</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">TopicTitle</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">CSPIDs</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">TopicID</property>
+                    <text-property name="displayName">Topic ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicTitle</property>
+                    <text-property name="displayName">Topic Title</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CSPIDs</property>
+                    <text-property name="displayName">CSP IDs</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">TopicID</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">TopicTitle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">CSPIDs</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">RHEV PressGang CCMS REST Data Source</property>
+            <method name="open"><![CDATA[// the topics that were returned by the REST query, with the CSP ids that
+// they belong to
+var topics = [];
+// The topic IDs that have been processed
+var topicsIds = [];
+// the current topic to process
+currentTopic = 0;
+
+// loop over the results of the query for each CSP id
+for (var controllerIndex = 0; controllerIndex < controllers.length; ++controllerIndex)
+{
+	var controller = controllers[controllerIndex];
+	var csp = controllerCSPIDs[controllerIndex];
+
+	// how many topics are included in this CSP	
+	var cspTotalCount = controller.getChildCount("items");
+
+	// loop over each topic
+	for (var topicIndex = 0; topicIndex < cspTotalCount; ++topicIndex)
+	{
+		// a reference to the topic
+		var topicId = parseInt(controller.getValue("items", "item/id", topicIndex));
+		var topicTitle = controller.getValue("items", "item/title", topicIndex);
+		
+		var processedTopicIndex = topicsIds.customIndexOf(topicId);
+		
+		// if the topic has not been processed, add it to the collection
+		if (processedTopicIndex == -1)
+		{
+			topicsIds.push(topicId);
+			topics.push({id: topicId, title: topicTitle, csps: [csp]});
+		}
+		// otherwise append the CSP id
+		else
+		{
+			topics[processedTopicIndex].csps += "," + csp;
+		}
+	}
+}]]></method>
+            <method name="fetch"><![CDATA[if(currentTopic < topics.length)
+{    
+    row["TopicID"] = topics[currentTopic].id;
+    row["TopicTitle"] = topics[currentTopic].title;
+    row["CSPIDs"] = topics[currentTopic].csps;
+
+	++currentTopic;
+    return true;
+}
+
+return false;]]></method>
+        </script-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <table id="10">
+            <property name="dataSet">Data Set</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">TopicID</property>
+                    <text-property name="displayName">Topic ID</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicID"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicName</property>
+                    <text-property name="displayName">Topic Name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicName"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">CSPIDs</property>
+                    <text-property name="displayName">CSP IDs</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["CSPIDs"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="23"/>
+            <column id="24"/>
+            <column id="25"/>
+            <header>
+                <row id="11">
+                    <cell id="12">
+                        <label id="26">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Topic ID</text-property>
+                        </label>
+                    </cell>
+                    <cell id="13">
+                        <label id="27">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Topic Title</text-property>
+                        </label>
+                    </cell>
+                    <cell id="14">
+                        <label id="28">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">CSP IDs</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="15">
+                    <cell id="16">
+                        <text-data id="29">
+                            <property name="textAlign">left</property>
+                            <expression name="valueExpr">row["TopicID"]</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                    <cell id="17">
+                        <text-data id="30">
+                            <expression name="valueExpr">row["TopicTitle"]</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                    <cell id="18">
+                        <text-data id="31">
+                            <expression name="valueExpr">row["CSPIDs"]</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="19">
+                    <cell id="20"/>
+                    <cell id="21"/>
+                    <cell id="22"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>
