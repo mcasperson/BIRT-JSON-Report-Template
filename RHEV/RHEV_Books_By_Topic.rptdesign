@@ -11,6 +11,9 @@
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">8844,9022,8983,9024,9025,9026,9020,9054 ,10344</value>
+            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="controlType">text-box</property>
@@ -46,7 +49,7 @@ Array.prototype.customIndexOf = function(item) {
 	Globals used by other scripts
 */
 var restUrl = "http://skynet.usersys.redhat.com:8080/TopicIndex/seam/resource/rest/1/topics/get/json/";
-var restExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22topics%22%7D%2C%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D%5D%7D";
+var restExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22topics%22%7D%7D%5D%7D";
 // The controllers holds the JSON results
 controllers = [];
 // The CSPIDs that were used to create the controllers
@@ -70,11 +73,13 @@ try
 			{
 				var completeRestUrl = restUrl + "query;topicIncludedInSpec=" + csp + restExpansion;
 				
+				Packages.java.lang.System.out.println("REST URL: " + completeRestUrl);
+				
 				// Create instance of the Controller class
 				var controller = new Packages.com.actuate.json.JSONParser();
 				
 				// Load the JSON Source
-				controller.loadData(restUrl);
+				controller.loadData(completeRestUrl);
 				
 				// save the controller
 				controllers.push(controller);
@@ -151,9 +156,9 @@ finally
             <property name="dataSource">RHEV PressGang CCMS REST Data Source</property>
             <method name="open"><![CDATA[// the topics that were returned by the REST query, with the CSP ids that
 // they belong to
-var topics = [];
+topics = [];
 // The topic IDs that have been processed
-var topicsIds = [];
+topicsIds = [];
 // the current topic to process
 currentTopic = 0;
 
@@ -179,12 +184,12 @@ for (var controllerIndex = 0; controllerIndex < controllers.length; ++controller
 		if (processedTopicIndex == -1)
 		{
 			topicsIds.push(topicId);
-			topics.push({id: topicId, title: topicTitle, csps: [csp]});
+			topics.push({id: topicId, title: topicTitle, csps: csp.toString()});
 		}
 		// otherwise append the CSP id
 		else
 		{
-			topics[processedTopicIndex].csps += "," + csp;
+			topics[processedTopicIndex].csps += "," + csp.toString();
 		}
 	}
 }]]></method>
@@ -246,6 +251,11 @@ return false;]]></method>
         </simple-master-page>
     </page-setup>
     <body>
+        <label id="32">
+            <property name="fontWeight">bold</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">RHEV Topics and Content Specifications</text-property>
+        </label>
         <table id="10">
             <property name="dataSet">Data Set</property>
             <list-property name="boundDataColumns">
@@ -256,9 +266,9 @@ return false;]]></method>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">TopicName</property>
-                    <text-property name="displayName">Topic Name</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["TopicName"]</expression>
+                    <property name="name">TopicTitle</property>
+                    <text-property name="displayName">Topic Title</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicTitle"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
@@ -324,5 +334,91 @@ return false;]]></method>
                 </row>
             </footer>
         </table>
+        <grid id="64">
+            <property name="marginTop">1em</property>
+            <property name="width">7.947916666666667in</property>
+            <column id="65">
+                <property name="width">3.09375in</property>
+            </column>
+            <column id="66">
+                <property name="width">4.854166666666667in</property>
+            </column>
+            <row id="67">
+                <cell id="68">
+                    <label id="42">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Content Specification IDs Included In Report</text-property>
+                    </label>
+                </cell>
+                <cell id="69">
+                    <text-data id="43">
+                        <expression name="valueExpr">params["CSPIDS"].value</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+        </grid>
+        <grid id="33">
+            <property name="marginTop">1em</property>
+            <property name="width">7.947916666666667in</property>
+            <column id="34">
+                <property name="width">3.1145833333333335in</property>
+            </column>
+            <column id="35">
+                <property name="width">4.833333333333333in</property>
+            </column>
+            <row id="49">
+                <cell id="50">
+                    <label id="52">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Report Created By</text-property>
+                    </label>
+                </cell>
+                <cell id="51">
+                    <label id="53">
+                        <text-property name="text">Matthew Casperson</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="54">
+                <cell id="55">
+                    <label id="57">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Reported Created On</text-property>
+                    </label>
+                </cell>
+                <cell id="56">
+                    <label id="58">
+                        <text-property name="text">10 January 2012</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="59">
+                <cell id="60">
+                    <label id="62">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Report Last Modified By</text-property>
+                    </label>
+                </cell>
+                <cell id="61">
+                    <label id="63">
+                        <text-property name="text">Matthew Casperson</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="44">
+                <cell id="45">
+                    <label id="47">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Report Last Modified On</text-property>
+                    </label>
+                </cell>
+                <cell id="46">
+                    <label id="48">
+                        <text-property name="text">10 January 2012</text-property>
+                    </label>
+                </cell>
+            </row>
+        </grid>
     </body>
 </report>
