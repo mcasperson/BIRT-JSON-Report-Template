@@ -13,7 +13,9 @@
     </list-property>
     <parameters>
         <scalar-parameter name="CSPIDS" id="157">
-            <property name="hidden">true</property>
+            <property name="hidden">false</property>
+            <text-property name="helpText">This option specifies the CSPs that will be included in the chart. You can inlcude 1 CSP ID, or more than 1 as a comma separated list.</text-property>
+            <text-property name="promptText">Please enter a comma separated list of CSP IDs</text-property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -28,6 +30,8 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="Category" id="158">
+            <text-property name="helpText">Enter the category ID as a single integer. The tags associated with this category will then be used to break down the topic counts against each CSP ID.</text-property>
+            <text-property name="promptText">Please enter the catgeory ID whose tags will be used to group the topic values.</text-property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -46,7 +50,38 @@
         <script-data-source name="By Specs" id="162" extends="data_library.By Specs"/>
     </data-sources>
     <data-sets>
-        <script-data-set name="SpecTopicAndTag" id="161" extends="data_library.SpecTopicAndTag"/>
+        <script-data-set name="SpecTopicAndTag" id="161" extends="data_library.SpecTopicAndTag">
+            <method name="fetch"><![CDATA[while (specTopicAndTagFilter.length != 0 &amp;&amp; specTopicAndTagCount < specTopics.length)
+{
+	// if the topic does not contain one of the filter tags, skip it
+	if (specTopicAndTagFilter.customIndexOf(specTopics[specTopicAndTagCount].topicTagID) == -1)
+	{
+		Packages.java.lang.System.out.println("Skipping topic " + specTopics[specTopicAndTagCount].topicTagID + " " + (specTopicAndTagCount / specTopics.length * 100).toFixed(2) + "%");
+		++specTopicAndTagCount;
+	}
+	// otherwise proceed to adding the topic
+	else	
+	{
+		break;
+	}
+}
+
+if (specTopicAndTagCount < specTopics.length)
+{
+	Packages.java.lang.System.out.println("Adding topic " + specTopics[specTopicAndTagCount].topicTagID + " " + (specTopicAndTagCount / specTopics.length * 100).toFixed(2) + "%");
+	
+	row["SpecID"] = specTopics[specTopicAndTagCount].specId;
+	row["TopicID"] = specTopics[specTopicAndTagCount].topicId;
+	row["TopicTitle"] = specTopics[specTopicAndTagCount].topicTitle;
+	row["TopicTagID"] = specTopics[specTopicAndTagCount].topicTagID;
+	row["TopicTag"] = specTopics[specTopicAndTagCount].topicTagName;
+	
+	++specTopicAndTagCount;
+	return true;
+}
+
+return false;]]></method>
+        </script-data-set>
     </data-sets>
     <styles>
         <style name="report" id="4">
@@ -169,7 +204,7 @@
       <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Chart Title</Value>
+          <Value>Topics per CSP (Optionally Grouped by Tag)</Value>
           <Font>
             <Size>16.0</Size>
             <Bold>true</Bold>
@@ -1259,7 +1294,7 @@
             <property name="outputFormat">SVG</property>
             <property name="inheritColumns">true</property>
             <property name="dataSet">SpecTopicAndTag</property>
-            <property name="height">2.78125in</property>
+            <property name="height">5.364583333333333in</property>
             <property name="width">7.96875in</property>
             <list-property name="boundDataColumns">
                 <structure>
