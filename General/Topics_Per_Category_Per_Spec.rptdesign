@@ -1286,7 +1286,7 @@ return false;]]></method>
   </Rotation>
 </model:ChartWithAxes>
 ]]></xml-property>
-            <property name="outputFormat">SVG</property>
+            <property name="outputFormat">PNG</property>
             <property name="inheritColumns">true</property>
             <property name="dataSet">SpecTopicAndTag</property>
             <property name="height">5.364583333333333in</property>
