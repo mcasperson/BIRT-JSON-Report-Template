@@ -79,55 +79,71 @@ Array.prototype.customIndexOf = function(item) {
 */
 var restUrl = "http://skynet.usersys.redhat.com:8080/TopicIndex/seam/resource/rest/1/topics/get/json/";
 var restExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22topics%22%7D%2C%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D%5D%7D";
+var categoryRestUrl = "http://skynet.usersys.redhat.com:8080/TopicIndex/seam/resource/rest/1/category/get/json/";
+//var categoryRestExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22categories%22%7D%2C%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D%5D%7D";
+var categoryRestExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D";
 // The controllers holds the JSON results
 controllers = [];
 // The CSPIDs that were used to create the controllers
 controllerCSPIDs = [];
+// The controller that holds the category details
+categoryController = null;
 
 /*
-	Perform REST query
+	Processing
 */
-
-try
+(function()
 {
-	var cspIds = params["CSPIDS"];
-	if (cspIds != null)
+	try
 	{
-		var cspIdsArray = cspIds.split(",");
-		
-		for (var cspIndex = 0; cspIndex < cspIdsArray.length; ++cspIndex)
+		var category = params["Category"];
+		if (category != null)
 		{
-			var csp = parseInt(cspIdsArray[cspIndex]);
-			if (csp != NaN)
+			var completeCategoriesRestUrl = categoryRestUrl + category + categoryRestExpansion;
+			Packages.java.lang.System.out.println("Category REST URL: " + completeCategoriesRestUrl);
+			categoryController = new Packages.com.actuate.json.JSONParser();
+			categoryController.loadData(completeCategoriesRestUrl);
+		}
+		
+		var cspIds = params["CSPIDS"];
+		if (cspIds != null)
+		{
+			var cspIdsArray = cspIds.split(",");
+			
+			for (var cspIndex = 0; cspIndex < cspIdsArray.length; ++cspIndex)
 			{
-				var completeRestUrl = restUrl + "query;topicIncludedInSpec=" + csp + restExpansion;
-				
-				Packages.java.lang.System.out.println("REST URL: " + completeRestUrl);
-				
-				// Create instance of the Controller class
-				var controller = new Packages.com.actuate.json.JSONParser();
-				
-				// Load the JSON Source
-				controller.loadData(completeRestUrl);
-				
-				// save the controller
-				controllers.push(controller);
-				
-				// save the csp ID
-				controllerCSPIDs.push(csp);
+				var csp = parseInt(cspIdsArray[cspIndex]);
+				if (csp != NaN)
+				{
+					var completeRestUrl = restUrl + "query;topicIncludedInSpec=" + csp + restExpansion;
+					
+					Packages.java.lang.System.out.println("REST URL: " + completeRestUrl);
+					
+					// Create instance of the Controller class
+					var controller = new Packages.com.actuate.json.JSONParser();
+					
+					// Load the JSON Source
+					controller.loadData(completeRestUrl);
+					
+					// save the controller
+					controllers.push(controller);
+					
+					// save the csp ID
+					controllerCSPIDs.push(csp);
+				}
 			}
 		}
 	}
-}
-catch (exception)
-{
-	Packages.java.lang.System.out.println("An exception was thrown: " + exception);
-	Packages.java.lang.System.out.println("Make sure the JSONParser class is available in the class path");
-}
-finally
-{
-	Packages.java.lang.System.out.println("[END] By Specs - open");
-}]]></method>
+	catch (exception)
+	{
+		Packages.java.lang.System.out.println("An exception was thrown: " + exception);
+		Packages.java.lang.System.out.println("Make sure the JSONParser class is available in the class path");
+	}
+	finally
+	{
+		Packages.java.lang.System.out.println("[END] By Specs - open");
+	}
+})();]]></method>
         </script-data-source>
     </data-sources>
     <data-sets>
@@ -352,23 +368,28 @@ return false;]]></method>
         <script-data-set name="SpecTopicAndTag" id="203">
             <list-property name="resultSetHints">
                 <structure>
-                    <property name="position">0</property>
+                    <property name="position">1</property>
                     <property name="name">SpecID</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">1</property>
+                    <property name="position">2</property>
                     <property name="name">TopicID</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">2</property>
+                    <property name="position">3</property>
                     <property name="name">TopicTitle</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">3</property>
-                    <property name="name">TopicTags</property>
+                    <property name="position">4</property>
+                    <property name="name">TopicTag</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">TopicTagID</property>
                     <property name="dataType">string</property>
                 </structure>
             </list-property>
@@ -386,8 +407,12 @@ return false;]]></method>
                     <text-property name="displayName">Topic Title</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">TopicTags</property>
-                    <text-property name="displayName">Topic Tags</text-property>
+                    <property name="columnName">TopicTag</property>
+                    <text-property name="displayName">Topic Tag</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicTagID</property>
+                    <text-property name="displayName">Topic Tag ID</text-property>
                 </structure>
             </list-property>
             <structure name="cachedMetaData">
@@ -409,7 +434,12 @@ return false;]]></method>
                     </structure>
                     <structure>
                         <property name="position">4</property>
-                        <property name="name">TopicTags</property>
+                        <property name="name">TopicTag</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">TopicTagID</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -425,9 +455,32 @@ specTopics = [];
 // This will track your current row later on
 specTopicAndTagCount = 0;
 
+// The tags in the filter category
+specTopicAndTagFilter = [];
+
 /*
 	--------------------- Processing ---------------------
 */
+
+/*
+	get the list of tags we are interested in processing
+*/
+(function()
+{
+	if (categoryController != null)
+	{
+		var tagCount = categoryController.getChildCount("tags/items");
+		
+		for (var tagIndex = 0; tagIndex < tagCount; ++tagIndex)
+		{
+			var tagId = categoryController.getValue("tags/items", "item/id", tagIndex);
+			//var tagName = categoryController.getValue("tags/items", "item/name", tagIndex);
+			specTopicAndTagFilter.push(tagId);
+		}
+		
+		Packages.java.lang.System.out.println("Number of filter tags found: " + specTopicAndTagFilter.length );
+	}
+})();
 
 // here we take the results of the queries against the spec ids
 // and combine them into a single table
@@ -448,41 +501,40 @@ specTopicAndTagCount = 0;
 		    var topicId = controller.getValue("items", "item/id", topicIndex);
 		    var topicTitle = controller.getValue("items", "item/title", topicIndex);
 		    
-		    var tags = "";
-		    var tagNames = "";
-		    
 		    var topic = new Packages.com.actuate.json.JSONArrayIndex(topicIndex, "items");
 		
 			var tagCount = parseInt(controller.getValue("items", "item/tags/size", topicIndex));
 		    for (var i = 0; i < tagCount; ++i)
 		    {
-		    	if (tags != "")
-		    		tags += ",";
-		    	if (tagNames != "")
-		    		tagNames += ",";
-		    		
 			    var topicTags = new Packages.com.actuate.json.JSONArrayIndex(i, "item/tags/items");
 		
 			    var tag = controller.getValue([topic, topicTags], "item/id");	    
-			    tags += tag;
-			    
+			    			  
 			    var tagName = controller.getValue([topic, topicTags], "item/name");	    
-			    tagNames += tagName;
+    		    // save the row
+			    specTopics.push({specId: specId.toString(), topicId: topicId.toString(), topicTitle: topicTitle, topicTagName: tagName, topicTagID: tag});				
 		    }
-		    
-		    // save the row
-		    specTopics.push({specId: specId.toString(), topicId: topicId.toString(), topicTags: tagNames, topicTitle: topicTitle.toString()});
 		}
 	}
-})();
-
-]]></method>
-            <method name="fetch"><![CDATA[if(specTopicAndTagCount < specTopics.length)
+})();]]></method>
+            <method name="fetch"><![CDATA[while (specTopicAndTagFilter.length != 0 &amp;&amp; specTopicAndTagCount < specTopics.length)
 {
+	if (specTopicAndTagFilter.customIndexOf(specTopics[specTopicAndTagCount].topicTagID) == -1)
+	{
+		Packages.java.lang.System.out.println("Skipping topic " + specTopics[specTopicAndTagCount].topicTagID + " " + (specTopicAndTagCount / specTopics.length * 100) + "%");
+		++specTopicAndTagCount;
+	}
+}
+
+if (specTopicAndTagCount < specTopics.length)
+{
+	Packages.java.lang.System.out.println("Adding topic " + specTopics[specTopicAndTagCount].topicTagID + " " + (specTopicAndTagCount / specTopics.length * 100) + "%");
+	
 	row["SpecID"] = specTopics[specTopicAndTagCount].specId;
 	row["TopicID"] = specTopics[specTopicAndTagCount].topicId;
 	row["TopicTitle"] = specTopics[specTopicAndTagCount].topicTitle;
-	row["TopicTags"] = specTopics[specTopicAndTagCount].topicTags;
+	row["TopicTagID"] = specTopics[specTopicAndTagCount].topicTagID;
+	row["TopicTag"] = specTopics[specTopicAndTagCount].topicTagName;
 	
 	++specTopicAndTagCount;
 	return true;
