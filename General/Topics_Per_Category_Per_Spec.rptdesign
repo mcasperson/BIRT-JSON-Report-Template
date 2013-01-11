@@ -776,8 +776,17 @@
             <Action>
               <Type>Show_Tooltip</Type>
               <Value xsi:type="attribute:TooltipValue">
-                <Text></Text>
+                <Text>row[&quot;TopicTag&quot;]</Text>
                 <Delay>200</Delay>
+              </Value>
+            </Action>
+          </Triggers>
+          <Triggers>
+            <Condition>onclick</Condition>
+            <Action>
+              <Type>Invoke_Script</Type>
+              <Value xsi:type="attribute:ScriptValue">
+                <Script>alert( &quot;Tag Name: &quot; + valueSeriesName + &quot; CSP ID: &quot; + categoryData + &quot; Topic Count: &quot; + valueData );</Script>
               </Value>
             </Action>
           </Triggers>
@@ -1263,7 +1272,7 @@
             <property name="outputFormat">PNG</property>
             <property name="inheritColumns">true</property>
             <property name="dataSet">SpecTopicAndTag</property>
-            <property name="height">5.364583333333333in</property>
+            <property name="height">7.520833333333333in</property>
             <property name="width">7.96875in</property>
             <list-property name="boundDataColumns">
                 <structure>
