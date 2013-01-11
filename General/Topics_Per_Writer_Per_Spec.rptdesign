@@ -1258,6 +1258,7 @@
 ]]></xml-property>
             <property name="outputFormat">SVG</property>
             <property name="inheritColumns">true</property>
+            <property name="dataSet">SpecTopicAndTag</property>
             <property name="height">2.78125in</property>
             <property name="width">7.96875in</property>
             <list-property name="boundDataColumns">
