@@ -519,10 +519,16 @@ specTopicAndTagFilter = [];
 })();]]></method>
             <method name="fetch"><![CDATA[while (specTopicAndTagFilter.length != 0 &amp;&amp; specTopicAndTagCount < specTopics.length)
 {
+	// if the topic does not contain one of the filter tags, skip it
 	if (specTopicAndTagFilter.customIndexOf(specTopics[specTopicAndTagCount].topicTagID) == -1)
 	{
 		Packages.java.lang.System.out.println("Skipping topic " + specTopics[specTopicAndTagCount].topicTagID + " " + (specTopicAndTagCount / specTopics.length * 100) + "%");
 		++specTopicAndTagCount;
+	}
+	// otherwise proceed to adding the topic
+	else	
+	{
+		break;
 	}
 }
 
