@@ -30,19 +30,20 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="Category" id="158">
-            <text-property name="helpText">Enter the category ID as a single integer. The tags associated with this category will then be used to break down the topic counts against each CSP ID.</text-property>
-            <text-property name="promptText">Please enter the catgeory ID whose tags will be used to group the topic values.</text-property>
+            <text-property name="promptText">Please select that category whose tags will be used to break down the topics included in the CSP.</text-property>
             <property name="valueType">dynamic</property>
             <property name="dataSetName">Categories</property>
             <expression name="valueExpr" type="javascript">dataSetRow["CategoryID"]</expression>
             <expression name="labelExpr" type="javascript">dataSetRow["CategoryName"]</expression>
+            <expression name="sortByColumn">dataSetRow["CategoryName"]</expression>
+            <property name="sortDirection">asc</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="controlType">list-box</property>
-            <property name="mustMatch">false</property>
-            <property name="fixedOrder">true</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">false</property>
             <structure name="format">
                 <property name="category">Unformatted</property>
             </structure>
@@ -325,7 +326,7 @@
         </Color>
         <Visible>true</Visible>
       </Separator>
-      <Position>Right</Position>
+      <Position>Below</Position>
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
