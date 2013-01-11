@@ -1,7 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 	<HEAD>
-		<TITLE>Eclipse BIRT Home</TITLE>
+		<TITLE>PressGang CCMS Reports</TITLE>
 		<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
 		<LINK href="styles/iv/index.css" type=text/css rel=stylesheet>
 		<LINK href="http://www.eclipse.org/images/eclipse.ico" type=image/x-icon rel="shortcut icon">
