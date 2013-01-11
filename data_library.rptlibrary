@@ -539,7 +539,7 @@ specTopicAndTagFilter = [];
 	// if the topic does not contain one of the filter tags, skip it
 	if (specTopicAndTagFilter.customIndexOf(specTopics[specTopicAndTagCount].topicTagID) == -1)
 	{
-		Packages.java.lang.System.out.println("Skipping topic " + specTopics[specTopicAndTagCount].topicTagID + " " + (specTopicAndTagCount / specTopics.length * 100) + "%");
+		Packages.java.lang.System.out.println("Skipping topic " + specTopics[specTopicAndTagCount].topicTagID + " " + (specTopicAndTagCount / specTopics.length * 100).toFixed(2) + "%");
 		++specTopicAndTagCount;
 	}
 	// otherwise proceed to adding the topic
@@ -551,7 +551,7 @@ specTopicAndTagFilter = [];
 
 if (specTopicAndTagCount < specTopics.length)
 {
-	Packages.java.lang.System.out.println("Adding topic " + specTopics[specTopicAndTagCount].topicTagID + " " + (specTopicAndTagCount / specTopics.length * 100) + "%");
+	Packages.java.lang.System.out.println("Adding topic " + specTopics[specTopicAndTagCount].topicTagID + " " + (specTopicAndTagCount / specTopics.length * 100).toFixed(2) + "%");
 	
 	row["SpecID"] = specTopics[specTopicAndTagCount].specId;
 	row["TopicID"] = specTopics[specTopicAndTagCount].topicId;
