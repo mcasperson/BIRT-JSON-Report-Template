@@ -475,6 +475,10 @@ specTopicAndTagCount = 0;
 // The tags in the filter category
 specTopicAndTagFilter = [];
 
+// A list of topics that were included in the report
+addedTopics = [];
+allTopics = [];
+
 /*
 	--------------------- Processing ---------------------
 */
@@ -519,6 +523,9 @@ specTopicAndTagFilter = [];
 		    var topicTitle = controller.getValue("items", "item/title", topicIndex);
 		    
 		    var topic = new Packages.com.actuate.json.JSONArrayIndex(topicIndex, "items");
+		    
+		    if (allTopics.customIndexOf(topicId) == -1)
+		    	allTopics.push(topicId);
 		
 			var tagCount = parseInt(controller.getValue("items", "item/tags/size", topicIndex));
 		    for (var i = 0; i < tagCount; ++i)
@@ -530,6 +537,8 @@ specTopicAndTagFilter = [];
 			    var tagName = controller.getValue([topic, topicTags], "item/name");	    
     		    // save the row
 			    specTopics.push({specId: specId.toString(), topicId: topicId.toString(), topicTitle: topicTitle, topicTagName: tagName, topicTagID: tag});				
+			    
+			    
 		    }
 		}
 	}
@@ -553,6 +562,9 @@ if (specTopicAndTagCount < specTopics.length)
 {
 	Packages.java.lang.System.out.println("Adding topic " + specTopics[specTopicAndTagCount].topicTagID + " " + (specTopicAndTagCount / specTopics.length * 100).toFixed(2) + "%");
 	
+	if (addedTopics.customIndexOf(specTopics[specTopicAndTagCount].topicId) == -1)
+		addedTopics.push(specTopics[specTopicAndTagCount].topicId);
+	
 	row["SpecID"] = specTopics[specTopicAndTagCount].specId;
 	row["TopicID"] = specTopics[specTopicAndTagCount].topicId;
 	row["TopicTitle"] = specTopics[specTopicAndTagCount].topicTitle;
@@ -561,6 +573,12 @@ if (specTopicAndTagCount < specTopics.length)
 	
 	++specTopicAndTagCount;
 	return true;
+}
+else
+{
+	// make a not of the number of topics that did not have any tag assigned to them
+	// from the specified category
+	skippedTopics = allTopics.length - addedTopics.length;
 }
 
 return false;]]></method>
