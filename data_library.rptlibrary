@@ -97,7 +97,7 @@ categoryController = null;
 	try
 	{
 		var category = params["Category"];
-		if (category != null)
+		if (category != null &amp;&amp; category.length != 0 &amp;&amp; category != "-1")
 		{
 			var completeCategoriesRestUrl = categoryRestUrl + category + categoryRestExpansion;
 			Packages.java.lang.System.out.println("Category REST URL: " + completeCategoriesRestUrl);
