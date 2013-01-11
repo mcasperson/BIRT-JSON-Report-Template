@@ -82,12 +82,16 @@ var restExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%
 var categoryRestUrl = "http://skynet.usersys.redhat.com:8080/TopicIndex/seam/resource/rest/1/category/get/json/";
 //var categoryRestExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22categories%22%7D%2C%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D%5D%7D";
 var categoryRestExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D";
+var categoryListRestUrl = "http://skynet.usersys.redhat.com:8080/TopicIndex/seam/resource/rest/1/categories/get/json/all";
+var categoryListRestExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22categories%22%7D%7D%5D%7D"
 // The controllers holds the JSON results
 controllers = [];
 // The CSPIDs that were used to create the controllers
 controllerCSPIDs = [];
 // The controller that holds the category details
 categoryController = null;
+// The controller that contains the list of categories
+categoryListController = null;
 
 /*
 	Processing
@@ -96,6 +100,10 @@ categoryController = null;
 {
 	try
 	{
+		Packages.java.lang.System.out.println("Category List REST URL: " + categoryListRestUrl + categoryListRestExpansion);
+		categoryListController = new Packages.com.actuate.json.JSONParser();
+		categoryListController.loadData(categoryListRestUrl + categoryListRestExpansion);
+		
 		var category = params["Category"];
 		if (category != null &amp;&amp; category.length != 0 &amp;&amp; category != "-1")
 		{
@@ -458,9 +466,35 @@ specTopicAndTagCount = 0;
 // The tags in the filter category
 specTopicAndTagFilter = [];
 
+// The list of categories
+categoryIdList = [];
+categoryNameList = [];
+
 /*
 	--------------------- Processing ---------------------
 */
+
+/*
+	get the list of categories
+*/
+
+(function()
+{
+	if (categoryListController != null)
+	{
+		var tagCount = categoryController.getChildCount("items");
+		
+		for (var categoryIndex = 0; categoryIndex < tagCount; ++categoryIndex)
+		{
+			var id = categoryController.getValue("tags/items", "item/id", categoryIndex);
+			var name = categoryController.getValue("tags/items", "item/name", categoryIndex);
+			categoryIdList.push(id);
+			categoryNameList.push(name);
+		}
+		
+		Packages.java.lang.System.out.println("Number of filter tags found: " + specTopicAndTagFilter.length );
+	}
+})();
 
 /*
 	get the list of tags we are interested in processing

@@ -32,15 +32,20 @@
         <scalar-parameter name="Category" id="158">
             <text-property name="helpText">Enter the category ID as a single integer. The tags associated with this category will then be used to break down the topic counts against each CSP ID.</text-property>
             <text-property name="promptText">Please enter the catgeory ID whose tags will be used to group the topic values.</text-property>
-            <property name="valueType">static</property>
+            <property name="valueType">dynamic</property>
+            <property name="dataSetName">SpecTopicAndTag</property>
+            <expression name="valueExpr" type="javascript">categoryIdList;</expression>
+            <expression name="labelExpr" type="javascript">categoryNameList;</expression>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
-                <value type="constant">25</value>
+                <value type="constant">2</value>
             </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
-            <property name="controlType">text-box</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">false</property>
+            <property name="fixedOrder">true</property>
             <structure name="format">
                 <property name="category">Unformatted</property>
             </structure>
@@ -51,6 +56,104 @@
     </data-sources>
     <data-sets>
         <script-data-set name="SpecTopicAndTag" id="161" extends="data_library.SpecTopicAndTag">
+            <method name="open"><![CDATA[/*
+	--------------------- Global variables ---------------------
+*/
+
+// specs mapped to topics
+specTopics = [];
+
+// This will track your current row later on
+specTopicAndTagCount = 0;
+
+// The tags in the filter category
+specTopicAndTagFilter = [];
+
+// The list of categories
+categoryIdList = [];
+categoryNameList = [];
+
+/*
+	--------------------- Processing ---------------------
+*/
+
+/*
+	get the list of categories
+*/
+
+(function()
+{
+	if (categoryListController != null)
+	{
+		var tagCount = categoryController.getChildCount("items");
+		
+		for (var categoryIndex = 0; categoryIndex < tagCount; ++categoryIndex)
+		{
+			var id = categoryController.getValue("tags/items", "item/id", categoryIndex);
+			var name = categoryController.getValue("tags/items", "item/name", categoryIndex);
+			categoryIdList.push(id.toString());
+			categoryNameList.push(name.toString());
+		}
+		
+		Packages.java.lang.System.out.println("Number of filter tags found: " + specTopicAndTagFilter.length );
+	}
+})();
+
+/*
+	get the list of tags we are interested in processing
+*/
+(function()
+{
+	if (categoryController != null)
+	{
+		var tagCount = categoryController.getChildCount("tags/items");
+		
+		for (var tagIndex = 0; tagIndex < tagCount; ++tagIndex)
+		{
+			var tagId = categoryController.getValue("tags/items", "item/id", tagIndex);
+			//var tagName = categoryController.getValue("tags/items", "item/name", tagIndex);
+			specTopicAndTagFilter.push(tagId);
+		}
+		
+		Packages.java.lang.System.out.println("Number of filter tags found: " + specTopicAndTagFilter.length );
+	}
+})();
+
+// here we take the results of the queries against the spec ids
+// and combine them into a single table
+
+// use a function to limit variable scopes
+(function()
+{
+	// process the results of each query against a spec
+	for (var specIndex = 0; specIndex < controllerCSPIDs.length; ++specIndex)
+	{		
+		var controller = controllers[specIndex];
+		var specId = controllerCSPIDs[specIndex];
+		var controllerTopicCount = controller.getChildCount("items");
+		
+		// process the topics in each spec query
+		for (var topicIndex = 0; topicIndex < controllerTopicCount; ++topicIndex)
+		{
+		    var topicId = controller.getValue("items", "item/id", topicIndex);
+		    var topicTitle = controller.getValue("items", "item/title", topicIndex);
+		    
+		    var topic = new Packages.com.actuate.json.JSONArrayIndex(topicIndex, "items");
+		
+			var tagCount = parseInt(controller.getValue("items", "item/tags/size", topicIndex));
+		    for (var i = 0; i < tagCount; ++i)
+		    {
+			    var topicTags = new Packages.com.actuate.json.JSONArrayIndex(i, "item/tags/items");
+		
+			    var tag = controller.getValue([topic, topicTags], "item/id");	    
+			    			  
+			    var tagName = controller.getValue([topic, topicTags], "item/name");	    
+    		    // save the row
+			    specTopics.push({specId: specId.toString(), topicId: topicId.toString(), topicTitle: topicTitle, topicTagName: tagName, topicTagID: tag});				
+		    }
+		}
+	}
+})();]]></method>
             <method name="fetch"><![CDATA[while (specTopicAndTagFilter.length != 0 &amp;&amp; specTopicAndTagCount < specTopics.length)
 {
 	// if the topic does not contain one of the filter tags, skip it
