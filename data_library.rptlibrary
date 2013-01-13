@@ -58,8 +58,8 @@ finally
 	the CCMS REST API using the URL saved in the JSONURL parameter. It will then parse
 	the result, the details of which can then be extracted by the Data Sets.
 */
-
-Packages.java.lang.System.out.println("[START] By Specs - open");
+importPackage(Packages.java.lang);
+System.out.println("[START] By Specs - open");
 
 /* Add the ability to search an array */
 
@@ -77,11 +77,12 @@ Array.prototype.customIndexOf = function(item) {
 /*
 	Globals used by other scripts
 */
-var restUrl = "http://skynet.usersys.redhat.com:8080/TopicIndex/seam/resource/rest/1/topics/get/json/";
-var restExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22topics%22%7D%2C%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D%5D%7D";
-var categoryRestUrl = "http://skynet.usersys.redhat.com:8080/TopicIndex/seam/resource/rest/1/category/get/json/";
+baseUrl = System.getProperty("BIRT_CCMS_BASE_URL");
+restUrl = baseUrl + "1/topics/get/json/";
+restExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22topics%22%7D%2C%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D%5D%7D";
+categoryRestUrl = "http://skynet.usersys.redhat.com:8080/TopicIndex/seam/resource/rest/1/category/get/json/";
 //var categoryRestExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22categories%22%7D%2C%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D%5D%7D";
-var categoryRestExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D";
+categoryRestExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D";
 
 // The controllers holds the JSON results
 controllers = [];
@@ -105,7 +106,7 @@ categoryListController = null;
 		if (category != null &amp;&amp; category.length != 0 &amp;&amp; category != "-1")
 		{
 			var completeCategoriesRestUrl = categoryRestUrl + category + categoryRestExpansion;
-			Packages.java.lang.System.out.println("Category REST URL: " + completeCategoriesRestUrl);
+			System.out.println("Category REST URL: " + completeCategoriesRestUrl);
 			categoryController = new Packages.com.actuate.json.JSONParser();
 			categoryController.loadData(completeCategoriesRestUrl);
 		}
@@ -122,7 +123,7 @@ categoryListController = null;
 				{
 					var completeRestUrl = restUrl + "query;topicIncludedInSpec=" + csp + restExpansion;
 					
-					Packages.java.lang.System.out.println("REST URL: " + completeRestUrl);
+					System.out.println("REST URL: " + completeRestUrl);
 					
 					// Create instance of the Controller class
 					var controller = new Packages.com.actuate.json.JSONParser();
@@ -141,23 +142,27 @@ categoryListController = null;
 	}
 	catch (exception)
 	{
-		Packages.java.lang.System.out.println("An exception was thrown: " + exception);
-		Packages.java.lang.System.out.println("Make sure the JSONParser class is available in the class path");
+		System.out.println("An exception was thrown: " + exception);
+		System.out.println("Make sure the JSONParser class is available in the class path");
 	}
 	finally
 	{
-		Packages.java.lang.System.out.println("[END] By Specs - open");
+		System.out.println("[END] By Specs - open");
 	}
 })();]]></method>
         </script-data-source>
         <script-data-source name="Categories" id="204">
-            <method name="open"><![CDATA[// The list of categories
+            <method name="open"><![CDATA[importPackage(Packages.java.lang);
+
+// The list of categories
 categoryIdList = [];
 categoryNameList = [];
 categoryCount = 0;
 
-categoryListRestUrl = "http://skynet.usersys.redhat.com:8080/TopicIndex/seam/resource/rest/1/categories/get/json/all?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22categories%22%7D%7D%5D%7D";
-Packages.java.lang.System.out.println("Category List REST URL: " + categoryListRestUrl);
+baseUrl = System.getProperty("BIRT_CCMS_BASE_URL");
+System.out.println("Base URL: " + baseUrl);
+categoryListRestUrl = baseUrl + "1/categories/get/json/all?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22categories%22%7D%7D%5D%7D";
+System.out.println("Category List REST URL: " + categoryListRestUrl);
 categoryListController = new Packages.com.actuate.json.JSONParser();
 categoryListController.loadData(categoryListRestUrl);
 categoryCount = categoryListController.getChildCount("items");]]></method>
