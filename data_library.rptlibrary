@@ -115,7 +115,16 @@ categoryListController = null;
 				var csp = parseInt(cspIdsArray[cspIndex]);
 				if (csp != NaN)
 				{
-					var completeRestUrl = restUrl + "query;topicIncludedInSpec=" + csp + restExpansion;
+					var filter = "query;topicIncludedInSpec=" + csp;
+
+					// optionally filter to only those topics edited in the specified last number of days
+					var topicEditedInLastDays = parseInt(params["EditedInLastXDays"]);
+					if (topicEditedInLastDays != NaN)
+					{
+						filter += ";topicEditedInLastDays=" + topicEditedInLastDays;
+					}
+					
+					var completeRestUrl = restUrl + filter  + restExpansion;
 					
 					Packages.java.lang.System.out.println("REST URL: " + completeRestUrl);
 					
@@ -691,7 +700,7 @@ if (specTopicAndTagCount < specTopics.length)
 	if (addedTopics.customIndexOf(specTopics[specTopicAndTagCount].topicId) == -1)
 		addedTopics.push(specTopics[specTopicAndTagCount].topicId);
 	
-	row["SpecID"] = specTopics[specTopicAndTagCount].specId;
+	row["SpecID"] = specTopics[specTopicAndTagCount].specId.toString();
 	row["TopicID"] = specTopics[specTopicAndTagCount].topicId;
 	row["TopicTitle"] = specTopics[specTopicAndTagCount].topicTitle;
 	row["TopicTagID"] = specTopics[specTopicAndTagCount].topicTagID;

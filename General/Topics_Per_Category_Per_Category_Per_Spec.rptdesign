@@ -16,7 +16,7 @@
             <text-property name="helpText">Enter the CSP ID that holds the topics you wish to analyse</text-property>
             <text-property name="promptText">CSP ID</text-property>
             <property name="valueType">static</property>
-            <property name="dataType">string</property>
+            <property name="dataType">integer</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
                 <value type="constant">8699</value>
@@ -29,7 +29,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="XAxisCategory" id="10">
-            <text-property name="helpText">Select the category that holds the tags to be displayed along the x axis. The count of the topics with the tags assigned to them from this category define the height of the bars.</text-property>
+            <text-property name="helpText">Select the category that holds the tags to be displayed along one of the axes. The count of the topics with the tags assigned to them from this category define the size of the bars.</text-property>
             <text-property name="promptText">Axis Category</text-property>
             <property name="valueType">dynamic</property>
             <property name="dataSetName">Categories</property>

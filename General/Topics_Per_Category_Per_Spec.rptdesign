@@ -48,6 +48,20 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
+        <scalar-parameter name="EditedInLastXDays" id="195">
+            <text-property name="helpText">If this value is specified, the topics included in the chart will only be those that that were modified in the last specified number of days.</text-property>
+            <text-property name="promptText">Limit to topics edited in the last number of days</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
     </parameters>
     <data-sources>
         <script-data-source name="By Specs" id="162" extends="data_library.By Specs"/>
@@ -776,7 +790,7 @@
             <Action>
               <Type>Show_Tooltip</Type>
               <Value xsi:type="attribute:TooltipValue">
-                <Text>row[&quot;TopicTag&quot;]</Text>
+                <Text>row[&quot;SpecID&quot;] + &quot; - &quot; + row[&quot;TopicTag&quot;]</Text>
                 <Delay>200</Delay>
               </Value>
             </Action>
@@ -1257,7 +1271,7 @@
     <CategoryAxis>true</CategoryAxis>
     <Percent>false</Percent>
   </Axes>
-  <Orientation>Vertical</Orientation>
+  <Orientation>Horizontal</Orientation>
   <UnitSpacing>50.0</UnitSpacing>
   <Rotation>
     <Angles>
