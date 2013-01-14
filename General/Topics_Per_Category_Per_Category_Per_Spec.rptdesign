@@ -14,6 +14,7 @@
     <parameters>
         <scalar-parameter name="CSPID" id="9">
             <text-property name="helpText">Enter the CSP ID that holds the topics you wish to analyse</text-property>
+            <text-property name="promptText">CSP ID</text-property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
@@ -28,7 +29,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="XAxisCategory" id="10">
-            <text-property name="helpText">Select the category that holds the tags to be displayed along the x axis</text-property>
+            <text-property name="helpText">Select the category that holds the tags to be displayed along the x axis. The count of the topics with the tags assigned to them from this category define the height of the bars.</text-property>
             <text-property name="promptText">X Axis Category</text-property>
             <property name="valueType">dynamic</property>
             <property name="dataSetName">Categories</property>
@@ -51,7 +52,7 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="YAxisCategory" id="11">
-            <text-property name="helpText">Select the category that holds the tags to be displayed as stacks in the chart's bars.</text-property>
+            <text-property name="helpText">Select the category that holds the tags to be displayed as stacks in the chart's bars. The count of the topics with the tags assigned to them from this category define the height of the stacks within a bar.</text-property>
             <text-property name="promptText">Stacking Category</text-property>
             <property name="valueType">dynamic</property>
             <property name="dataSetName">Categories</property>
@@ -1285,7 +1286,7 @@
     <CategoryAxis>true</CategoryAxis>
     <Percent>false</Percent>
   </Axes>
-  <Orientation>Vertical</Orientation>
+  <Orientation>Horizontal</Orientation>
   <UnitSpacing>50.0</UnitSpacing>
   <Rotation>
     <Angles>
