@@ -58,8 +58,7 @@ finally
 	the CCMS REST API using the URL saved in the JSONURL parameter. It will then parse
 	the result, the details of which can then be extracted by the Data Sets.
 */
-importPackage(Packages.java.lang);
-System.out.println("[START] By Specs - open");
+Packages.java.lang.System.out.println("[START] By Specs - open");
 
 /* Add the ability to search an array */
 
@@ -77,7 +76,7 @@ Array.prototype.customIndexOf = function(item) {
 /*
 	Globals used by other scripts
 */
-baseUrl = System.getProperty("BIRT_CCMS_BASE_URL");
+baseUrl = Packages.java.lang.System.getProperty("BIRT_CCMS_BASE_URL");
 restUrl = baseUrl + "1/topics/get/json/";
 restExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22topics%22%7D%2C%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D%5D%7D";
 categoryRestUrl = baseUrl + "1/category/get/json/";
@@ -106,7 +105,7 @@ categoryListController = null;
 		if (category != null &amp;&amp; category.length != 0 &amp;&amp; category != "-1")
 		{
 			var completeCategoriesRestUrl = categoryRestUrl + category + categoryRestExpansion;
-			System.out.println("Category REST URL: " + completeCategoriesRestUrl);
+			Packages.java.lang.System.out.println("Category REST URL: " + completeCategoriesRestUrl);
 			categoryController = new Packages.com.actuate.json.JSONParser();
 			categoryController.loadData(completeCategoriesRestUrl);
 		}
@@ -123,7 +122,7 @@ categoryListController = null;
 				{
 					var completeRestUrl = restUrl + "query;topicIncludedInSpec=" + csp + restExpansion;
 					
-					System.out.println("REST URL: " + completeRestUrl);
+					Packages.java.lang.System.out.println("REST URL: " + completeRestUrl);
 					
 					// Create instance of the Controller class
 					var controller = new Packages.com.actuate.json.JSONParser();
@@ -142,12 +141,12 @@ categoryListController = null;
 	}
 	catch (exception)
 	{
-		System.out.println("An exception was thrown: " + exception);
-		System.out.println("Make sure the JSONParser class is available in the class path");
+		Packages.java.lang.System.out.println("An exception was thrown: " + exception);
+		Packages.java.lang.System.out.println("Make sure the JSONParser class is available in the class path");
 	}
 	finally
 	{
-		System.out.println("[END] By Specs - open");
+		Packages.java.lang.System.out.println("[END] By Specs - open");
 	}
 })();]]></method>
         </script-data-source>
@@ -467,9 +466,7 @@ return false;]]></method>
                 </list-property>
             </structure>
             <property name="dataSource">By Specs</property>
-            <method name="open"><![CDATA[importPackage(Packages.java.lang);
-
-Packages.java.lang.System.out.println("[START] SpecTopicAndTag - open");
+            <method name="open"><![CDATA[Packages.java.lang.System.out.println("[START] SpecTopicAndTag - open");
 
 /*
 	--------------------- Global variables ---------------------
@@ -508,7 +505,7 @@ allTopics = [];
 			specTopicAndTagFilter.push(tagId);
 		}
 		
-		System.out.println("Number of filter tags found: " + specTopicAndTagFilter.length );
+		Packages.java.lang.System.out.println("Number of filter tags found: " + specTopicAndTagFilter.length );
 	}
 })();
 
@@ -524,7 +521,7 @@ allTopics = [];
 	for (var specIndex = 0; specIndex < controllerCSPIDs.length; ++specIndex)
 	{		
 		var controller = controllers[specIndex];
-		var specId = controllerCSPIDs[specIndex];
+		var currentSpecId = controllerCSPIDs[specIndex];
 		var controllerTopicCount = controller.getChildCount("items");
 		
 		// process the topics in each spec query
@@ -547,11 +544,17 @@ allTopics = [];
 			    			  
 			    var tagName = controller.getValue([topic, topicTags], "item/name");	    
     		    
-    		    System.out.println("Adding row " + totalRows);
+    		    Packages.java.lang.System.out.println("Adding row " + totalRows + 
+    		    	". specId: " + currentSpecId + 					
+    		    	", topicId: " + topicId + 
+    		    	", topicTitle: " + topicTitle + 
+    		    	", topicTagName: " + tagName + 
+    		    	", topicTagID: " + tag);
     		    ++totalRows;
     		    
     		    // save the row
-			    specTopics.push({specId: specId.toString(), topicId: topicId.toString(), topicTitle: topicTitle, topicTagName: tagName, topicTagID: tag});			    			    
+    		    var newRow = {specId: currentSpecId, topicId: topicId, topicTitle: topicTitle, topicTagName: tagName, topicTagID: tag};
+			    specTopics.push(newRow);			    			    
 		    }
 		}
 	}
