@@ -897,38 +897,38 @@ categorySummaryByCategoryAndSpecRow = 0;
 		{
 			var xAxisTagId = xAxisCategoryController.getValue("tags/items", "item/id", xAxisIndex);
 			
-			for (var tagIndex = 0; tagIndex < tagCount; ++tagIndex)
+			for (var xTagIndex = 0; xTagIndex < tagCount; ++xTagIndex)
 			{
-				var xAxisTopicTags = new Packages.com.actuate.json.JSONArrayIndex(tagIndex, "item/tags/items");
-			    var xAxisTagId = controller.getValue([topic, topicTags], "item/id");
-			  	var xAxisTagName = controller.getValue([topic, topicTags], "item/name");
+				var tagXAxisTopicTags = new Packages.com.actuate.json.JSONArrayIndex(xTagIndex, "item/tags/items");
+			    var tagXAxisTagId = controller.getValue([topic, tagXAxisTopicTags], "item/id");
+			  	var tagXAxisTagName = controller.getValue([topic, tagXAxisTopicTags], "item/name");
 			    
 			    // we have found that the topic contains an x axis tag
-			    if (tag == xAxisTagId)
+			    if (tagXAxisTagId == xAxisTagId)
 			    {
 					// loop over the y axis tags
 					for (var yAxisIndex = 0; yAxisIndex < bySpecAndCategoryYAxisTagCount; ++yAxisIndex)
 					{
 						var yAxisTagId = yAxisCategoryController.getValue("tags/items", "item/id", yAxisIndex);
 						
-						for (var tagIndex = 0; tagIndex < tagCount; ++tagIndex)
+						for (var yTagIndex = 0; yTagIndex < tagCount; ++yTagIndex)
 						{
-							var yAxisTopicTags = new Packages.com.actuate.json.JSONArrayIndex(tagIndex, "item/tags/items");
-			   			 	var yAxisTagId = controller.getValue([topic, topicTags], "item/id");
-			  				var yAxisTagName = controller.getValue([topic, topicTags], "item/name");
+							var tagYAxisTopicTags = new Packages.com.actuate.json.JSONArrayIndex(yTagIndex, "item/tags/items");
+			   			 	var tagYAxisTagId = controller.getValue([topic, tagYAxisTopicTags], "item/id");
+			  				var tagYAxisTagName = controller.getValue([topic, tagYAxisTopicTags], "item/name");
 						    
 						    // we have found that the topics contains a y axis tag
-						    if (tag == yAxisTagId)
+						    if (tagYAxisTagId == yAxisTagId)
 						    {
 						    	foundAxisTag = true;
 						    	
 						    	// add the data row
 								categorySummaryByCategoryAndSpecData.push(
 									{
-										xAxisTagID: xAxisTagId, 
-										xAxisTagName: xAxisTagName,
-										yAxisTagID: yAxisTagId, 
-										yAxisTagName: yAxisTagName,
+										xAxisTagID: tagXAxisTagId, 
+										xAxisTagName: tagXAxisTagName,
+										yAxisTagID: tagYAxisTagId, 
+										yAxisTagName: tagYAxisTagName,
 										topicID: topicId,
 										topicTitle: topicTitle,
 										cspID: cspIdInt
@@ -945,7 +945,7 @@ categorySummaryByCategoryAndSpecRow = 0;
 		{
 			++missingTopics;
 			continue;
-		}
+		}		
 	}
 })();
 
