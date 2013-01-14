@@ -259,7 +259,16 @@ else
 				
 				if (cspIdInt != NaN)
 				{				
-					var completeRestUrl = restUrl + "query;topicIncludedInSpec=" + cspIdInt + restExpansion;
+					var filter = "query;topicIncludedInSpec=" + cspIdInt;
+					
+					// optionally filter to only those topics edited in the specified last number of days
+					var topicEditedInLastDays = parseInt(params["EditedInLastXDays"]);
+					if (topicEditedInLastDays != NaN)
+					{
+						filter += ";topicEditedInLastDays=" + topicEditedInLastDays;
+					}
+					
+					var completeRestUrl = restUrl + filter + restExpansion;
 					
 					Packages.java.lang.System.out.println("REST URL: " + completeRestUrl);
 					
