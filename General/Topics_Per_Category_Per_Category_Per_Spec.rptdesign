@@ -27,23 +27,39 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="XAxisCategory" id="10">
-            <property name="valueType">static</property>
+            <property name="valueType">dynamic</property>
+            <property name="dataSetName">Categories</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["CategoryID"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["CategoryName"]</expression>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">17</value>
+            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
-            <property name="controlType">text-box</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
             <structure name="format">
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
         <scalar-parameter name="YAxisCategory" id="11">
-            <property name="valueType">static</property>
+            <property name="valueType">dynamic</property>
+            <property name="dataSetName">Categories</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["CategoryID"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["CategoryName"]</expression>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">12</value>
+            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
-            <property name="controlType">text-box</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
             <structure name="format">
                 <property name="category">Unformatted</property>
             </structure>
