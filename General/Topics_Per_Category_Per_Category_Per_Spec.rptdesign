@@ -13,11 +13,12 @@
     </list-property>
     <parameters>
         <scalar-parameter name="CSPID" id="9">
+            <text-property name="helpText">Enter the CSP ID that holds the topics you wish to analyse</text-property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
-                <value type="constant">8844</value>
+                <value type="constant">8699</value>
             </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -27,29 +28,14 @@
             </structure>
         </scalar-parameter>
         <scalar-parameter name="XAxisCategory" id="10">
+            <text-property name="helpText">Select the category that holds the tags to be displayed along the x axis</text-property>
+            <text-property name="promptText">X Axis Category</text-property>
             <property name="valueType">dynamic</property>
             <property name="dataSetName">Categories</property>
             <expression name="valueExpr" type="javascript">dataSetRow["CategoryID"]</expression>
             <expression name="labelExpr" type="javascript">dataSetRow["CategoryName"]</expression>
-            <property name="dataType">string</property>
-            <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="constant">17</value>
-            </simple-property-list>
-            <list-property name="selectionList"/>
-            <property name="paramType">simple</property>
-            <property name="controlType">list-box</property>
-            <property name="mustMatch">true</property>
-            <property name="fixedOrder">true</property>
-            <structure name="format">
-                <property name="category">Unformatted</property>
-            </structure>
-        </scalar-parameter>
-        <scalar-parameter name="YAxisCategory" id="11">
-            <property name="valueType">dynamic</property>
-            <property name="dataSetName">Categories</property>
-            <expression name="valueExpr" type="javascript">dataSetRow["CategoryID"]</expression>
-            <expression name="labelExpr" type="javascript">dataSetRow["CategoryName"]</expression>
+            <expression name="sortByColumn">dataSetRow["CategoryName"]</expression>
+            <property name="sortDirection">asc</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
@@ -59,7 +45,30 @@
             <property name="paramType">simple</property>
             <property name="controlType">list-box</property>
             <property name="mustMatch">true</property>
-            <property name="fixedOrder">true</property>
+            <property name="fixedOrder">false</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="YAxisCategory" id="11">
+            <text-property name="helpText">Select the category that holds the tags to be displayed as stacks in the chart's bars.</text-property>
+            <text-property name="promptText">Stacking Category</text-property>
+            <property name="valueType">dynamic</property>
+            <property name="dataSetName">Categories</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["CategoryID"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["CategoryName"]</expression>
+            <expression name="sortByColumn">dataSetRow["CategoryName"]</expression>
+            <property name="sortDirection">asc</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">17</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">false</property>
             <structure name="format">
                 <property name="category">Unformatted</property>
             </structure>
