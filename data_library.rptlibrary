@@ -53,12 +53,8 @@ finally
 }]]></method>
         </script-data-source>
         <script-data-source name="By Specs" id="202">
-            <method name="open"><![CDATA[/*
-	This data source make use of the custom JSONParser class to peform a request of
-	the CCMS REST API using the URL saved in the JSONURL parameter. It will then parse
-	the result, the details of which can then be extracted by the Data Sets.
-*/
-Packages.java.lang.System.out.println("[START] By Specs - open");
+            <property name="comments">This data source make use of the custom JSONParser class to peform a request of the CCMS REST API using the URL saved in the JSONURL parameter. It will then parse the result, the details of which can then be extracted by the Data Sets.</property>
+            <method name="open"><![CDATA[Packages.java.lang.System.out.println("[START] By Specs - open");
 
 /* Add the ability to search an array */
 
@@ -80,7 +76,6 @@ baseUrl = Packages.java.lang.System.getProperty("BIRT_CCMS_BASE_URL");
 restUrl = baseUrl + "1/topics/get/json/";
 restExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22topics%22%7D%2C%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D%5D%7D";
 categoryRestUrl = baseUrl + "1/category/get/json/";
-//var categoryRestExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22categories%22%7D%2C%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D%5D%7D";
 categoryRestExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D";
 
 // The controllers holds the JSON results
@@ -151,20 +146,127 @@ categoryListController = null;
 })();]]></method>
         </script-data-source>
         <script-data-source name="Categories" id="204">
-            <method name="open"><![CDATA[importPackage(Packages.java.lang);
-
-// The list of categories
+            <property name="comments">This data source obtains a collection of all the categories in the CCMS.</property>
+            <method name="open"><![CDATA[// The list of categories
 categoryIdList = [];
 categoryNameList = [];
 categoryCount = 0;
 
-baseUrl = System.getProperty("BIRT_CCMS_BASE_URL");
-System.out.println("Base URL: " + baseUrl);
+baseUrl = Packages.java.lang.System.getProperty("BIRT_CCMS_BASE_URL");
 categoryListRestUrl = baseUrl + "1/categories/get/json/all?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22categories%22%7D%7D%5D%7D";
-System.out.println("Category List REST URL: " + categoryListRestUrl);
+Packages.java.lang.System.out.println("Category List REST URL: " + categoryListRestUrl);
 categoryListController = new Packages.com.actuate.json.JSONParser();
 categoryListController.loadData(categoryListRestUrl);
 categoryCount = categoryListController.getChildCount("items");]]></method>
+        </script-data-source>
+        <script-data-source name="By Spec and Categories" id="206">
+            <method name="open"><![CDATA[Packages.java.lang.System.out.println("[START] By Specs - open");
+
+/* Add the ability to search an array */
+
+Array.prototype.customIndexOf = function(item) {    
+
+    for(var i = 0; i < this.length; ++i) {
+    
+        if(this[i] == item) {
+            return i;
+        }
+    }
+    return -1;
+};
+
+/*
+	Globals used by other scripts
+*/
+baseUrl = Packages.java.lang.System.getProperty("BIRT_CCMS_BASE_URL");
+restUrl = baseUrl + "1/topics/get/json/";
+restExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22topics%22%7D%2C%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D%5D%7D";
+categoryRestUrl = baseUrl + "1/category/get/json/";
+categoryRestExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D";
+
+// The controllers holds the JSON results
+controller = null;
+// The total number of topics
+bySpecAndCategoryTopicCount = 0;
+
+// The controller that holds the category whose tags make up the x axis
+xAxisCategoryController = null;
+// The total number of tags in the x axis
+bySpecAndCategoryXAxisTagCount = 0;
+
+// The controller that holds the category whose tags make up the y axis
+yAxisCategoryController = null;
+// The total number of tags in the y axis
+bySpecAndCategoryYAxisTagCount = 0;
+
+// The controller that contains the list of categories
+categoryListController = null;
+
+// The CSP ID
+cspIdInt = 0;
+
+
+/*
+	Processing
+*/
+(function()
+{
+	try
+	{
+		
+		// get the category whose tags will make up the x axis
+		var category = params["XAxisCategory"];
+		if (category != null &amp;&amp; category.length != 0 &amp;&amp; category != "-1")
+		{
+			var completeXAxisCategoriesRestUrl = categoryRestUrl + category + categoryRestExpansion;
+			Packages.java.lang.System.out.println("Category X Axis REST URL: " + completeXAxisCategoriesRestUrl);
+			xAxisCategoryController = new Packages.com.actuate.json.JSONParser();
+			xAxisCategoryController.loadData(completeXAxisCategoriesRestUrl);
+			bySpecAndCategoryXAxisTagCount = controller.getChildCount("tags/items");
+		}
+		
+		// get the category whose tags will make up the y axis
+		var category = params["YAxisCategory"];
+		if (category != null &amp;&amp; category.length != 0 &amp;&amp; category != "-1")
+		{
+			var completeYAxisCategoriesRestUrl = categoryRestUrl + category + categoryRestExpansion;
+			Packages.java.lang.System.out.println("Category Y Axis REST URL: " + completeYAxisCategoriesRestUrl);
+			yAxisCategoryController = new Packages.com.actuate.json.JSONParser();
+			yAxisCategoryController.loadData(completeYAxisCategoriesRestUrl);
+			bySpecAndCategoryYAxisTagCount = controller.getChildCount("tags/items");
+		}
+		
+		var cspId = params["CSPID"];
+		if (cspId != null)
+		{
+			cspIdInt = parseInt(cspId);
+			
+			if (cspIdInt != NaN)
+			{				
+				var completeRestUrl = restUrl + "query;topicIncludedInSpec=" + cspIdInt + restExpansion;
+				
+				Packages.java.lang.System.out.println("REST URL: " + completeRestUrl);
+				
+				// Create instance of the Controller class
+				controller = new Packages.com.actuate.json.JSONParser();
+				
+				// Load the JSON Source
+				controller.loadData(completeRestUrl);	
+				
+				bySpecAndCategoryTopicCount = controller.getChildCount("items");		
+			}
+		}
+	}
+	catch (exception)
+	{
+		Packages.java.lang.System.out.println("An exception was thrown: " + exception);
+		Packages.java.lang.System.out.println("Make sure the JSONParser class is available in the class path");
+	}
+	finally
+	{
+		Packages.java.lang.System.out.println("[END] By Specs - open");
+	}
+})();]]></method>
         </script-data-source>
     </data-sources>
     <data-sets>
@@ -647,6 +749,214 @@ return false;]]></method>
 
 	++categoriesIndex;
     return true;
+}
+
+return false;]]></method>
+        </script-data-set>
+        <script-data-set name="CategorySummaryByCategoryAndSpec" id="207">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">0</property>
+                    <property name="name">TagId</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">TagName</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">GroupTagId</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">GroupTagName</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">CSPID</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">TopicID</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">TopicTitle</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">TagId</property>
+                    <text-property name="displayName">Tag ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TagName</property>
+                    <text-property name="displayName">Tag Name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">GroupTagId</property>
+                    <text-property name="displayName">Group Tag Id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">GroupTagName</property>
+                    <text-property name="displayName">Group Tag Name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">CSPID</property>
+                    <text-property name="displayName">CSP ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicID</property>
+                    <text-property name="displayName">Topic ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicTitle</property>
+                    <text-property name="displayName">Topic Title</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">TagId</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">TagName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">GroupTagId</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">GroupTagName</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">CSPID</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">TopicID</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">TopicTitle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">By Spec and Categories</property>
+            <method name="open"><![CDATA[Packages.java.lang.System.out.println("[START] CategorySummaryByCategoryAndSpec - open");
+Packages.java.lang.System.out.println("Total number of topics: " + bySpecAndCategoryTopicCount);
+
+// the number of topics that were in the query but don't have a tag from the x axis
+// category and a tag from the y axis category
+missingTopics = 0;
+// the data source
+categorySummaryByCategoryAndSpecData = [];
+// the current row
+categorySummaryByCategoryAndSpecRow = 0;
+
+(function(){
+	// process the topics in each spec query
+	for (var topicIndex = 0; topicIndex < bySpecAndCategoryTopicCount; ++topicIndex)
+	{
+		var topicId = controller.getValue("items", "item/id", topicIndex);
+		var topicTitle = controller.getValue("items", "item/title", topicIndex);
+		
+		// a reference to the topics collection
+		var topic = new Packages.com.actuate.json.JSONArrayIndex(topicIndex, "items");
+		
+		// how many tags this topic has assigned to it
+		var tagCount = parseInt(controller.getValue("items", "item/tags/size", topicIndex));
+		
+		// loop over the x axis tags.
+		var foundAxisTag = false;
+		for (var xAxisIndex = 0; xAxisIndex < bySpecAndCategoryXAxisTagCount; ++xAxisIndex)
+		{
+			var xAxisTagId = xAxisCategoryController.getValue("tags/items", "item/id", xAxisIndex);
+			
+			for (var tagIndex = 0; tagIndex < tagCount; ++tagIndex)
+			{
+				var xAxisTopicTags = new Packages.com.actuate.json.JSONArrayIndex(tagIndex, "item/tags/items");
+			    var xAxisTagId = controller.getValue([topic, topicTags], "item/id");
+			  	var xAxisTagName = controller.getValue([topic, topicTags], "item/name");
+			    
+			    // we have found that the topic contains an x axis tag
+			    if (tag == xAxisTagId)
+			    {
+					// loop over the y axis tags
+					for (var yAxisIndex = 0; yAxisIndex < bySpecAndCategoryYAxisTagCount; ++yAxisIndex)
+					{
+						var yAxisTagId = yAxisCategoryController.getValue("tags/items", "item/id", yAxisIndex);
+						
+						for (var tagIndex = 0; tagIndex < tagCount; ++tagIndex)
+						{
+							var yAxisTopicTags = new Packages.com.actuate.json.JSONArrayIndex(tagIndex, "item/tags/items");
+			   			 	var yAxisTagId = controller.getValue([topic, topicTags], "item/id");
+			  				var yAxisTagName = controller.getValue([topic, topicTags], "item/name");
+						    
+						    // we have found that the topics contains a y axis tag
+						    if (tag == yAxisTagId)
+						    {
+						    	foundAxisTag = true;
+						    	
+						    	// add the data row
+								categorySummaryByCategoryAndSpecData.push(
+									{
+										xAxisTagID: xAxisTagId, 
+										xAxisTagName: xAxisTagName,
+										yAxisTagID: yAxisTagId, 
+										yAxisTagName: yAxisTagName,
+										topicID: topicId,
+										topicTitle: topicTitle,
+										cspID: cspIdInt
+									}
+								);
+						    }
+						}
+					}
+			    }
+			}
+		}
+		
+		if (!foundAxisTag)
+		{
+			++missingTopics;
+			continue;
+		}
+	}
+})();
+
+
+Packages.java.lang.System.out.println("[END] CategorySummaryByCategoryAndSpec - open");]]></method>
+            <method name="fetch"><![CDATA[if (categorySummaryByCategoryAndSpecRow < categorySummaryByCategoryAndSpecData.length)
+{
+	row["TagID"] = categorySummaryByCategoryAndSpecData[categorySummaryByCategoryAndSpecRow].xAxisTagID;
+	row["TagName"] = categorySummaryByCategoryAndSpecData[categorySummaryByCategoryAndSpecRow].xAxisTagName;
+	row["GroupTagID"] = categorySummaryByCategoryAndSpecData[categorySummaryByCategoryAndSpecRow].yAxisTagID;
+	row["GroupTagName"] = categorySummaryByCategoryAndSpecData[categorySummaryByCategoryAndSpecRow].yAxisTagName;
+	row["TopicID"] = categorySummaryByCategoryAndSpecData[categorySummaryByCategoryAndSpecRow].topicID;
+	row["TopicTitle"] = categorySummaryByCategoryAndSpecData[categorySummaryByCategoryAndSpecRow].topicTitle;
+	row["CSPID"] = categorySummaryByCategoryAndSpecData[categorySummaryByCategoryAndSpecRow].cspID;
+	
+	++categorySummaryByCategoryAndSpecRow;
+	return true;
 }
 
 return false;]]></method>
