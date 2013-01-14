@@ -1301,8 +1301,8 @@
             <property name="outputFormat">PNG</property>
             <property name="inheritColumns">true</property>
             <property name="dataSet">CategorySummaryByCategoryAndSpec</property>
-            <property name="height">7.135416666666667in</property>
-            <property name="width">7.96875in</property>
+            <property name="height">6.572916666666667in</property>
+            <property name="width">7.947916666666667in</property>
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">TagID</property>
@@ -1373,6 +1373,20 @@
                 <cell id="177">
                     <text-data id="194">
                         <expression name="valueExpr">skippedTopics;</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+            <row id="195">
+                <cell id="196">
+                    <label id="198">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">CSP ID</text-property>
+                    </label>
+                </cell>
+                <cell id="197">
+                    <text-data id="199">
+                        <expression name="valueExpr">cspIdInt;</expression>
                         <property name="contentType">html</property>
                     </text-data>
                 </cell>
