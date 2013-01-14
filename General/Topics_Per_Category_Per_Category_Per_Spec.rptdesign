@@ -199,7 +199,7 @@
       <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Topics per Category Tags for a Single CSP</Value>
+          <Value>Topics per Category Tags for a Single Content Spec</Value>
           <Font>
             <Size>16.0</Size>
             <Bold>true</Bold>
