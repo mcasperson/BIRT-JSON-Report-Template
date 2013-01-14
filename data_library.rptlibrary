@@ -160,7 +160,7 @@ categoryListController.loadData(categoryListRestUrl);
 categoryCount = categoryListController.getChildCount("items");]]></method>
         </script-data-source>
         <script-data-source name="By Spec and Categories" id="206">
-            <method name="open"><![CDATA[Packages.java.lang.System.out.println("[START] By Specs - open");
+            <method name="open"><![CDATA[Packages.java.lang.System.out.println("[START] By Specs and Catgeory - open");
 
 /* Add the ability to search an array */
 
@@ -178,11 +178,6 @@ Array.prototype.customIndexOf = function(item) {
 /*
 	Globals used by other scripts
 */
-baseUrl = Packages.java.lang.System.getProperty("BIRT_CCMS_BASE_URL");
-restUrl = baseUrl + "1/topics/get/json/";
-restExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22topics%22%7D%2C%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D%5D%7D";
-categoryRestUrl = baseUrl + "1/category/get/json/";
-categoryRestExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D";
 
 // The controllers holds the JSON results
 controller = null;
@@ -205,68 +200,79 @@ categoryListController = null;
 // The CSP ID
 cspIdInt = 0;
 
+baseUrl = Packages.java.lang.System.getProperty("BIRT_CCMS_BASE_URL");
 
-/*
-	Processing
-*/
-(function()
+if (baseUrl == null)
 {
-	try
+	Packages.java.lang.System.out.println("Make sure the BIRT_CCMS_BASE_URL property is set");
+}
+else
+{
+	restUrl = baseUrl + "1/topics/get/json/";
+	restExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22topics%22%7D%2C%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D%5D%7D";
+	categoryRestUrl = baseUrl + "1/category/get/json/";
+	categoryRestExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22tags%22%7D%7D%5D%7D";
+
+	/*
+		Processing
+	*/
+	(function()
 	{
-		
-		// get the category whose tags will make up the x axis
-		var category = params["XAxisCategory"];
-		if (category != null &amp;&amp; category.length != 0 &amp;&amp; category != "-1")
+		try
 		{
-			var completeXAxisCategoriesRestUrl = categoryRestUrl + category + categoryRestExpansion;
-			Packages.java.lang.System.out.println("Category X Axis REST URL: " + completeXAxisCategoriesRestUrl);
-			xAxisCategoryController = new Packages.com.actuate.json.JSONParser();
-			xAxisCategoryController.loadData(completeXAxisCategoriesRestUrl);
-			bySpecAndCategoryXAxisTagCount = controller.getChildCount("tags/items");
-		}
-		
-		// get the category whose tags will make up the y axis
-		var category = params["YAxisCategory"];
-		if (category != null &amp;&amp; category.length != 0 &amp;&amp; category != "-1")
-		{
-			var completeYAxisCategoriesRestUrl = categoryRestUrl + category + categoryRestExpansion;
-			Packages.java.lang.System.out.println("Category Y Axis REST URL: " + completeYAxisCategoriesRestUrl);
-			yAxisCategoryController = new Packages.com.actuate.json.JSONParser();
-			yAxisCategoryController.loadData(completeYAxisCategoriesRestUrl);
-			bySpecAndCategoryYAxisTagCount = controller.getChildCount("tags/items");
-		}
-		
-		var cspId = params["CSPID"];
-		if (cspId != null)
-		{
-			cspIdInt = parseInt(cspId);
 			
-			if (cspIdInt != NaN)
-			{				
-				var completeRestUrl = restUrl + "query;topicIncludedInSpec=" + cspIdInt + restExpansion;
+			// get the category whose tags will make up the x axis
+			var category = params["XAxisCategory"];
+			if (category != null &amp;&amp; category.length != 0 &amp;&amp; category != "-1")
+			{
+				var completeXAxisCategoriesRestUrl = categoryRestUrl + category + categoryRestExpansion;
+				Packages.java.lang.System.out.println("Category X Axis REST URL: " + completeXAxisCategoriesRestUrl);
+				xAxisCategoryController = new Packages.com.actuate.json.JSONParser();
+				xAxisCategoryController.loadData(completeXAxisCategoriesRestUrl);
+				bySpecAndCategoryXAxisTagCount = xAxisCategoryController.getChildCount("tags/items");
+			}
+			
+			// get the category whose tags will make up the y axis
+			var category = params["YAxisCategory"];
+			if (category != null &amp;&amp; category.length != 0 &amp;&amp; category != "-1")
+			{
+				var completeYAxisCategoriesRestUrl = categoryRestUrl + category + categoryRestExpansion;
+				Packages.java.lang.System.out.println("Category Y Axis REST URL: " + completeYAxisCategoriesRestUrl);
+				yAxisCategoryController = new Packages.com.actuate.json.JSONParser();
+				yAxisCategoryController.loadData(completeYAxisCategoriesRestUrl);
+				bySpecAndCategoryYAxisTagCount = yAxisCategoryController.getChildCount("tags/items");
+			}
+			
+			var cspId = params["CSPID"];
+			if (cspId != null)
+			{
+				cspIdInt = parseInt(cspId);
 				
-				Packages.java.lang.System.out.println("REST URL: " + completeRestUrl);
-				
-				// Create instance of the Controller class
-				controller = new Packages.com.actuate.json.JSONParser();
-				
-				// Load the JSON Source
-				controller.loadData(completeRestUrl);	
-				
-				bySpecAndCategoryTopicCount = controller.getChildCount("items");		
+				if (cspIdInt != NaN)
+				{				
+					var completeRestUrl = restUrl + "query;topicIncludedInSpec=" + cspIdInt + restExpansion;
+					
+					Packages.java.lang.System.out.println("REST URL: " + completeRestUrl);
+					
+					// Create instance of the Controller class
+					controller = new Packages.com.actuate.json.JSONParser();
+					
+					// Load the JSON Source
+					controller.loadData(completeRestUrl);	
+					
+					bySpecAndCategoryTopicCount = controller.getChildCount("items");		
+				}
 			}
 		}
-	}
-	catch (exception)
-	{
-		Packages.java.lang.System.out.println("An exception was thrown: " + exception);
-		Packages.java.lang.System.out.println("Make sure the JSONParser class is available in the class path");
-	}
-	finally
-	{
-		Packages.java.lang.System.out.println("[END] By Specs - open");
-	}
-})();]]></method>
+		catch (exception)
+		{
+			Packages.java.lang.System.out.println("An exception was thrown: " + exception);
+			Packages.java.lang.System.out.println("Make sure the JSONParser class is available in the class path");
+		}
+	})();
+}
+
+Packages.java.lang.System.out.println("[END] By Specs and Catgeory - open");]]></method>
         </script-data-source>
     </data-sources>
     <data-sets>
