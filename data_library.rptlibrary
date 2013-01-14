@@ -762,44 +762,44 @@ return false;]]></method>
         <script-data-set name="CategorySummaryByCategoryAndSpec" id="207">
             <list-property name="resultSetHints">
                 <structure>
-                    <property name="position">0</property>
-                    <property name="name">TagId</property>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
                     <property name="position">1</property>
-                    <property name="name">TagName</property>
+                    <property name="name">TagID</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
-                    <property name="name">GroupTagId</property>
+                    <property name="name">TagName</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
-                    <property name="name">GroupTagName</property>
+                    <property name="name">GroupTagID</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
-                    <property name="name">CSPID</property>
+                    <property name="name">GroupTagName</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
-                    <property name="name">TopicID</property>
+                    <property name="name">CSPID</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
                     <property name="position">6</property>
+                    <property name="name">TopicID</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
                     <property name="name">TopicTitle</property>
                     <property name="dataType">string</property>
                 </structure>
             </list-property>
             <list-property name="columnHints">
                 <structure>
-                    <property name="columnName">TagId</property>
+                    <property name="columnName">TagID</property>
                     <text-property name="displayName">Tag ID</text-property>
                 </structure>
                 <structure>
@@ -807,7 +807,7 @@ return false;]]></method>
                     <text-property name="displayName">Tag Name</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">GroupTagId</property>
+                    <property name="columnName">GroupTagID</property>
                     <text-property name="displayName">Group Tag Id</text-property>
                 </structure>
                 <structure>
@@ -831,7 +831,7 @@ return false;]]></method>
                 <list-property name="resultSet">
                     <structure>
                         <property name="position">1</property>
-                        <property name="name">TagId</property>
+                        <property name="name">TagID</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
@@ -841,7 +841,7 @@ return false;]]></method>
                     </structure>
                     <structure>
                         <property name="position">3</property>
-                        <property name="name">GroupTagId</property>
+                        <property name="name">GroupTagID</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
@@ -953,13 +953,13 @@ categorySummaryByCategoryAndSpecRow = 0;
 Packages.java.lang.System.out.println("[END] CategorySummaryByCategoryAndSpec - open");]]></method>
             <method name="fetch"><![CDATA[if (categorySummaryByCategoryAndSpecRow < categorySummaryByCategoryAndSpecData.length)
 {
-	row["TagID"] = categorySummaryByCategoryAndSpecData[categorySummaryByCategoryAndSpecRow].xAxisTagID;
+	row["TagID"] = categorySummaryByCategoryAndSpecData[categorySummaryByCategoryAndSpecRow].xAxisTagID.toString();
 	row["TagName"] = categorySummaryByCategoryAndSpecData[categorySummaryByCategoryAndSpecRow].xAxisTagName;
-	row["GroupTagID"] = categorySummaryByCategoryAndSpecData[categorySummaryByCategoryAndSpecRow].yAxisTagID;
+	row["GroupTagID"] = categorySummaryByCategoryAndSpecData[categorySummaryByCategoryAndSpecRow].yAxisTagID.toString();
 	row["GroupTagName"] = categorySummaryByCategoryAndSpecData[categorySummaryByCategoryAndSpecRow].yAxisTagName;
-	row["TopicID"] = categorySummaryByCategoryAndSpecData[categorySummaryByCategoryAndSpecRow].topicID;
+	row["TopicID"] = categorySummaryByCategoryAndSpecData[categorySummaryByCategoryAndSpecRow].topicID.toString();
 	row["TopicTitle"] = categorySummaryByCategoryAndSpecData[categorySummaryByCategoryAndSpecRow].topicTitle;
-	row["CSPID"] = categorySummaryByCategoryAndSpecData[categorySummaryByCategoryAndSpecRow].cspID;
+	row["CSPID"] = categorySummaryByCategoryAndSpecData[categorySummaryByCategoryAndSpecRow].cspID.toString();
 	
 	++categorySummaryByCategoryAndSpecRow;
 	return true;
