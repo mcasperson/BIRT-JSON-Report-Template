@@ -872,7 +872,7 @@ Packages.java.lang.System.out.println("Total number of topics: " + bySpecAndCate
 
 // the number of topics that were in the query but don't have a tag from the x axis
 // category and a tag from the y axis category
-missingTopics = 0;
+skippedTopics = 0;
 // the data source
 categorySummaryByCategoryAndSpecData = [];
 // the current row
@@ -943,7 +943,7 @@ categorySummaryByCategoryAndSpecRow = 0;
 		
 		if (!foundAxisTag)
 		{
-			++missingTopics;
+			++skippedTopics;
 			continue;
 		}		
 	}
