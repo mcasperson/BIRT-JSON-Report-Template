@@ -30,7 +30,7 @@
         </scalar-parameter>
         <scalar-parameter name="XAxisCategory" id="10">
             <text-property name="helpText">Select the category that holds the tags to be displayed along the x axis. The count of the topics with the tags assigned to them from this category define the height of the bars.</text-property>
-            <text-property name="promptText">X Axis Category</text-property>
+            <text-property name="promptText">Axis Category</text-property>
             <property name="valueType">dynamic</property>
             <property name="dataSetName">Categories</property>
             <expression name="valueExpr" type="javascript">dataSetRow["CategoryID"]</expression>
@@ -40,7 +40,7 @@
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
-                <value type="constant">17</value>
+                <value type="constant">12</value>
             </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -63,7 +63,7 @@
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
-                <value type="constant">12</value>
+                <value type="constant">15</value>
             </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -199,7 +199,7 @@
       <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Topics per Category Tags</Value>
+          <Value>Topics per Category Tags for a Single CSP</Value>
           <Font>
             <Size>16.0</Size>
             <Bold>true</Bold>
