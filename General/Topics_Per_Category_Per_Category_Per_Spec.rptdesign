@@ -1360,10 +1360,10 @@
             <property name="pageBreakInside">avoid</property>
             <property name="width">7.947916666666667in</property>
             <column id="169">
-                <property name="width">3.1145833333333335in</property>
+                <property name="width">3.9895833333333335in</property>
             </column>
             <column id="170">
-                <property name="width">4.833333333333333in</property>
+                <property name="width">3.9583333333333335in</property>
             </column>
             <row id="171">
                 <cell id="172">
@@ -1401,6 +1401,20 @@
                 <cell id="197">
                     <text-data id="199">
                         <expression name="valueExpr">cspIdInt;</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+            <row id="201">
+                <cell id="202">
+                    <label id="204">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Limit Topics to Those Edited in the Last Number of Days</text-property>
+                    </label>
+                </cell>
+                <cell id="203">
+                    <text-data id="205">
+                        <expression name="valueExpr">params["EditedInLastXDays"].value</expression>
                         <property name="contentType">html</property>
                     </text-data>
                 </cell>
