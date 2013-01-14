@@ -786,7 +786,7 @@
             <Action>
               <Type>Invoke_Script</Type>
               <Value xsi:type="attribute:ScriptValue">
-                <Script>alert( &quot;Tag Name: &quot; + valueSeriesName + &quot; CSP ID: &quot; + categoryData + &quot; Topic Count: &quot; + valueData );</Script>
+                <Script>alert( &quot;Tag Name: &quot; + valueSeriesName + &quot;\nCSP ID: &quot; + categoryData + &quot;\nTopic Count: &quot; + valueData );</Script>
               </Value>
             </Action>
           </Triggers>

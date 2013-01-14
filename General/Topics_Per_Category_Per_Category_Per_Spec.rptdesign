@@ -40,7 +40,7 @@
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
-                <value type="constant">12</value>
+                <value type="constant">17</value>
             </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -63,7 +63,7 @@
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
-                <value type="constant">17</value>
+                <value type="constant">12</value>
             </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -802,7 +802,7 @@
             <Action>
               <Type>Show_Tooltip</Type>
               <Value xsi:type="attribute:TooltipValue">
-                <Text>row[&quot;TopicTag&quot;]</Text>
+                <Text>row[&quot;TagName&quot;] + &quot; - &quot; + row[&quot;GroupTagName&quot;]</Text>
                 <Delay>200</Delay>
               </Value>
             </Action>
@@ -812,7 +812,7 @@
             <Action>
               <Type>Invoke_Script</Type>
               <Value xsi:type="attribute:ScriptValue">
-                <Script>alert( &quot;Tag Name: &quot; + valueSeriesName + &quot; CSP ID: &quot; + categoryData + &quot; Topic Count: &quot; + valueData );</Script>
+                <Script>alert( &quot;Tag Name: &quot; + valueSeriesName + &quot;\nStacked Tag Name: &quot; + categoryData + &quot;\nTopic Count: &quot; + valueData );</Script>
               </Value>
             </Action>
           </Triggers>
