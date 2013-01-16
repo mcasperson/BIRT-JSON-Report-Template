@@ -20,7 +20,7 @@
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
-                <value type="constant">8844,9022,8983,9024,9025,9026,9020,9054,10344</value>
+                <value type="constant">8699,11862,7463,8740</value>
             </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
