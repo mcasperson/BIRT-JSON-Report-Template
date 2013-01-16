@@ -789,7 +789,7 @@
             <Action>
               <Type>Show_Tooltip</Type>
               <Value xsi:type="attribute:TooltipValue">
-                <Text>row[&quot;SpecTopicAndTag::SpecID&quot;] = &quot; - &quot; + row[&quot;TopicBugs::bug_status&quot;]</Text>
+                <Text>row[&quot;SpecTopicAndTag::SpecID&quot;] + &quot; - &quot; + row[&quot;TopicBugs::bug_status&quot;]</Text>
                 <Delay>200</Delay>
               </Value>
             </Action>
@@ -1353,12 +1353,12 @@
         <grid id="168">
             <property name="marginTop">1em</property>
             <property name="pageBreakInside">avoid</property>
-            <property name="width">7.947916666666667in</property>
+            <property name="width">7.938144329896907in</property>
             <column id="169">
-                <property name="width">3.9895833333333335in</property>
+                <property name="width">5in</property>
             </column>
             <column id="170">
-                <property name="width">3.9583333333333335in</property>
+                <property name="width">2.9381443298969074in</property>
             </column>
             <row id="171">
                 <cell id="172">
@@ -1404,12 +1404,12 @@
         <grid id="33">
             <property name="marginTop">1em</property>
             <property name="pageBreakInside">avoid</property>
-            <property name="width">7.947916666666667in</property>
+            <property name="width">7.938144329896907in</property>
             <column id="34">
-                <property name="width">3.1145833333333335in</property>
+                <property name="width">5in</property>
             </column>
             <column id="35">
-                <property name="width">4.833333333333333in</property>
+                <property name="width">2.9381443298969074in</property>
             </column>
             <row id="84">
                 <cell id="85">
