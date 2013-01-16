@@ -2269,147 +2269,72 @@ WHERE bugs.cf_build_id LIKE '%-% __ ___ ____ __:__ %']]></xml-property>
                 <structure>
                     <property name="columnName">TopicBugs::creation_ts</property>
                     <property name="alias">creation_ts</property>
-                    <property name="analysis">dimension</property>
                     <text-property name="displayName">TopicBugs::creation_ts</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">SpecTopicAndTag::TopicTitle</property>
                     <property name="alias">TopicTitle</property>
-                    <property name="analysis">dimension</property>
                     <text-property name="displayName">SpecTopicAndTag::TopicTitle</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">TopicBugs::bug_status</property>
                     <property name="alias">bug_status</property>
-                    <property name="analysis">dimension</property>
                     <text-property name="displayName">TopicBugs::bug_status</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">SpecTopicAndTag::SpecID</property>
                     <property name="alias">SpecID</property>
-                    <property name="analysis">dimension</property>
                     <text-property name="displayName">SpecTopicAndTag::SpecID</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">SpecTopicAndTag::TopicTagID</property>
                     <property name="alias">TopicTagID</property>
-                    <property name="analysis">dimension</property>
                     <text-property name="displayName">SpecTopicAndTag::TopicTagID</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">TopicBugs::topic_id</property>
                     <property name="alias">topic_id</property>
-                    <property name="analysis">dimension</property>
                     <text-property name="displayName">TopicBugs::topic_id</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">TopicBugs::cf_build_id</property>
                     <property name="alias">cf_build_id</property>
-                    <property name="analysis">dimension</property>
                     <text-property name="displayName">TopicBugs::cf_build_id</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">TopicBugs::bug_id</property>
                     <property name="alias">bug_id</property>
-                    <property name="analysis">measure</property>
                     <text-property name="displayName">TopicBugs::bug_id</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">TopicBugs::short_desc</property>
                     <property name="alias">short_desc</property>
-                    <property name="analysis">dimension</property>
                     <text-property name="displayName">TopicBugs::short_desc</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">TopicBugs::bug_severity</property>
                     <property name="alias">bug_severity</property>
-                    <property name="analysis">dimension</property>
                     <text-property name="displayName">TopicBugs::bug_severity</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">SpecTopicAndTag::TopicID</property>
                     <property name="alias">TopicID</property>
-                    <property name="analysis">dimension</property>
                     <text-property name="displayName">SpecTopicAndTag::TopicID</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">SpecTopicAndTag::TopicTag</property>
                     <property name="alias">TopicTag</property>
-                    <property name="analysis">dimension</property>
                     <text-property name="displayName">SpecTopicAndTag::TopicTag</text-property>
                 </structure>
             </list-property>
-            <structure name="cachedMetaData">
-                <list-property name="resultSet">
-                    <structure>
-                        <property name="position">1</property>
-                        <property name="name">SpecTopicAndTag::SpecID</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                    <structure>
-                        <property name="position">2</property>
-                        <property name="name">SpecTopicAndTag::TopicID</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                    <structure>
-                        <property name="position">3</property>
-                        <property name="name">SpecTopicAndTag::TopicTitle</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                    <structure>
-                        <property name="position">4</property>
-                        <property name="name">SpecTopicAndTag::TopicTag</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                    <structure>
-                        <property name="position">5</property>
-                        <property name="name">SpecTopicAndTag::TopicTagID</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                    <structure>
-                        <property name="position">6</property>
-                        <property name="name">TopicBugs::bug_id</property>
-                        <property name="dataType">integer</property>
-                    </structure>
-                    <structure>
-                        <property name="position">7</property>
-                        <property name="name">TopicBugs::bug_status</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                    <structure>
-                        <property name="position">8</property>
-                        <property name="name">TopicBugs::bug_severity</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                    <structure>
-                        <property name="position">9</property>
-                        <property name="name">TopicBugs::creation_ts</property>
-                        <property name="dataType">date-time</property>
-                    </structure>
-                    <structure>
-                        <property name="position">10</property>
-                        <property name="name">TopicBugs::cf_build_id</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                    <structure>
-                        <property name="position">11</property>
-                        <property name="name">TopicBugs::short_desc</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                    <structure>
-                        <property name="position">12</property>
-                        <property name="name">TopicBugs::topic_id</property>
-                        <property name="dataType">string</property>
-                    </structure>
-                </list-property>
-            </structure>
+            <structure name="cachedMetaData"/>
             <simple-property-list name="dataSets">
                 <value>SpecTopicAndTag</value>
                 <value>TopicBugs</value>
             </simple-property-list>
             <list-property name="joinConditions">
                 <structure>
-                    <property name="joinType">right-out</property>
+                    <property name="joinType">inner</property>
                     <property name="joinOperator">eq</property>
                     <property name="leftDataSet">SpecTopicAndTag</property>
                     <property name="rightDataSet">TopicBugs</property>
