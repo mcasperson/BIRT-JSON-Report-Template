@@ -186,7 +186,7 @@
       <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Chart Title</Value>
+          <Value>Bugzilla Bugs by CSP Grouped by Status</Value>
           <Font>
             <Size>16.0</Size>
             <Bold>true</Bold>
@@ -789,8 +789,17 @@
             <Action>
               <Type>Show_Tooltip</Type>
               <Value xsi:type="attribute:TooltipValue">
-                <Text></Text>
+                <Text>row[&quot;SpecTopicAndTag::SpecID&quot;] = &quot; - &quot; + row[&quot;TopicBugs::bug_status&quot;]</Text>
                 <Delay>200</Delay>
+              </Value>
+            </Action>
+          </Triggers>
+          <Triggers>
+            <Condition>onclick</Condition>
+            <Action>
+              <Type>Invoke_Script</Type>
+              <Value xsi:type="attribute:ScriptValue">
+                <Script>alert( &quot;CSP ID: &quot; + valueSeriesName + &quot;\nBug Status: &quot; + categoryData + &quot;\nBug Count: &quot; + valueData );</Script>
               </Value>
             </Action>
           </Triggers>
@@ -1276,7 +1285,7 @@
             <property name="outputFormat">PNG</property>
             <property name="inheritColumns">true</property>
             <property name="dataSet">TopicBugsAndTopics</property>
-            <property name="height">3.577319587628866in</property>
+            <property name="height">6.65979381443299in</property>
             <property name="width">7.948453608247423in</property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -1341,5 +1350,131 @@
                 </structure>
             </list-property>
         </extended-item>
+        <grid id="168">
+            <property name="marginTop">1em</property>
+            <property name="pageBreakInside">avoid</property>
+            <property name="width">7.947916666666667in</property>
+            <column id="169">
+                <property name="width">3.9895833333333335in</property>
+            </column>
+            <column id="170">
+                <property name="width">3.9583333333333335in</property>
+            </column>
+            <row id="171">
+                <cell id="172">
+                    <property name="colSpan">2</property>
+                    <property name="rowSpan">1</property>
+                    <label id="173">
+                        <property name="backgroundColor">#A40104</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="color">#FFFFFF</property>
+                        <text-property name="text">Report Notes</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="200">
+                <cell id="196">
+                    <label id="201">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">CSP IDs</text-property>
+                    </label>
+                </cell>
+                <cell id="202">
+                    <text-data id="203">
+                        <expression name="valueExpr">params["CSPIDS"].value</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+            <row id="204">
+                <cell id="205">
+                    <label id="206">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Limit Topics to Those Edited in the Last Number of Days</text-property>
+                    </label>
+                </cell>
+                <cell id="207">
+                    <text-data id="208">
+                        <expression name="valueExpr">params["EditedInLastXDays"].value</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+        </grid>
+        <grid id="33">
+            <property name="marginTop">1em</property>
+            <property name="pageBreakInside">avoid</property>
+            <property name="width">7.947916666666667in</property>
+            <column id="34">
+                <property name="width">3.1145833333333335in</property>
+            </column>
+            <column id="35">
+                <property name="width">4.833333333333333in</property>
+            </column>
+            <row id="84">
+                <cell id="85">
+                    <property name="colSpan">2</property>
+                    <property name="rowSpan">1</property>
+                    <label id="87">
+                        <property name="backgroundColor">#A40104</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="color">#FFFFFF</property>
+                        <text-property name="text">Report History</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="49">
+                <cell id="50">
+                    <label id="52">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Report Created By</text-property>
+                    </label>
+                </cell>
+                <cell id="51">
+                    <label id="53">
+                        <text-property name="text">Matthew Casperson</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="54">
+                <cell id="55">
+                    <label id="57">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Reported Created On</text-property>
+                    </label>
+                </cell>
+                <cell id="56">
+                    <label id="58">
+                        <text-property name="text">16 January 2012</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="59">
+                <cell id="60">
+                    <label id="62">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Report Last Modified By</text-property>
+                    </label>
+                </cell>
+                <cell id="61">
+                    <label id="63">
+                        <text-property name="text"></text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="44">
+                <cell id="45">
+                    <label id="47">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Report Last Modified On</text-property>
+                    </label>
+                </cell>
+                <cell id="46">
+                    <label id="48">
+                        <text-property name="text"></text-property>
+                    </label>
+                </cell>
+            </row>
+        </grid>
     </body>
 </report>
