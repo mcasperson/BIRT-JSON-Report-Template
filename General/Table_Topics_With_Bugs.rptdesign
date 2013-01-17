@@ -60,7 +60,77 @@
         </scalar-parameter>
     </parameters>
     <data-sets>
-        <joint-data-set name="TopicBugsAndTopics" id="154" extends="data_library.TopicBugsAndTopics"/>
+        <joint-data-set name="TopicBugsAndTopics" id="210" extends="data_library.TopicBugsAndTopics">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">TopicBugs::creation_ts</property>
+                    <property name="alias">creation_ts</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TopicBugs::creation_ts</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SpecTopics::TopicTitle</property>
+                    <property name="alias">TopicTitle</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">SpecTopics::TopicTitle</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicBugs::bug_status</property>
+                    <property name="alias">bug_status</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TopicBugs::bug_status</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SpecTopics::SpecID</property>
+                    <property name="alias">SpecID</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">SpecTopics::SpecID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicBugs::topic_id</property>
+                    <property name="alias">topic_id</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TopicBugs::topic_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicBugs::cf_build_id</property>
+                    <property name="alias">cf_build_id</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TopicBugs::cf_build_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicBugs::bug_id</property>
+                    <property name="alias">bug_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">TopicBugs::bug_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicBugs::short_desc</property>
+                    <property name="alias">short_desc</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TopicBugs::short_desc</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicBugs::bug_severity</property>
+                    <property name="alias">bug_severity</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TopicBugs::bug_severity</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SpecTopics::TopicTagIDs</property>
+                    <property name="alias">TopicTagIDs</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">SpecTopics::TopicTagIDs</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SpecTopics::TopicID</property>
+                    <property name="alias">TopicID</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">SpecTopics::TopicID</text-property>
+                </structure>
+            </list-property>
+        </joint-data-set>
+        <script-data-set name="SpecTopics" id="211" extends="data_library.SpecTopics"/>
     </data-sets>
     <styles>
         <style name="report" id="4">
@@ -142,95 +212,160 @@
             </row>
         </grid>
         <table id="155">
+            <property name="width">7.948453608247423in</property>
             <property name="dataSet">TopicBugsAndTopics</property>
             <list-property name="boundDataColumns">
                 <structure>
-                    <property name="name">Aggregation</property>
-                    <text-property name="displayName">TopicTagCount</text-property>
-                    <property name="dataType">integer</property>
-                    <property name="aggregateFunction">COUNT</property>
-                    <list-property name="arguments">
-                        <structure>
-                            <property name="name">Expression</property>
-                            <expression name="value" type="javascript">dataSetRow["SpecTopicAndTag::TopicTagID"]</expression>
-                        </structure>
-                    </list-property>
-                    <property name="allowExport">true</property>
-                </structure>
-                <structure>
-                    <property name="name">TopicID</property>
-                    <expression name="expression" type="javascript">dataSetRow["SpecTopicAndTag::TopicID"]</expression>
+                    <property name="name">SpecTopics::SpecID</property>
+                    <text-property name="displayName">SpecTopics::SpecID</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["SpecTopics::SpecID"]</expression>
                     <property name="dataType">string</property>
-                    <property name="allowExport">true</property>
                 </structure>
                 <structure>
-                    <property name="name">TopicTitle</property>
-                    <expression name="expression" type="javascript">dataSetRow["SpecTopicAndTag::TopicTitle"]</expression>
+                    <property name="name">SpecTopics::TopicID</property>
+                    <text-property name="displayName">SpecTopics::TopicID</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["SpecTopics::TopicID"]</expression>
                     <property name="dataType">string</property>
-                    <property name="allowExport">true</property>
                 </structure>
                 <structure>
-                    <property name="name">BugzillaBugID</property>
+                    <property name="name">SpecTopics::TopicTitle</property>
+                    <text-property name="displayName">SpecTopics::TopicTitle</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["SpecTopics::TopicTitle"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">SpecTopics::TopicTagIDs</property>
+                    <text-property name="displayName">SpecTopics::TopicTagIDs</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["SpecTopics::TopicTagIDs"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">SpecTopics::TopicTagNames</property>
+                    <text-property name="displayName">SpecTopics::TopicTagNames</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["SpecTopics::TopicTagNames"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicBugs::bug_id</property>
+                    <text-property name="displayName">TopicBugs::bug_id</text-property>
                     <expression name="expression" type="javascript">dataSetRow["TopicBugs::bug_id"]</expression>
-                    <property name="dataType">string</property>
-                    <property name="allowExport">true</property>
+                    <property name="dataType">integer</property>
                 </structure>
                 <structure>
-                    <property name="name">BugzillaBugStatus</property>
+                    <property name="name">TopicBugs::bug_status</property>
+                    <text-property name="displayName">TopicBugs::bug_status</text-property>
                     <expression name="expression" type="javascript">dataSetRow["TopicBugs::bug_status"]</expression>
                     <property name="dataType">string</property>
-                    <property name="allowExport">true</property>
                 </structure>
                 <structure>
-                    <property name="name">BugzillaShortDesc</property>
+                    <property name="name">TopicBugs::bug_severity</property>
+                    <text-property name="displayName">TopicBugs::bug_severity</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicBugs::bug_severity"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicBugs::creation_ts</property>
+                    <text-property name="displayName">TopicBugs::creation_ts</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicBugs::creation_ts"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicBugs::cf_build_id</property>
+                    <text-property name="displayName">TopicBugs::cf_build_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicBugs::cf_build_id"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicBugs::short_desc</property>
+                    <text-property name="displayName">TopicBugs::short_desc</text-property>
                     <expression name="expression" type="javascript">dataSetRow["TopicBugs::short_desc"]</expression>
                     <property name="dataType">string</property>
-                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicBugs::topic_id</property>
+                    <text-property name="displayName">TopicBugs::topic_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicBugs::topic_id"]</expression>
+                    <property name="dataType">string</property>
                 </structure>
             </list-property>
-            <column id="174"/>
-            <column id="175"/>
-            <column id="176"/>
-            <column id="177"/>
-            <column id="178"/>
+            <column id="174">
+                <property name="width">0.9278350515463918in</property>
+            </column>
+            <column id="175">
+                <property name="width">2.2577319587628866in</property>
+            </column>
+            <column id="176">
+                <property name="width">0.8865979381443299in</property>
+            </column>
+            <column id="177">
+                <property name="width">1.1649484536082475in</property>
+            </column>
+            <column id="178">
+                <property name="width">2.711340206185567in</property>
+            </column>
             <header>
                 <row id="156">
-                    <cell id="157"/>
-                    <cell id="158"/>
-                    <cell id="159"/>
-                    <cell id="160"/>
-                    <cell id="161"/>
+                    <cell id="157">
+                        <label id="204">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Topic ID</text-property>
+                        </label>
+                    </cell>
+                    <cell id="158">
+                        <label id="205">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Topic Title</text-property>
+                        </label>
+                    </cell>
+                    <cell id="159">
+                        <label id="206">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Bugzilla ID</text-property>
+                        </label>
+                    </cell>
+                    <cell id="160">
+                        <label id="207">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Bugzilla Bug Status</text-property>
+                        </label>
+                    </cell>
+                    <cell id="161">
+                        <label id="208">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Bugzilla Short Description</text-property>
+                        </label>
+                    </cell>
                 </row>
             </header>
             <detail>
                 <row id="162">
                     <cell id="163">
                         <text-data id="179">
-                            <expression name="valueExpr">row["TopicID"]</expression>
+                            <expression name="valueExpr">row["SpecTopics::TopicID"]</expression>
                             <property name="contentType">html</property>
                         </text-data>
                     </cell>
                     <cell id="164">
                         <text-data id="200">
-                            <expression name="valueExpr">row["TopicTitle"]</expression>
+                            <expression name="valueExpr">row["SpecTopics::TopicTitle"]</expression>
                             <property name="contentType">html</property>
                         </text-data>
                     </cell>
                     <cell id="165">
                         <text-data id="201">
-                            <expression name="valueExpr">row["BugzillaBugID"]</expression>
+                            <expression name="valueExpr">row["TopicBugs::bug_id"]</expression>
                             <property name="contentType">html</property>
                         </text-data>
                     </cell>
                     <cell id="166">
                         <text-data id="202">
-                            <expression name="valueExpr">row["BugzillaBugStatus"]</expression>
+                            <expression name="valueExpr">row["TopicBugs::bug_status"]</expression>
                             <property name="contentType">html</property>
                         </text-data>
                     </cell>
                     <cell id="167">
                         <text-data id="203">
-                            <expression name="valueExpr">row["BugzillaShortDesc"]</expression>
+                            <expression name="valueExpr">row["TopicBugs::short_desc"]</expression>
                             <property name="contentType">html</property>
                         </text-data>
                     </cell>

@@ -69,7 +69,7 @@ finally
 	Packages.java.lang.System.out.println("[END] PressGang CCMS REST Data Source - open");
 }]]></method>
         </script-data-source>
-        <script-data-source name="By Specs" id="202">
+        <script-data-source name="SpecTopics" id="202">
             <property name="comments">This data source make use of the custom JSONParser class to peform a request of the CCMS REST API using the URL saved in the JSONURL parameter. It will then parse the result, the details of which can then be extracted by the Data Sets.</property>
             <method name="open"><![CDATA[Packages.java.lang.System.out.println("[START] By Specs - open");
 
@@ -640,7 +640,7 @@ Filtered by Spec Topic Tag included in supplied Category</property>
                     </structure>
                 </list-property>
             </structure>
-            <property name="dataSource">By Specs</property>
+            <property name="dataSource">SpecTopics</property>
             <method name="open"><![CDATA[Packages.java.lang.System.out.println("[START] SpecTopicAndTag - open");
 
 /*
@@ -709,6 +709,7 @@ allTopics = [];
 		    
 		    if (allTopics.customIndexOf(topicId) == -1)
 		    	allTopics.push(topicId);
+		    	
 		
 			var tagCount = parseInt(controller.getValue("items", "item/tags/size", topicIndex));
 		    for (var i = 0; i < tagCount; ++i)
@@ -2253,9 +2254,9 @@ WHERE bugs.cf_build_id LIKE '%-% __ ___ ____ __:__ %']]></xml-property>
                     <text-property name="displayName">TopicBugs::creation_ts</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">SpecTopicAndTag::TopicTitle</property>
+                    <property name="columnName">SpecTopics::TopicTitle</property>
                     <property name="alias">TopicTitle</property>
-                    <text-property name="displayName">SpecTopicAndTag::TopicTitle</text-property>
+                    <text-property name="displayName">SpecTopics::TopicTitle</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">TopicBugs::bug_status</property>
@@ -2263,14 +2264,9 @@ WHERE bugs.cf_build_id LIKE '%-% __ ___ ____ __:__ %']]></xml-property>
                     <text-property name="displayName">TopicBugs::bug_status</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">SpecTopicAndTag::SpecID</property>
+                    <property name="columnName">SpecTopics::SpecID</property>
                     <property name="alias">SpecID</property>
-                    <text-property name="displayName">SpecTopicAndTag::SpecID</text-property>
-                </structure>
-                <structure>
-                    <property name="columnName">SpecTopicAndTag::TopicTagID</property>
-                    <property name="alias">TopicTagID</property>
-                    <text-property name="displayName">SpecTopicAndTag::TopicTagID</text-property>
+                    <text-property name="displayName">SpecTopics::SpecID</text-property>
                 </structure>
                 <structure>
                     <property name="columnName">TopicBugs::topic_id</property>
@@ -2298,32 +2294,247 @@ WHERE bugs.cf_build_id LIKE '%-% __ ___ ____ __:__ %']]></xml-property>
                     <text-property name="displayName">TopicBugs::bug_severity</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">SpecTopicAndTag::TopicID</property>
-                    <property name="alias">TopicID</property>
-                    <text-property name="displayName">SpecTopicAndTag::TopicID</text-property>
+                    <property name="columnName">SpecTopics::TopicTagIDs</property>
+                    <property name="alias">TopicTagIDs</property>
+                    <text-property name="displayName">SpecTopics::TopicTagIDs</text-property>
                 </structure>
                 <structure>
-                    <property name="columnName">SpecTopicAndTag::TopicTag</property>
-                    <property name="alias">TopicTag</property>
-                    <text-property name="displayName">SpecTopicAndTag::TopicTag</text-property>
+                    <property name="columnName">SpecTopics::TopicID</property>
+                    <property name="alias">TopicID</property>
+                    <text-property name="displayName">SpecTopics::TopicID</text-property>
                 </structure>
             </list-property>
             <structure name="cachedMetaData"/>
             <simple-property-list name="dataSets">
-                <value>SpecTopicAndTag</value>
+                <value>SpecTopics</value>
                 <value>TopicBugs</value>
             </simple-property-list>
             <list-property name="joinConditions">
                 <structure>
                     <property name="joinType">inner</property>
                     <property name="joinOperator">eq</property>
-                    <property name="leftDataSet">SpecTopicAndTag</property>
+                    <property name="leftDataSet">SpecTopics</property>
                     <property name="rightDataSet">TopicBugs</property>
                     <expression name="leftExpression">dataSetRow["TopicID"]</expression>
                     <expression name="rightExpression">dataSetRow["topic_id"]</expression>
                 </structure>
             </list-property>
         </joint-data-set>
+        <script-data-set name="SpecTopics" id="211">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">SpecID</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">TopicID</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">TopicTitle</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">TopicTagIDs</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">TopicTagNames</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">SpecID</property>
+                    <text-property name="displayName">Spec ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicID</property>
+                    <text-property name="displayName">Topic ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicTitle</property>
+                    <text-property name="displayName">Topic Title</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicTagIDs</property>
+                    <text-property name="displayName">Topic Tag IDs</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicTagNames</property>
+                    <text-property name="displayName">Topic Tag Names</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">SpecID</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">TopicID</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">TopicTitle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">TopicTagIDs</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">TopicTagNames</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">SpecTopics</property>
+            <method name="open"><![CDATA[Packages.java.lang.System.out.println("[START] SpecTopicAndTag - open");
+
+/*
+	--------------------- Global variables ---------------------
+*/
+
+// specs mapped to topics
+specTopics = [];
+
+// This will track your current row later on
+specTopicAndTagCount = 0;
+
+// The tags in the filter category
+specTopicAndTagFilter = [];
+
+skippedTopics = 0;
+
+/*
+	--------------------- Processing ---------------------
+*/
+
+/*
+	get the list of tags we are interested in processing
+*/
+(function()
+{
+	if (categoryController != null)
+	{
+		var tagCount = categoryController.getChildCount("tags/items");
+		
+		for (var tagIndex = 0; tagIndex < tagCount; ++tagIndex)
+		{
+			var tagId = categoryController.getValue("tags/items", "item/id", tagIndex);
+			//var tagName = categoryController.getValue("tags/items", "item/name", tagIndex);
+			specTopicAndTagFilter.push(tagId);
+		}
+		
+		Packages.java.lang.System.out.println("Number of filter tags found: " + specTopicAndTagFilter.length );
+	}
+})();
+
+// here we take the results of the queries against the spec ids
+// and combine them into a single table
+
+// use a function to limit variable scopes
+(function()
+{
+	var totalRows = 1;
+	
+	// process the results of each query against a spec
+	for (var specIndex = 0; specIndex < controllerCSPIDs.length; ++specIndex)
+	{		
+		var controller = controllers[specIndex];
+		var currentSpecId = controllerCSPIDs[specIndex];
+		var controllerTopicCount = controller.getChildCount("items");
+		
+		// process the topics in each spec query
+		for (var topicIndex = 0; topicIndex < controllerTopicCount; ++topicIndex)
+		{
+		    var topicId = controller.getValue("items", "item/id", topicIndex);
+		    var topicTitle = controller.getValue("items", "item/title", topicIndex);
+		    
+		    var topic = new Packages.com.actuate.json.JSONArrayIndex(topicIndex, "items");
+		    
+		    var tags = "";
+		    var tagNames = "";
+		    
+		    var tagCount = parseInt(controller.getValue("items", "item/tags/size", topicIndex));
+		    for (var i = 0; i < tagCount; ++i)
+		    {
+		    	if (tags != "")
+		    		tags += ",";
+		    	if (tagNames != "")
+		    		tagNames += ",";
+		    		
+			    var topicTags = new Packages.com.actuate.json.JSONArrayIndex(i, "item/tags/items");
+		
+			    var tag = controller.getValue([topic, topicTags], "item/id");	    
+			    tags += tag;
+			    
+			    var tagName = controller.getValue([topic, topicTags], "item/name");	    
+			    tagNames += tagName;
+		    }
+		
+			var newRow = {specId: currentSpecId, topicId: topicId, topicTitle: topicTitle, topicTagIDs: tags, topicTagNames: tagNames};
+			specTopics.push(newRow);	
+		}
+	}
+})();
+
+Packages.java.lang.System.out.println("[END] SpecTopicAndTag - open");]]></method>
+            <method name="fetch"><![CDATA[(function()
+{
+	while (specTopicAndTagFilter.length != 0 &amp;&amp; specTopicAndTagCount < specTopics.length)
+	{
+		var topicTagIds = specTopics[specTopicAndTagCount].topicTagIDs.splt(",");
+		
+		var found = false;
+		for (var topicTagIdIndex = 0; topicTagIdIndex < topicTagIds.length; ++topicTagIdIndex)
+		{
+			// if the topic does not contain one of the filter tags, skip it
+			if (specTopicAndTagFilter.customIndexOf(topicTagIds[topicTagIdIndex]) != -1)
+			{
+				found = true;
+				break;
+			}
+	
+		}
+		
+		if (!found)
+		{
+			++specTopicAndTagCount;
+			++skippedTopics;
+		}
+		else
+		{
+			break;
+		}	
+	}
+})();
+
+if (specTopicAndTagCount < specTopics.length)
+{
+	row["SpecID"] = specTopics[specTopicAndTagCount].specId.toString();
+	row["TopicID"] = specTopics[specTopicAndTagCount].topicId.toString();
+	row["TopicTitle"] = specTopics[specTopicAndTagCount].topicTitle;
+	row["TopicTagIDs"] = specTopics[specTopicAndTagCount].topicTagIDs;
+	row["TopicTagNames"] = specTopics[specTopicAndTagCount].topicTagNames;
+	
+	++specTopicAndTagCount;
+	return true;
+}
+
+return false;]]></method>
+        </script-data-set>
     </data-sets>
     <themes>
         <theme name="defaultTheme" id="4"/>

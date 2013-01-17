@@ -60,7 +60,76 @@
         </scalar-parameter>
     </parameters>
     <data-sets>
-        <joint-data-set name="TopicBugsAndTopics" id="157" extends="data_library.TopicBugsAndTopics"/>
+        <joint-data-set name="TopicBugsAndTopics" id="157" extends="data_library.TopicBugsAndTopics">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">TopicBugs::creation_ts</property>
+                    <property name="alias">creation_ts</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TopicBugs::creation_ts</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SpecTopics::TopicTitle</property>
+                    <property name="alias">TopicTitle</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">SpecTopics::TopicTitle</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicBugs::bug_status</property>
+                    <property name="alias">bug_status</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TopicBugs::bug_status</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SpecTopics::SpecID</property>
+                    <property name="alias">SpecID</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">SpecTopics::SpecID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicBugs::topic_id</property>
+                    <property name="alias">topic_id</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TopicBugs::topic_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicBugs::cf_build_id</property>
+                    <property name="alias">cf_build_id</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TopicBugs::cf_build_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicBugs::bug_id</property>
+                    <property name="alias">bug_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">TopicBugs::bug_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicBugs::short_desc</property>
+                    <property name="alias">short_desc</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TopicBugs::short_desc</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicBugs::bug_severity</property>
+                    <property name="alias">bug_severity</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">TopicBugs::bug_severity</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SpecTopics::TopicTagIDs</property>
+                    <property name="alias">TopicTagIDs</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">SpecTopics::TopicTagIDs</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SpecTopics::TopicID</property>
+                    <property name="alias">TopicID</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">SpecTopics::TopicID</text-property>
+                </structure>
+            </list-property>
+        </joint-data-set>
     </data-sets>
     <styles>
         <style name="report" id="4">
