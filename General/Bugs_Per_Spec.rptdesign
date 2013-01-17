@@ -1479,6 +1479,20 @@
                     </text-data>
                 </cell>
             </row>
+            <row id="209">
+                <cell id="210">
+                    <label id="212">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Limit Topics to Those Not Edited in the Last Number of Days</text-property>
+                    </label>
+                </cell>
+                <cell id="211">
+                    <text-data id="213">
+                        <expression name="valueExpr">params["NotEditedInLastXDays"].value</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
         </grid>
         <grid id="33">
             <property name="marginTop">1em</property>
