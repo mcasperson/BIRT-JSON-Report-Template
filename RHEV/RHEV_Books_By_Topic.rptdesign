@@ -278,7 +278,7 @@ return false;]]></method>
             <property name="marginTop">0em</property>
             <property name="marginBottom">1em</property>
             <property name="textAlign">center</property>
-            <text-property name="text">RHEV Topics Included in More Than One Content Specifications</text-property>
+            <text-property name="text">RHEV Topics Included in More Than One Content Specification</text-property>
         </label>
         <table id="10">
             <property name="canShrink">false</property>

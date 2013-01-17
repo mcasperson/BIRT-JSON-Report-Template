@@ -1406,7 +1406,7 @@
                 <cell id="196">
                     <label id="198">
                         <property name="fontWeight">bold</property>
-                        <text-property name="text">CSP ID</text-property>
+                        <text-property name="text">Content Specification ID</text-property>
                     </label>
                 </cell>
                 <cell id="197">

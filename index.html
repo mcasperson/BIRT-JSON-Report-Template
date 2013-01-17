@@ -19,7 +19,7 @@
 				<tr>
 					<td>
 					<a href="/birt/frameset?__report=General/Topics_Per_Category_Per_Spec.rptdesign">
-					Topics per CSP</a></td>
+					Topics per Content Specification</a></td>
 					<td>Accepts a list of content specification IDs and a category, and returns 
 					a stacked bar chart that breaks down the topics assigned to 
 					a content specification by the tags assigned to the specified category.</td>
@@ -40,17 +40,55 @@
 				<tr>
 					<td>
 					<a href="/birt/frameset?__report=General/Topics_Per_Category_Per_Category_Per_Spec.rptdesign">
-					Topics per CSP Grouped by Tag</a></td>
+					Topics per Content Specification Grouped by Tag</a></td>
 					<td>Lists the number of topics assigned to a content specification, grouped by the tags in a specified categories.</td>
 				</tr>
 				<tr>
 					<td>
 					<a href="/birt/frameset?__report=RHEV/RHEV_Books_By_Topic.rptdesign">
 					RHEV Topics Included in More Than One Content Specification</a></td>
-					<td>Lists RHEV topics that are included in multiple CSPs.</td>
+					<td>Lists RHEV topics that are included in multiple Content Specifications.</td>
 				</tr>
 				
 			</table>
+			
+			<div>
+				<h3>
+					Understanding the topic edit day limits
+				</h3>
+				<p>
+					Most reports include the parameters:
+				</p>
+				<ul>
+					<li>Limit to topics edited in the last number of days</li>
+					<li>Limit to topics not edited in the last number of days</li>
+				</ul>
+				<p>
+					Topic edits can be either a direct edit to the topic, such as editing the title or XML content, 
+					or it could be an edit to some other metadata such as the tags associated with the topic.
+				</p>
+				<p>
+					The "Limit to topics edited in the last number of days" will limit the topics included in the 
+					report to those that have been edited in some way in the specified last number of days. For
+					example, if you entered 180 for this field, the topics included in the report will have been
+					edited in some way in the last 180 days.
+				</p>
+				<p>
+					The "Limit to topics not edited in the last number of days" will limit the topics included in the 
+					report to those that have not been edited in any way in the specified last number of days. For
+					example, if you entered 60 for this field, the topics included in the report will not have been
+					edited in any way in the last 60 days.
+				</p>
+				<p>
+					Both these parameters can be used together to define a time span in which topics must have been edited
+					in order to be included in the report.
+				</p>
+				<p>
+					For example, setting "Limit to topics edited in the last number of days" to 90 days (3 months) and 
+					"Limit to topics not edited in the last number of days" to 60 days (2 months) can be thought of as requesting
+					topics that were edited in a 30 day (or 1 month) window from 90 days (3 months) ago.
+				</p>
+			</div>
 			
 		</div>	
 	</body>
