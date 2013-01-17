@@ -865,7 +865,7 @@
             <Action>
               <Type>Show_Tooltip</Type>
               <Value xsi:type="attribute:TooltipValue">
-                <Text>row[&quot;SpecTopicAndTag::SpecID&quot;] + &quot; - &quot; + row[&quot;TopicBugs::bug_status&quot;]</Text>
+                <Text>row[&quot;SpecTopics::SpecID&quot;] + &quot; - &quot; + row[&quot;TopicBugs::bug_status&quot;]</Text>
                 <Delay>200</Delay>
               </Value>
             </Action>

@@ -13,8 +13,8 @@
 			
 			<table style="width: 100%">
 				<tr>
-					<td>REPORT LINK</td>
-					<td>REPORT DESCRIPTION</td>
+					<td><h3>REPORT LINK</h3></td>
+					<td><h3>REPORT DESCRIPTION</h3></td>
 				</tr>
 				<tr>
 					<td>
@@ -87,6 +87,22 @@
 					For example, setting "Limit to topics edited in the last number of days" to 90 days (3 months) and 
 					"Limit to topics not edited in the last number of days" to 60 days (2 months) can be thought of as requesting
 					topics that were edited in a 30 day (or 1 month) window from 90 days (3 months) ago.
+				</p>
+				<h3>
+					Understanding the "Topics Skipped" summary
+				</h3>
+				<p>
+					Reports like <a href="/birt/frameset?__report=General/Topics_Per_Category_Per_Spec.rptdesign">
+					Topics per Content Specification</a> will break down the topics by the tags assigned to them from the specified category.
+				</p>
+				<p>
+					Topics that do not have any tags assigned to them from the specified category are skipped, which is to say that they are
+					not included in the values displayed by the chart. The total number of skipped topics is listed in the summary in the 
+					"Topics Skipped" field.
+				</p>
+				<p>
+					Quite often skipped topics represent topics that have not had the appropriate tags assigned to them, so the "Topics Skipped" 
+					summary is a useful field to review to identify these issues.
 				</p>
 			</div>
 			
