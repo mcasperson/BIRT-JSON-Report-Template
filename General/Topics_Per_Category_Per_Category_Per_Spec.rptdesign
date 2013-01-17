@@ -1369,12 +1369,12 @@
         <grid id="168">
             <property name="marginTop">1em</property>
             <property name="pageBreakInside">avoid</property>
-            <property name="width">7.947916666666667in</property>
+            <property name="width">7.938144329896907in</property>
             <column id="169">
-                <property name="width">3.9895833333333335in</property>
+                <property name="width">5.288659793814433in</property>
             </column>
             <column id="170">
-                <property name="width">3.9583333333333335in</property>
+                <property name="width">2.649484536082474in</property>
             </column>
             <row id="171">
                 <cell id="172">
@@ -1448,12 +1448,12 @@
         <grid id="33">
             <property name="marginTop">1em</property>
             <property name="pageBreakInside">avoid</property>
-            <property name="width">7.947916666666667in</property>
+            <property name="width">7.938144329896907in</property>
             <column id="34">
-                <property name="width">3.1145833333333335in</property>
+                <property name="width">5.309278350515464in</property>
             </column>
             <column id="35">
-                <property name="width">4.833333333333333in</property>
+                <property name="width">2.6288659793814433in</property>
             </column>
             <row id="84">
                 <cell id="85">
