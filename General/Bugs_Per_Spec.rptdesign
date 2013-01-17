@@ -829,7 +829,7 @@
             <Visible>false</Visible>
           </Label>
           <DataDefinition>
-            <Definition>row[&quot;SpecTopicAndTag::TopicID&quot;]</Definition>
+            <Definition>row[&quot;SpecTopics::TopicID&quot;]</Definition>
             <Grouping>
               <Enabled>true</Enabled>
               <GroupType>Text</GroupType>
@@ -1206,7 +1206,7 @@
           <Visible>false</Visible>
         </Label>
         <DataDefinition>
-          <Definition>row[&quot;SpecTopicAndTag::SpecID&quot;]</Definition>
+          <Definition>row[&quot;SpecTopics::SpecID&quot;]</Definition>
         </DataDefinition>
         <SeriesIdentifier></SeriesIdentifier>
         <DataPoint>
@@ -1223,6 +1223,9 @@
         <GroupType>Text</GroupType>
         <AggregateExpression>Sum</AggregateExpression>
       </Grouping>
+      <SortKey>
+        <Definition>row[&quot;SpecTopics::SpecID&quot;]</Definition>
+      </SortKey>
     </SeriesDefinitions>
     <Orientation>Horizontal</Orientation>
     <LineAttributes>
@@ -1350,28 +1353,28 @@
             <property name="width">7.948453608247423in</property>
             <list-property name="boundDataColumns">
                 <structure>
-                    <property name="name">SpecTopicAndTag::SpecID</property>
-                    <expression name="expression" type="javascript">dataSetRow["SpecTopicAndTag::SpecID"]</expression>
+                    <property name="name">SpecTopics::SpecID</property>
+                    <expression name="expression" type="javascript">dataSetRow["SpecTopics::SpecID"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">SpecTopicAndTag::TopicID</property>
-                    <expression name="expression" type="javascript">dataSetRow["SpecTopicAndTag::TopicID"]</expression>
+                    <property name="name">SpecTopics::TopicID</property>
+                    <expression name="expression" type="javascript">dataSetRow["SpecTopics::TopicID"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">SpecTopicAndTag::TopicTitle</property>
-                    <expression name="expression" type="javascript">dataSetRow["SpecTopicAndTag::TopicTitle"]</expression>
+                    <property name="name">SpecTopics::TopicTitle</property>
+                    <expression name="expression" type="javascript">dataSetRow["SpecTopics::TopicTitle"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">SpecTopicAndTag::TopicTag</property>
-                    <expression name="expression" type="javascript">dataSetRow["SpecTopicAndTag::TopicTag"]</expression>
+                    <property name="name">SpecTopics::TopicTagIDs</property>
+                    <expression name="expression" type="javascript">dataSetRow["SpecTopics::TopicTagIDs"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="name">SpecTopicAndTag::TopicTagID</property>
-                    <expression name="expression" type="javascript">dataSetRow["SpecTopicAndTag::TopicTagID"]</expression>
+                    <property name="name">SpecTopics::TopicTagNames</property>
+                    <expression name="expression" type="javascript">dataSetRow["SpecTopics::TopicTagNames"]</expression>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
