@@ -299,6 +299,12 @@
                     <expression name="expression" type="javascript">dataSetRow["TopicBugs::topic_id"]</expression>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="name">Column Binding</property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicBugs::bug_id"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <list-property name="sort">
                 <structure>
@@ -308,19 +314,19 @@
                 </structure>
             </list-property>
             <column id="174">
-                <property name="width">0.9278350515463918in</property>
+                <property name="width">0.6391752577319587in</property>
             </column>
             <column id="175">
-                <property name="width">2.2577319587628866in</property>
+                <property name="width">2.5463917525773194in</property>
             </column>
             <column id="176">
-                <property name="width">0.8865979381443299in</property>
+                <property name="width">0.7628865979381443in</property>
             </column>
             <column id="177">
                 <property name="width">1.1649484536082475in</property>
             </column>
             <column id="178">
-                <property name="width">2.711340206185567in</property>
+                <property name="width">2.8350515463917527in</property>
             </column>
             <header>
                 <row id="156">
@@ -473,10 +479,16 @@
                         <property name="borderTopColor">#808080</property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">thin</property>
-                        <text-data id="201">
-                            <expression name="valueExpr">row["TopicBugs::bug_id"]</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
+                        <data id="213">
+                            <property name="resultSetColumn">Column Binding</property>
+                            <list-property name="action">
+                                <structure>
+                                    <property name="linkType">hyperlink</property>
+                                    <expression name="uri" type="javascript">"https://bugzilla.redhat.com/show_bug.cgi?id=" + row["TopicBugs::bug_id"]</expression>
+                                    <property name="targetWindow">_blank</property>
+                                </structure>
+                            </list-property>
+                        </data>
                     </cell>
                     <cell id="166">
                         <property name="borderBottomColor">#808080</property>
