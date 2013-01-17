@@ -141,7 +141,18 @@ categoryListController = null;
 						
 						if (!isNaN(daysFilter) &amp;&amp; daysFilter > 0)
 						{						
-							filter += ";topicEditedInLastDays=" + parseInt(params["EditedInLastXDays"]);
+							filter += ";topicEditedInLastDays=" + daysFilter;
+						}
+					}
+					
+					// optionally filter to only those topics edited in the specified last number of days
+					if (params["NotEditedInLastXDays"] != null)
+					{
+						var notDaysFilter = parseInt(params["NotEditedInLastXDays"]);
+						
+						if (!isNaN(notDaysFilter) &amp;&amp; notDaysFilter > 0)
+						{						
+							filter += ";topicNotEditedInLastDays=" + notDaysFilter;
 						}
 					}
 					
@@ -283,10 +294,25 @@ else
 					var filter = "query;topicIncludedInSpec=" + cspIdInt;
 					
 					// optionally filter to only those topics edited in the specified last number of days
-					var topicEditedInLastDays = parseInt(params["EditedInLastXDays"]);
-					if (!isNaN(topicEditedInLastDays))
+					if (params["EditedInLastXDays"] != null)
 					{
-						filter += ";topicEditedInLastDays=" + topicEditedInLastDays;
+						var daysFilter = parseInt(params["EditedInLastXDays"]);
+						
+						if (!isNaN(daysFilter) &amp;&amp; daysFilter > 0)
+						{						
+							filter += ";topicEditedInLastDays=" + daysFilter;
+						}
+					}
+					
+					// optionally filter to only those topics not edited in the specified last number of days
+					if (params["NotEditedInLastXDays"] != null)
+					{
+						var notDaysFilter = parseInt(params["NotEditedInLastXDays"]);
+						
+						if (!isNaN(notDaysFilter) &amp;&amp; notDaysFilter > 0)
+						{						
+							filter += ";topicNotEditedInLastDays=" + notDaysFilter;
+						}
 					}
 					
 					var completeRestUrl = restUrl + filter + restExpansion;

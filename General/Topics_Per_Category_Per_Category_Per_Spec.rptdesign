@@ -88,6 +88,21 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
+        <scalar-parameter name="NotEditedInLastXDays" id="207">
+            <property name="hidden">false</property>
+            <text-property name="helpText">If this value is specified, the topics included in the chart will only be those that that were not modified in the last specified number of days.</text-property>
+            <text-property name="promptText">Limit to topics not edited in the last number of days</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
     </parameters>
     <data-sets>
         <script-data-set name="CategorySummaryByCategoryAndSpec" id="8" extends="data_library.CategorySummaryByCategoryAndSpec"/>
