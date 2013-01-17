@@ -63,10 +63,6 @@
             </structure>
         </scalar-parameter>
     </parameters>
-    <data-sources>
-        <script-data-source name="By Specs" id="162" extends="data_library.By Specs"/>
-        <script-data-source name="Categories" id="166" extends="data_library.Categories"/>
-    </data-sources>
     <data-sets>
         <script-data-set name="SpecTopicAndTag" id="165" extends="data_library.SpecTopicAndTag"/>
         <script-data-set name="Categories" id="167" extends="data_library.Categories"/>

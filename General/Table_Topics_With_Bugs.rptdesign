@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.2.1.v201209101448 Build &lt;4.2.1.v20120912-1721></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">97</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">data_library.rptlibrary</property>
+            <property name="namespace">data_library</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="CSPIDS" id="180">
+            <property name="hidden">false</property>
+            <text-property name="helpText">This option specifies the CSPs that will be included in the chart. You can inlcude 1 CSP ID, or more than 1 as a comma separated list.</text-property>
+            <text-property name="promptText">Please enter a comma separated list of CSP IDs</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">8699,11862,7463,8740</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="EditedInLastXDays" id="195">
+            <text-property name="helpText">If this value is specified, the topics included in the chart will only be those that that were modified in the last specified number of days.</text-property>
+            <text-property name="promptText">Limit to topics edited in the last number of days</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="Category" id="199">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">-1</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sets>
+        <joint-data-set name="TopicBugsAndTopics" id="154" extends="data_library.TopicBugsAndTopics"/>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid id="70">
+            <property name="marginBottom">1em</property>
+            <property name="height">1.03125in</property>
+            <property name="width">7.947916666666667in</property>
+            <column id="71">
+                <property name="width">2.59375in</property>
+            </column>
+            <column id="72">
+                <property name="width">5.354166666666667in</property>
+            </column>
+            <row id="73">
+                <property name="height">1.03125in</property>
+                <cell id="74">
+                    <property name="width">240px</property>
+                    <property name="backgroundColor">#A40104</property>
+                    <image id="76">
+                        <property name="height">87px</property>
+                        <property name="width">237px</property>
+                        <property name="source">file</property>
+                        <expression name="uri" type="constant">Images/logo.png</expression>
+                    </image>
+                </cell>
+                <cell id="75">
+                    <property name="backgroundColor">#FFFFFF</property>
+                    <property name="textAlign">right</property>
+                    <image id="152">
+                        <property name="height">87px</property>
+                        <property name="width">293px</property>
+                        <property name="source">file</property>
+                        <expression name="uri" type="constant">Images/pressgang_logo_600px.png</expression>
+                    </image>
+                </cell>
+            </row>
+        </grid>
+        <table id="155">
+            <property name="dataSet">TopicBugsAndTopics</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">Aggregation</property>
+                    <text-property name="displayName">TopicTagCount</text-property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">dataSetRow["SpecTopicAndTag::TopicTagID"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicID</property>
+                    <expression name="expression" type="javascript">dataSetRow["SpecTopicAndTag::TopicID"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicTitle</property>
+                    <expression name="expression" type="javascript">dataSetRow["SpecTopicAndTag::TopicTitle"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">BugzillaBugID</property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicBugs::bug_id"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">BugzillaBugStatus</property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicBugs::bug_status"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">BugzillaShortDesc</property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicBugs::short_desc"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="174"/>
+            <column id="175"/>
+            <column id="176"/>
+            <column id="177"/>
+            <column id="178"/>
+            <header>
+                <row id="156">
+                    <cell id="157"/>
+                    <cell id="158"/>
+                    <cell id="159"/>
+                    <cell id="160"/>
+                    <cell id="161"/>
+                </row>
+            </header>
+            <detail>
+                <row id="162">
+                    <cell id="163">
+                        <text-data id="179">
+                            <expression name="valueExpr">row["TopicID"]</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                    <cell id="164">
+                        <text-data id="200">
+                            <expression name="valueExpr">row["TopicTitle"]</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                    <cell id="165">
+                        <text-data id="201">
+                            <expression name="valueExpr">row["BugzillaBugID"]</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                    <cell id="166">
+                        <text-data id="202">
+                            <expression name="valueExpr">row["BugzillaBugStatus"]</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                    <cell id="167">
+                        <text-data id="203">
+                            <expression name="valueExpr">row["BugzillaShortDesc"]</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                </row>
+            </detail>
+            <footer>
+                <row id="168">
+                    <cell id="169"/>
+                    <cell id="170"/>
+                    <cell id="171"/>
+                    <cell id="172"/>
+                    <cell id="173"/>
+                </row>
+            </footer>
+        </table>
+    </body>
+</report>

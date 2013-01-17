@@ -59,16 +59,8 @@
             </structure>
         </scalar-parameter>
     </parameters>
-    <data-sources>
-        <script-data-source name="By Specs" id="155" extends="data_library.By Specs"/>
-        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Bugzilla" id="156"
- extends="data_library.Bugzilla"/>
-    </data-sources>
     <data-sets>
         <joint-data-set name="TopicBugsAndTopics" id="157" extends="data_library.TopicBugsAndTopics"/>
-        <script-data-set name="SpecTopicAndTag" id="197" extends="data_library.SpecTopicAndTag"/>
-        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="TopicBugs" id="198"
- extends="data_library.TopicBugs"/>
     </data-sets>
     <styles>
         <style name="report" id="4">

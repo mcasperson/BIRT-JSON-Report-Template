@@ -89,10 +89,6 @@
             </structure>
         </scalar-parameter>
     </parameters>
-    <data-sources>
-        <script-data-source name="By Spec and Categories" id="7" extends="data_library.By Spec and Categories"/>
-        <script-data-source name="Categories" id="12" extends="data_library.Categories"/>
-    </data-sources>
     <data-sets>
         <script-data-set name="CategorySummaryByCategoryAndSpec" id="8" extends="data_library.CategorySummaryByCategoryAndSpec"/>
         <script-data-set name="Categories" id="13" extends="data_library.Categories"/>

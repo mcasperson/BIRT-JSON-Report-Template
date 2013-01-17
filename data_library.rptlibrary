@@ -3,10 +3,6 @@
     <property name="createdBy">Eclipse BIRT Designer Version 4.2.1.v201209101448 Build &lt;4.2.1.v20120912-1721></property>
     <list-property name="propertyBindings">
         <structure>
-            <property name="name">odaDriverClass</property>
-            <property name="id">208</property>
-        </structure>
-        <structure>
             <property name="name">odaURL</property>
             <property name="id">208</property>
             <expression name="value" type="javascript">Packages.java.lang.System.getProperty("BugzillaDatabaseURL");</expression>
@@ -17,29 +13,9 @@
             <expression name="value" type="javascript">Packages.java.lang.System.getProperty("BugzillaUsername");</expression>
         </structure>
         <structure>
-            <property name="name">odaAutoCommit</property>
-            <property name="id">208</property>
-        </structure>
-        <structure>
-            <property name="name">odaIsolationMode</property>
-            <property name="id">208</property>
-        </structure>
-        <structure>
             <property name="name">odaPassword</property>
             <property name="id">208</property>
             <expression name="value" type="javascript">Packages.java.lang.System.getProperty("BugzillaPassword");</expression>
-        </structure>
-        <structure>
-            <property name="name">odaJndiName</property>
-            <property name="id">208</property>
-        </structure>
-        <structure>
-            <property name="name">OdaConnProfileName</property>
-            <property name="id">208</property>
-        </structure>
-        <structure>
-            <property name="name">OdaConnProfileStorePath</property>
-            <property name="id">208</property>
         </structure>
     </list-property>
     <property name="units">in</property>
@@ -159,9 +135,14 @@ categoryListController = null;
 					var filter = "query;topicIncludedInSpec=" + csp;
 
 					// optionally filter to only those topics edited in the specified last number of days
-					if (params["EditedInLastXDays"] != null &amp;&amp; !isNaN(parseInt(params["EditedInLastXDays"])))
+					if (params["EditedInLastXDays"] != null)
 					{
-						filter += ";topicEditedInLastDays=" + parseInt(params["EditedInLastXDays"]);
+						var daysFilter = parseInt(params["EditedInLastXDays"]);
+						
+						if (!isNaN(daysFilter) &amp;&amp; daysFilter > 0)
+						{						
+							filter += ";topicEditedInLastDays=" + parseInt(params["EditedInLastXDays"]);
+						}
 					}
 					
 					var completeRestUrl = restUrl + filter  + restExpansion;
