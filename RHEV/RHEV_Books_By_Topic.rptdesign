@@ -63,7 +63,7 @@
         </scalar-parameter>
     </parameters>
     <data-sources>
-        <script-data-source name="By Specs" id="92" extends="data_library.By Specs"/>
+        <script-data-source name="SpecTopics" id="196" extends="data_library.SpecTopics"/>
     </data-sources>
     <data-sets>
         <script-data-set name="Data Set" id="9">
@@ -117,7 +117,7 @@
                     </structure>
                 </list-property>
             </structure>
-            <property name="dataSource">By Specs</property>
+            <property name="dataSource">SpecTopics</property>
             <method name="open"><![CDATA[// the topics that were returned by the REST query, with the CSP ids that
 // they belong to
 topics = [];
