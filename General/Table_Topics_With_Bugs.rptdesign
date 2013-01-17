@@ -58,6 +58,25 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
+        <scalar-parameter name="Bug Status" id="218">
+            <property name="valueType">dynamic</property>
+            <property name="isRequired">false</property>
+            <property name="dataSetName">BugStatus</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["bug_status"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["bug_status"]</expression>
+            <expression name="sortByColumn">dataSetRow["bug_status"]</expression>
+            <property name="sortDirection">asc</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">multi-value</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">false</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
     </parameters>
     <data-sets>
         <joint-data-set name="TopicBugsAndTopics" id="210" extends="data_library.TopicBugsAndTopics">
@@ -131,6 +150,17 @@
             </list-property>
         </joint-data-set>
         <script-data-set name="SpecTopics" id="211" extends="data_library.SpecTopics"/>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="BugStatus" id="217"
+ extends="data_library.BugStatus">
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">bug_status</property>
+                    <property name="nativeName">bug_status</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+        </oda-data-set>
     </data-sets>
     <styles>
         <style name="report" id="4">
@@ -323,6 +353,26 @@
                     <expression name="key" type="javascript">row["TopicBugs::bug_status"]</expression>
                     <property name="direction">asc</property>
                     <property name="strength">-1</property>
+                </structure>
+            </list-property>
+            <list-property name="filter">
+                <structure>
+                    <property name="operator">is-true</property>
+                    <expression name="expr" type="javascript">value = params["Bug Status"].value == null || params["Bug Status"].value.length == 0;
+if (!value)
+{
+	for (var i = 0; i &lt; params["Bug Status"].value.length; ++i)
+	{
+		if (row["TopicBugs::bug_status"].toString() 
+			== params["Bug Status"].value[i].toString())
+		{
+			value = true;
+			break;
+		}
+	}
+}
+value;</expression>
+                    <property name="updateAggregation">true</property>
                 </structure>
             </list-property>
             <column id="174">
