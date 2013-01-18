@@ -2753,20 +2753,39 @@ from BugzillaS.bugs]]></xml-property>
             <property name="dataSource">ZanataSourceDocuments</property>
             <method name="open"><![CDATA[logger.info("[open] [" + zanataDataSetUUID + "] [Data Set] [LatestZanataSourceDocuments]");
 
-latestZanataSourceDocumentsIndex = 0;]]></method>
-            <method name="fetch"><![CDATA[logger.info("[fetch] [" + zanataDataSetUUID + "] [Data Set] [LatestZanataSourceDocuments]");
+latestZanataSourceDocumentsIndex = 0;
 
-if(latestZanataSourceDocumentsIndex < zanataCount)
-{    
-    var docName = zanataController.getValue("items", "name", latestZanataSourceDocumentsIndex);
+latestDocumentNamesMap = {};
+latestDocumentNamesArray = [];
+
+for (docIndex = 0; docIndex < zanataCount; ++ docIndex)
+{
+	var docName = zanataController.getValue("items", "name", docIndex);
     
     var docNameSplit = docName.split("-");
     
     if (docNameSplit.length == 2)
     {
-    	row["Name"] = docNameSplit[0];
-    	row["Revision"] = docNameSplit[1];
+		if (latestDocumentNamesMap.hasOwnProperty(docNameSplit[0]))
+		{
+			if (parseInt(docNameSplit[1]) > latestDocumentNamesMap[docNameSplit[0]])
+			{
+				latestDocumentNamesMap[docNameSplit[0]] = parseInt(docNameSplit[1]);				
+			}
+		}
+		else
+		{
+			latestDocumentNamesMap[docNameSplit[0]] = parseInt(docNameSplit[1]);
+			latestDocumentNamesArray.push(docNameSplit[0]);
+		}
     }
+}]]></method>
+            <method name="fetch"><![CDATA[logger.info("[fetch] [" + zanataDataSetUUID + "] [Data Set] [LatestZanataSourceDocuments]");
+
+if(latestZanataSourceDocumentsIndex < latestDocumentNamesArray.length)
+{    
+	row["Name"] = latestDocumentNamesArray[latestZanataSourceDocumentsIndex].toString();
+	row["Revision"] = latestDocumentNamesMap[latestDocumentNamesArray[latestZanataSourceDocumentsIndex]].toString();
 
 	++latestZanataSourceDocumentsIndex;
     return true;
