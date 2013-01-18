@@ -3068,9 +3068,7 @@ for (topicIndex = 0; topicIndex < specTopicsAndZanataCount; ++topicIndex)
     }
 }]]></method>
             <method name="fetch"><![CDATA[if (specTopicsAndZanataTranslationsIndex < topicsWithZanataData.length)
-{    
-	Packages.java.lang.System.out.println("Locale: " + topicsWithZanataData[specTopicsAndZanataTranslationsIndex].locale + " Status: " + topicsWithZanataData[specTopicsAndZanataTranslationsIndex].translated + " Value: " + topicsWithZanataData[specTopicsAndZanataTranslationsIndex].value);
-	
+{    	
 	row["TopicID"] = topicsWithZanataData[specTopicsAndZanataTranslationsIndex].topicID;
 	row["TopicTitle"] = topicsWithZanataData[specTopicsAndZanataTranslationsIndex].topicTitle;
 	row["ZanataLanguage"] = topicsWithZanataData[specTopicsAndZanataTranslationsIndex].locale;

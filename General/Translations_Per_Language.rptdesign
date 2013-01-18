@@ -144,7 +144,7 @@
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:data="http://www.birt.eclipse.org/ChartModelData" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
   <Version>2.5.3</Version>
   <Type>Bar Chart</Type>
-  <SubType>Side-by-side</SubType>
+  <SubType>Stacked</SubType>
   <Block>
     <Children xsi:type="layout:TitleBlock">
       <Bounds>
@@ -177,7 +177,7 @@
       <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Chart Title</Value>
+          <Value>Translation Progress Per Language</Value>
           <Font>
             <Size>16.0</Size>
             <Bold>true</Bold>
@@ -395,7 +395,7 @@
     </Outline>
     <Visible>true</Visible>
   </Block>
-  <Dimension>Two_Dimensional</Dimension>
+  <Dimension>Two_Dimensional_With_Depth</Dimension>
   <Units>Points</Units>
   <SeriesThickness>10.0</SeriesThickness>
   <ExtendedProperties>
@@ -772,8 +772,8 @@
             </Components>
             <Separator>, </Separator>
           </DataPoint>
-          <LabelPosition>Outside</LabelPosition>
-          <Stacked>false</Stacked>
+          <LabelPosition>Inside</LabelPosition>
+          <Stacked>true</Stacked>
           <Triggers>
             <Condition>onmouseover</Condition>
             <Action>
@@ -1270,7 +1270,7 @@
             <property name="inheritColumns">true</property>
             <property name="dataSet">SpecTopicsAndZanataTranslations</property>
             <property name="height">4.969072164948454in</property>
-            <property name="width">7.752577319587629in</property>
+            <property name="width">7.927835051546392in</property>
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">TopicID</property>
