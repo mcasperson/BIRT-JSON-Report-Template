@@ -496,6 +496,7 @@ specTopicsAndZanataCount = 0;
 specTopicsAndZanataController = null;
 baseUrl = Packages.java.lang.System.getProperty("BIRT_CCMS_BASE_URL");
 restUrl = baseUrl + "1/topics/get/json/";
+restExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22topics%22%7D%7D%5D%7D";
 zanataBaseUrl = Packages.java.lang.System.getProperty("ZanataURL");
 zanataUsername = Packages.java.lang.System.getProperty("ZanataUsername");
 zanataApiKey = Packages.java.lang.System.getProperty("ZanataAPIKey");
@@ -543,7 +544,7 @@ zanataCount = 0;
 					}
 				}
 				
-				var completeRestUrl = restUrl + filter;
+				var completeRestUrl = restUrl + filter + restExpansion;
 				
 				Packages.java.lang.System.out.println("REST URL: " + completeRestUrl);
 				
@@ -553,7 +554,8 @@ zanataCount = 0;
 				// Load the JSON Source
 				specTopicsAndZanataController.loadData(completeRestUrl);	
 				
-				specTopicsAndZanataCount = specTopicsAndZanataController.getChildCount("items");	
+				specTopicsAndZanataCount = specTopicsAndZanataController.getChildCount("items");
+				Packages.java.lang.System.out.println("Topic Count: " + specTopicsAndZanataCount );	
 				
 				// Create instance of the Controller class
 				zanataController = new Packages.com.actuate.json.JSONParser();
@@ -3018,6 +3020,8 @@ for (topicIndex = 0; topicIndex < specTopicsAndZanataCount; ++topicIndex)
     
     if (latestDocumentNamesMap.hasOwnProperty(topicID))
     {
+    	Packages.java.lang.System.out.println("Found Topic ID " + topicID + " with Zanata Revision " +  latestDocumentNamesMap[topicID]);
+    	
     	// Create instance of the Controller class
 		var zanataStatsController = new Packages.com.actuate.json.JSONParser();
 		
@@ -3027,7 +3031,7 @@ for (topicIndex = 0; topicIndex < specTopicsAndZanataCount; ++topicIndex)
 		headers.put("X-Auth-Token", zanataApiKey);
 		headers.put("Accept", "application/json");
 		
-		var zanataStatsURL = zanataBaseUrl + "/stats/proj/skynet-topics/iter/1/doc/" + topicID + "-" + latestDocumentNamesArray[topicID];
+		var zanataStatsURL = zanataBaseUrl + "/stats/proj/skynet-topics/iter/1/doc/" + topicID + "-" + latestDocumentNamesMap[topicID];
 		
 		Packages.java.lang.System.out.println("Zanata URL: " + zanataStatsURL);
 		zanataStatsController.loadData(zanataStatsURL, headers, true, null);
