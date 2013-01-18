@@ -2487,8 +2487,19 @@ WHERE bugs.cf_build_id LIKE '%-% __ ___ ____ __:__ %']]></xml-property>
                     </structure>
                 </list-property>
             </structure>
+            <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
+logger = Logger.getLogger("");
+logger.setLevel(Level.INFO);
+
+uuid = Packages.java.util.UUID.randomUUID().toString();
+
+logger.info("[beforeOpen] [" + uuid + "] [Data Set] SpecTopics");]]></method>
+            <method name="beforeClose"><![CDATA[logger.info("[beforeClose] [" + uuid + "] [Data Set] SpecTopics");]]></method>
+            <method name="onFetch"><![CDATA[logger.info("[onFetch] [" + uuid + "] [Data Set] SpecTopics");]]></method>
+            <method name="afterOpen"><![CDATA[logger.info("[afterOpen] [" + uuid + "] [Data Set] SpecTopics");]]></method>
+            <method name="afterClose"><![CDATA[logger.info("[afterClose] [" + uuid + "] [Data Set] SpecTopics");]]></method>
             <property name="dataSource">SpecTopics</property>
-            <method name="open"><![CDATA[Packages.java.lang.System.out.println("[START] SpecTopicAndTag - open");
+            <method name="open"><![CDATA[logger.info("[open] [" + uuid + "] [Data Set] SpecTopics");
 
 /*
 	--------------------- Global variables ---------------------
@@ -2576,10 +2587,11 @@ skippedTopics = 0;
 			specTopics.push(newRow);	
 		}
 	}
-})();
+})();]]></method>
+            <method name="describe"><![CDATA[logger.info("[describe] [" + uuid + "] [Data Set] SpecTopics");]]></method>
+            <method name="fetch"><![CDATA[logger.info("[fetch] [" + uuid + "] [Data Set] SpecTopics");
 
-Packages.java.lang.System.out.println("[END] SpecTopicAndTag - open");]]></method>
-            <method name="fetch"><![CDATA[(function()
+(function()
 {
 	while (specTopicAndTagFilter.length != 0 &amp;&amp; specTopicAndTagCount < specTopics.length)
 	{
@@ -2622,6 +2634,7 @@ if (specTopicAndTagCount < specTopics.length)
 }
 
 return false;]]></method>
+            <method name="close"><![CDATA[logger.info("[close] [" + uuid + "] [Data Set] SpecTopics");]]></method>
         </script-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="BugStatus" id="213">
             <list-property name="parameters"/>
