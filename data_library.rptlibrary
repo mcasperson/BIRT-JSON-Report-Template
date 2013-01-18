@@ -76,7 +76,7 @@ catch (exception)
 }]]></method>
             <method name="close"><![CDATA[logger.info("[BIRT Report Viewer] [close] [" + uuid + "] [Data Source] [By Query]");]]></method>
         </script-data-source>
-        <script-data-source name="SpecTopics" id="202">
+        <script-data-source name="SpecTopicsAndCategories" id="202">
             <property name="comments">This data source make use of the custom JSONParser class to peform a request of the CCMS REST API using the URL saved in the JSONURL parameter. It will then parse the result, the details of which can then be extracted by the Data Sets.</property>
             <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
 logger = Logger.getLogger("");
@@ -478,6 +478,111 @@ zanataCount = 0;
 })();]]></method>
             <method name="close"><![CDATA[logger.info("[BIRT Report Viewer] [close] [" + zanataUUID + "] [Data Source] [ZanataSourceDocuments]");]]></method>
         </script-data-source>
+        <script-data-source name="SpecTopicsAndZanata" id="216">
+            <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
+logger = Logger.getLogger("");
+logger.setLevel(Level.INFO);
+
+specTopicsAndZanataUUID = Packages.java.util.UUID.randomUUID().toString();
+
+logger.info("[BIRT Report Viewer] [beforeOpen] [" + specTopicsAndZanataUUID + "] [Data Source] [SpecTopicsAndZanata]");]]></method>
+            <method name="open"><![CDATA[logger.info("[BIRT Report Viewer] [open] [" + specTopicsAndZanataUUID + "] [Data Source] [SpecTopicsAndZanata]");
+
+
+/*
+	Globals used by other scripts
+*/
+specTopicsAndZanataCount = 0;
+specTopicsAndZanataController = null;
+baseUrl = Packages.java.lang.System.getProperty("BIRT_CCMS_BASE_URL");
+restUrl = baseUrl + "1/topics/get/json/";
+zanataBaseUrl = Packages.java.lang.System.getProperty("ZanataURL");
+zanataUsername = Packages.java.lang.System.getProperty("ZanataUsername");
+zanataApiKey = Packages.java.lang.System.getProperty("ZanataAPIKey");
+zanataRestUrl = zanataBaseUrl + "/projects/p/skynet-topics/iterations/i/1/r";
+
+// The controllers holds the JSON results
+zanataController = null;
+zanataCount = 0;
+
+/*
+	Processing
+*/
+(function()
+{
+	try
+	{
+		var cspId = params["CSPID"];
+		if (cspId != null)
+		{
+			cspIdInt = parseInt(cspId);
+			
+			if (cspIdInt != NaN)
+			{				
+				var filter = "query;topicIncludedInSpec=" + cspIdInt;
+				
+				// optionally filter to only those topics edited in the specified last number of days
+				if (params["EditedInLastXDays"] != null)
+				{
+					var daysFilter = parseInt(params["EditedInLastXDays"]);
+					
+					if (!isNaN(daysFilter) &amp;&amp; daysFilter > 0)
+					{						
+						filter += ";topicEditedInLastDays=" + daysFilter;
+					}
+				}
+				
+				// optionally filter to only those topics not edited in the specified last number of days
+				if (params["NotEditedInLastXDays"] != null)
+				{
+					var notDaysFilter = parseInt(params["NotEditedInLastXDays"]);
+					
+					if (!isNaN(notDaysFilter) &amp;&amp; notDaysFilter > 0)
+					{						
+						filter += ";topicNotEditedInLastDays=" + notDaysFilter;
+					}
+				}
+				
+				var completeRestUrl = restUrl + filter;
+				
+				Packages.java.lang.System.out.println("REST URL: " + completeRestUrl);
+				
+				// Create instance of the Controller class
+				specTopicsAndZanataController = new Packages.com.actuate.json.JSONParser();
+				
+				// Load the JSON Source
+				specTopicsAndZanataController.loadData(completeRestUrl);	
+				
+				specTopicsAndZanataCount = specTopicsAndZanataController.getChildCount("items");	
+				
+				// Create instance of the Controller class
+				zanataController = new Packages.com.actuate.json.JSONParser();
+				
+				// The Zanata headers
+				var headers = new Packages.java.util.HashMap();
+				headers.put("X-Auth-User", zanataUsername);
+				headers.put("X-Auth-Token", zanataApiKey);
+				headers.put("Accept", "application/json");
+				
+				var jsonWrap = ["{\"items\":", "}"];
+				
+				Packages.java.lang.System.out.println("Zanata URL: " + zanataRestUrl);
+				
+				// Load the JSON Source
+				zanataController.loadData(zanataRestUrl, headers, true, jsonWrap);
+				zanataCount = zanataController.getChildCount("items");
+				
+				Packages.java.lang.System.out.println("Zanata Count: " + zanataCount);	
+			}
+		}
+	}
+	catch (exception)
+	{
+		Packages.java.lang.System.out.println("An exception was thrown: " + exception);
+		Packages.java.lang.System.out.println("Make sure the JSONParser class is available in the class path");
+	}
+})();]]></method>
+        </script-data-source>
     </data-sources>
     <data-sets>
         <script-data-set name="TagSummary" id="84">
@@ -794,7 +899,7 @@ logger.info("[BIRT Report Viewer] [beforeOpen] [" + uuid + "] [Data Set] [SpecTo
             <method name="onFetch"><![CDATA[logger.info("[BIRT Report Viewer] [onFetch] [" + uuid + "] [Data Set] [SpecTopicAndTag]");]]></method>
             <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + uuid + "] [Data Set] [SpecTopicAndTag]");]]></method>
             <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + uuid + "] [Data Set] [SpecTopicAndTag]");]]></method>
-            <property name="dataSource">SpecTopics</property>
+            <property name="dataSource">SpecTopicsAndCategories</property>
             <method name="open"><![CDATA[logger.info("[BIRT Report Viewer] [open] [" + uuid + "] [Data Set] [SpecTopicAndTag]");
 
 /*
@@ -2568,7 +2673,7 @@ logger.info("[BIRT Report Viewer] [beforeOpen] [" + dataSetSpecTopicsUUID + "] [
             <method name="onFetch"><![CDATA[logger.info("[BIRT Report Viewer] [onFetch] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");]]></method>
             <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");]]></method>
             <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");]]></method>
-            <property name="dataSource">SpecTopics</property>
+            <property name="dataSource">SpecTopicsAndCategories</property>
             <method name="open"><![CDATA[logger.info("[open] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");
 
 /*
@@ -2788,6 +2893,174 @@ if(latestZanataSourceDocumentsIndex < latestDocumentNamesArray.length)
 	row["Revision"] = latestDocumentNamesMap[latestDocumentNamesArray[latestZanataSourceDocumentsIndex]].toString();
 
 	++latestZanataSourceDocumentsIndex;
+    return true;
+}
+
+return false;]]></method>
+        </script-data-set>
+        <script-data-set name="SpecTopicsAndZanataTranslations" id="217">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">0</property>
+                    <property name="name">TopicID</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">TopicTitle</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">ZanataLanguage</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">ZanataTranslationState</property>
+                    <property name="dataType">boolean</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">ZanataTranslationCount</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">TopicID</property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicTitle</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ZanataLanguage</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ZanataTranslationState</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ZanataTranslationCount</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">TopicID</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">TopicTitle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">ZanataLanguage</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">ZanataTranslationState</property>
+                        <property name="dataType">boolean</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">ZanataTranslationCount</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">SpecTopicsAndZanata</property>
+            <method name="open"><![CDATA[specTopicsAndZanataTranslationsIndex = 0;
+
+latestDocumentNamesMap = {};
+latestDocumentNamesArray = [];
+unpushedTopics = 0;
+topicsWithZanataData = [];
+
+/*
+	Loop through all the documents available in Zanata and pull out the latest revisions
+*/
+Packages.java.lang.System.out.println("Finding latest Zanata Documents" );
+for (docIndex = 0; docIndex < zanataCount; ++ docIndex)
+{
+	var docName = zanataController.getValue("items", "name", docIndex);
+    
+    var docNameSplit = docName.split("-");
+    
+    if (docNameSplit.length == 2)
+    {
+		if (latestDocumentNamesMap.hasOwnProperty(docNameSplit[0]))
+		{
+			if (parseInt(docNameSplit[1]) > latestDocumentNamesMap[docNameSplit[0]])
+			{
+				latestDocumentNamesMap[docNameSplit[0]] = parseInt(docNameSplit[1]);				
+			}
+		}
+		else
+		{
+			latestDocumentNamesMap[docNameSplit[0]] = parseInt(docNameSplit[1]);
+			latestDocumentNamesArray.push(docNameSplit[0]);
+		}
+    }
+}
+
+/*
+	Match up the zanata translations stats with the topics
+*/
+Packages.java.lang.System.out.println("Matching Topics With Latest Zanata Documents" );
+for (topicIndex = 0; topicIndex < specTopicsAndZanataCount; ++topicIndex)
+{
+	var topicID = specTopicsAndZanataController.getValue("items", "item/id", topicIndex).toString();
+    var topicTitle = specTopicsAndZanataController.getValue("items", "item/title", topicIndex);
+    
+    if (latestDocumentNamesMap.hasOwnProperty(topicID))
+    {
+    	// Create instance of the Controller class
+		var zanataStatsController = new Packages.com.actuate.json.JSONParser();
+		
+		// The Zanata headers
+		var headers = new Packages.java.util.HashMap();
+		headers.put("X-Auth-User", zanataUsername);
+		headers.put("X-Auth-Token", zanataApiKey);
+		headers.put("Accept", "application/json");
+		
+		var zanataStatsURL = zanataBaseUrl + "/stats/proj/skynet-topics/iter/1/doc/" + topicID + "-" + latestDocumentNamesArray[topicID];
+		
+		Packages.java.lang.System.out.println("Zanata URL: " + zanataStatsURL);
+		zanataStatsController.loadData(zanataStatsURL, headers, true, null);
+		
+		zanataStatsCount = zanataController.getChildCount("stats");
+		
+		for (statsIndex = 0; statsIndex < zanataStatsCount; ++statsIndex)
+		{
+			var locale = specTopicsAndZanataController.getValue("stats", "locale", statsIndex);
+			var untranslated = specTopicsAndZanataController.getValue("stats", "untranslated", statsIndex);
+    		var translated = specTopicsAndZanataController.getValue("stats", "total", statsIndex) - untranslated;
+    		
+    		topicsWithZanataData.push[{topicID: topicID, topicTitle: topicTitle, locale: locale, translated: "Translated", value: translated}];
+    		topicsWithZanataData.push[{topicID: topicID, topicTitle: topicTitle, locale: locale, translated: "Untranslated", value: untranslated}];
+		}
+		
+		// Rate limiting
+		Packages.java.lang.Thread.sleep(200);
+    }
+    else
+    {
+    	++unpushedTopics;
+    }
+}]]></method>
+            <method name="fetch"><![CDATA[if(specTopicsAndZanataTranslationsIndex < topicsWithZanataData.length)
+{    
+	row["TopicID"] = topicsWithZanataData[specTopicsAndZanataTranslationsIndex].topicID;
+	row["TopicTitle"] = topicsWithZanataData[specTopicsAndZanataTranslationsIndex].topicTitle;
+	row["ZanataLanguage"] = topicsWithZanataData[specTopicsAndZanataTranslationsIndex].locale;
+	row["ZanataTranslationState"] = topicsWithZanataData[specTopicsAndZanataTranslationsIndex].translated;
+	row["ZanataTranslationCount"] = topicsWithZanataData[specTopicsAndZanataTranslationsIndex].value;
+
+	++specTopicsAndZanataTranslationsIndex;
     return true;
 }
 
