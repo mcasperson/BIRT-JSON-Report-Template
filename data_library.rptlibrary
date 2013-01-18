@@ -28,11 +28,11 @@ logger.setLevel(Level.INFO);
 
 uuid = Packages.java.util.UUID.randomUUID().toString();
 
-logger.info("[BIRT Report Viewer] [beforeOpen] [" + uuid + "] [Data Source] By Query");]]></method>
-            <method name="beforeClose"><![CDATA[logger.info("[BIRT Report Viewer] [beforeClose] [" + uuid + "] [Data Source] By Query");]]></method>
-            <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + uuid + "] [Data Source] By Query");]]></method>
-            <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + uuid + "] [Data Source] By Query");]]></method>
-            <method name="open"><![CDATA[logger.info("[BIRT Report Viewer] [open] [" + uuid + "] [Data Source] By Query");
+logger.info("[BIRT Report Viewer] [beforeOpen] [" + uuid + "] [Data Source] [By Query]");]]></method>
+            <method name="beforeClose"><![CDATA[logger.info("[BIRT Report Viewer] [beforeClose] [" + uuid + "] [Data Source] [By Query]");]]></method>
+            <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + uuid + "] [Data Source] [By Query]");]]></method>
+            <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + uuid + "] [Data Source] [By Query]");]]></method>
+            <method name="open"><![CDATA[logger.info("[BIRT Report Viewer] [open] [" + uuid + "] [Data Source] [By Query]");
 
 /* Add the ability to search an array */
 
@@ -74,7 +74,7 @@ catch (exception)
 	Packages.java.lang.System.out.println("An exception was thrown: " + exception);
 	Packages.java.lang.System.out.println("Make sure the JSONParser class is available in the class path");
 }]]></method>
-            <method name="close"><![CDATA[logger.info("[BIRT Report Viewer] [close] [" + uuid + "] [Data Source] By Query");]]></method>
+            <method name="close"><![CDATA[logger.info("[BIRT Report Viewer] [close] [" + uuid + "] [Data Source] [By Query]");]]></method>
         </script-data-source>
         <script-data-source name="SpecTopics" id="202">
             <property name="comments">This data source make use of the custom JSONParser class to peform a request of the CCMS REST API using the URL saved in the JSONURL parameter. It will then parse the result, the details of which can then be extracted by the Data Sets.</property>
@@ -84,11 +84,11 @@ logger.setLevel(Level.INFO);
 
 uuid = Packages.java.util.UUID.randomUUID().toString();
 
-logger.info("[BIRT Report Viewer] [beforeOpen] [" + uuid + "] [Data Source] SpecTopics");]]></method>
-            <method name="beforeClose"><![CDATA[logger.info("[BIRT Report Viewer] [beforeClose] [" + uuid + "] [Data Source] SpecTopics");]]></method>
-            <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + uuid + "] [Data Source] SpecTopics");]]></method>
-            <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + uuid + "] [Data Source] SpecTopics");]]></method>
-            <method name="open"><![CDATA[logger.info("[BIRT Report Viewer] [open] [" + uuid + "] [Data Source] SpecTopics");
+logger.info("[BIRT Report Viewer] [beforeOpen] [" + uuid + "] [Data Source] [SpecTopics]");]]></method>
+            <method name="beforeClose"><![CDATA[logger.info("[BIRT Report Viewer] [beforeClose] [" + uuid + "] [Data Source] [SpecTopics]");]]></method>
+            <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + uuid + "] [Data Source] [SpecTopics]");]]></method>
+            <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + uuid + "] [Data Source] [SpecTopics]");]]></method>
+            <method name="open"><![CDATA[logger.info("[BIRT Report Viewer] [open] [" + uuid + "] [Data Source] [SpecTopics]");
 
 /* Add the ability to search an array */
 
@@ -128,8 +128,6 @@ categoryListController = null;
 {
 	try
 	{
-		
-		
 		var category = params["Category"];
 		if (category != null &amp;&amp; category.length != 0 &amp;&amp; category != "-1")
 		{
@@ -197,12 +195,8 @@ categoryListController = null;
 		Packages.java.lang.System.out.println("An exception was thrown: " + exception);
 		Packages.java.lang.System.out.println("Make sure the JSONParser class is available in the class path");
 	}
-	finally
-	{
-		Packages.java.lang.System.out.println("[END] By Specs - open");
-	}
 })();]]></method>
-            <method name="close"><![CDATA[logger.info("[BIRT Report Viewer] [close] [" + uuid + "] [Data Source] SpecTopics");]]></method>
+            <method name="close"><![CDATA[logger.info("[BIRT Report Viewer] [close] [" + uuid + "] [Data Source] [SpecTopics]");]]></method>
         </script-data-source>
         <script-data-source name="Categories" id="204">
             <property name="comments">This data source obtains a collection of all the categories in the CCMS.</property>
@@ -212,11 +206,11 @@ logger.setLevel(Level.INFO);
 
 uuid = Packages.java.util.UUID.randomUUID().toString();
 
-logger.info("[BIRT Report Viewer] [beforeOpen] [" + uuid + "] [Data Source] Categories");]]></method>
-            <method name="beforeClose"><![CDATA[logger.info("[BIRT Report Viewer] [beforeClose] [" + uuid + "] [Data Source] Categories");]]></method>
-            <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + uuid + "] [Data Source] Categories");]]></method>
-            <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + uuid + "] [Data Source] Categories");]]></method>
-            <method name="open"><![CDATA[logger.info("[BIRT Report Viewer] [open] [" + uuid + "] [Data Source] Categories");
+logger.info("[BIRT Report Viewer] [beforeOpen] [" + uuid + "] [Data Source] [Categories]");]]></method>
+            <method name="beforeClose"><![CDATA[logger.info("[BIRT Report Viewer] [beforeClose] [" + uuid + "] [Data Source] [Categories]");]]></method>
+            <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + uuid + "] [Data Source] [Categories]");]]></method>
+            <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + uuid + "] [Data Source] [Categories]");]]></method>
+            <method name="open"><![CDATA[logger.info("[BIRT Report Viewer] [open] [" + uuid + "] [Data Source] [Categories]");
 
 // The list of categories
 categoryIdList = [];
@@ -237,11 +231,11 @@ logger.setLevel(Level.INFO);
 
 uuid = Packages.java.util.UUID.randomUUID().toString();
 
-logger.info("[BIRT Report Viewer] [beforeOpen] [" + uuid + "] [Data Source] By Spec and Categories");]]></method>
-            <method name="beforeClose"><![CDATA[logger.info("[BIRT Report Viewer] [beforeClose] [" + uuid + "] [Data Source] By Spec and Categories");]]></method>
-            <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + uuid + "] [Data Source] By Spec and Categories");]]></method>
-            <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + uuid + "] [Data Source] By Spec and Categories");]]></method>
-            <method name="open"><![CDATA[logger.info("[BIRT Report Viewer] [open] [" + uuid + "] [Data Source] By Spec and Categories");
+logger.info("[BIRT Report Viewer] [beforeOpen] [" + uuid + "] [Data Source] [By Spec and Categories]");]]></method>
+            <method name="beforeClose"><![CDATA[logger.info("[BIRT Report Viewer] [beforeClose] [" + uuid + "] [Data Source] [By Spec and Categories]");]]></method>
+            <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + uuid + "] [Data Source] [By Spec and Categories]");]]></method>
+            <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + uuid + "] [Data Source] [By Spec and Categories]");]]></method>
+            <method name="open"><![CDATA[logger.info("[BIRT Report Viewer] [open] [" + uuid + "] [Data Source] [By Spec and Categories]");
 
 /* Add the ability to search an array */
 
@@ -378,7 +372,7 @@ else
 }
 
 Packages.java.lang.System.out.println("[END] By Specs and Catgeory - open");]]></method>
-            <method name="close"><![CDATA[logger.info("[BIRT Report Viewer] [close] [" + uuid + "] [Data Source] By Spec and Categories");]]></method>
+            <method name="close"><![CDATA[logger.info("[BIRT Report Viewer] [close] [" + uuid + "] [Data Source] [By Spec and Categories]");]]></method>
         </script-data-source>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Bugzilla" id="208">
             <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
@@ -387,10 +381,10 @@ logger.setLevel(Level.INFO);
 
 dataSourceBugzillaUUID = Packages.java.util.UUID.randomUUID().toString();
 
-logger.info("[BIRT Report Viewer] [beforeOpen] [" + dataSourceBugzillaUUID + "] [Data Source] Bugzilla");]]></method>
-            <method name="beforeClose"><![CDATA[logger.info("[BIRT Report Viewer] [beforeClose] [" + dataSourceBugzillaUUID + "] [Data Source] Bugzilla");]]></method>
-            <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + dataSourceBugzillaUUID + "] [Data Source] Bugzilla");]]></method>
-            <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + dataSourceBugzillaUUID + "] [Data Source] Bugzilla");]]></method>
+logger.info("[BIRT Report Viewer] [beforeOpen] [" + dataSourceBugzillaUUID + "] [Data Source] [Bugzilla]");]]></method>
+            <method name="beforeClose"><![CDATA[logger.info("[BIRT Report Viewer] [beforeClose] [" + dataSourceBugzillaUUID + "] [Data Source] [Bugzilla]");]]></method>
+            <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + dataSourceBugzillaUUID + "] [Data Source] [Bugzilla]");]]></method>
+            <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + dataSourceBugzillaUUID + "] [Data Source] [Bugzilla]");]]></method>
             <list-property name="privateDriverProperties">
                 <ex-property>
                     <name>metadataBidiFormatStr</name>
@@ -410,6 +404,72 @@ logger.info("[BIRT Report Viewer] [beforeOpen] [" + dataSourceBugzillaUUID + "] 
             <property name="odaDriverClass">org.teiid.jdbc.TeiidDriver</property>
             <property name="odaURL">jdbc:prot:database@mms://hostname:1234;</property>
         </oda-data-source>
+        <script-data-source name="ZanataSourceDocuments" id="214">
+            <property name="comments">This data source make use of the custom JSONParser class to peform a request of the Zanata REST API. It will then parse the result, the details of which can then be extracted by the Data Sets.</property>
+            <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
+logger = Logger.getLogger("");
+logger.setLevel(Level.INFO);
+
+zanataUUID = Packages.java.util.UUID.randomUUID().toString();
+
+logger.info("[BIRT Report Viewer] [beforeOpen] [" + zanataUUID + "] [Data Source] [ZanataSourceDocuments]");]]></method>
+            <method name="beforeClose"><![CDATA[logger.info("[BIRT Report Viewer] [beforeClose] [" + zanataUUID + "] [Data Source] [ZanataSourceDocuments]");]]></method>
+            <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + zanataUUID + "] [Data Source] [ZanataSourceDocuments]");]]></method>
+            <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + zanataUUID + "] [Data Source] [ZanataSourceDocuments]");]]></method>
+            <method name="open"><![CDATA[logger.info("[BIRT Report Viewer] [open] [" + zanataUUID + "] [Data Source] [ZanataSourceDocuments]");
+
+/* Add the ability to search an array */
+
+Array.prototype.customIndexOf = function(item) {    
+
+    for(var i = 0; i < this.length; ++i) {
+    
+        if(this[i] == item) {
+            return i;
+        }
+    }
+    return -1;
+};
+
+/*
+	Globals used by other scripts
+*/
+zanataBaseUrl = Packages.java.lang.System.getProperty("ZanataURL");
+zanataUsername = Packages.java.lang.System.getProperty("ZanataUsername");
+zanataApiKey = Packages.java.lang.System.getProperty("ZanataAPIKey");
+zanataRestUrl = zanataBaseUrl + "/projects/p/skynet-topics/iterations/i/1/r";
+
+// The controllers holds the JSON results
+zanataController = null;
+
+/*
+	Processing
+*/
+(function()
+{
+	try
+	{					
+		// Create instance of the Controller class
+		var zanataController = new Packages.com.actuate.json.JSONParser();
+		
+		// The Zanata headers
+		var headers = new Packages.java.util.HashMap();
+		headers.put("X-Auth-User", zanataUsername);
+		headers.put("X-Auth-Token", zanataApiKey);
+		headers.put("Accept", "application/json");
+		
+		// Load the JSON Source
+		zanataController.loadData(zanataRestUrl, headers);
+
+	}
+	catch (exception)
+	{
+		Packages.java.lang.System.out.println("An exception was thrown: " + exception);
+		Packages.java.lang.System.out.println("Make sure the JSONParser class is available in the class path");
+	}
+})();]]></method>
+            <method name="close"><![CDATA[logger.info("[BIRT Report Viewer] [close] [" + zanataUUID + "] [Data Source] [ZanataSourceDocuments]");]]></method>
+        </script-data-source>
     </data-sources>
     <data-sets>
         <script-data-set name="TagSummary" id="84">
@@ -721,13 +781,13 @@ logger.setLevel(Level.INFO);
 
 uuid = Packages.java.util.UUID.randomUUID().toString();
 
-logger.info("[BIRT Report Viewer] [beforeOpen] [" + uuid + "] [Data Set] SpecTopicAndTag");]]></method>
-            <method name="beforeClose"><![CDATA[logger.info("[BIRT Report Viewer] [beforeClose] [" + uuid + "] [Data Set] SpecTopicAndTag");]]></method>
-            <method name="onFetch"><![CDATA[logger.info("[BIRT Report Viewer] [onFetch] [" + uuid + "] [Data Set] SpecTopicAndTag");]]></method>
-            <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + uuid + "] [Data Set] SpecTopicAndTag");]]></method>
-            <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + uuid + "] [Data Set] SpecTopicAndTag");]]></method>
+logger.info("[BIRT Report Viewer] [beforeOpen] [" + uuid + "] [Data Set] [SpecTopicAndTag]");]]></method>
+            <method name="beforeClose"><![CDATA[logger.info("[BIRT Report Viewer] [beforeClose] [" + uuid + "] [Data Set] [SpecTopicAndTag]");]]></method>
+            <method name="onFetch"><![CDATA[logger.info("[BIRT Report Viewer] [onFetch] [" + uuid + "] [Data Set] [SpecTopicAndTag]");]]></method>
+            <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + uuid + "] [Data Set] [SpecTopicAndTag]");]]></method>
+            <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + uuid + "] [Data Set] [SpecTopicAndTag]");]]></method>
             <property name="dataSource">SpecTopics</property>
-            <method name="open"><![CDATA[logger.info("[BIRT Report Viewer] [open] [" + uuid + "] [Data Set] SpecTopicAndTag");
+            <method name="open"><![CDATA[logger.info("[BIRT Report Viewer] [open] [" + uuid + "] [Data Set] [SpecTopicAndTag]");
 
 /*
 	--------------------- Global variables ---------------------
@@ -821,9 +881,9 @@ allTopics = [];
 		}
 	}
 })();]]></method>
-            <method name="describe"><![CDATA[logger.info("[BIRT Report Viewer] [describe] [" + uuid + "] [Data Set] SpecTopicAndTag");
+            <method name="describe"><![CDATA[logger.info("[BIRT Report Viewer] [describe] [" + uuid + "] [Data Set] [SpecTopicAndTag]");
 return false;]]></method>
-            <method name="fetch"><![CDATA[logger.info("[BIRT Report Viewer] [fetch] [" + uuid + "] [Data Set] SpecTopicAndTag");
+            <method name="fetch"><![CDATA[logger.info("[BIRT Report Viewer] [fetch] [" + uuid + "] [Data Set] [SpecTopicAndTag]");
 
 while (specTopicAndTagFilter.length != 0 &amp;&amp; specTopicAndTagCount < specTopics.length)
 {
@@ -864,7 +924,7 @@ else
 }
 
 return false;]]></method>
-            <method name="close"><![CDATA[logger.info("[BIRT Report Viewer] [close] [" + uuid + "] [Data Set] SpecTopicAndTag");]]></method>
+            <method name="close"><![CDATA[logger.info("[BIRT Report Viewer] [close] [" + uuid + "] [Data Set] [SpecTopicAndTag]");]]></method>
         </script-data-set>
         <script-data-set name="Categories" id="205">
             <property name="comments">Categories
@@ -2410,6 +2470,7 @@ WHERE bugs.cf_build_id LIKE '%-% __ ___ ____ __:__ %']]></xml-property>
             </list-property>
         </joint-data-set>
         <script-data-set name="SpecTopics" id="211">
+            <property name="comments">Multiple Specs -> Spec Topic -> Tags as csv</property>
             <list-property name="resultSetHints">
                 <structure>
                     <property name="position">1</property>
@@ -2494,13 +2555,13 @@ logger.setLevel(Level.INFO);
 
 dataSetSpecTopicsUUID = Packages.java.util.UUID.randomUUID().toString();
 
-logger.info("[BIRT Report Viewer] [beforeOpen] [" + dataSetSpecTopicsUUID + "] [Data Set] SpecTopics");]]></method>
-            <method name="beforeClose"><![CDATA[logger.info("[BIRT Report Viewer] [beforeClose] [" + dataSetSpecTopicsUUID + "] [Data Set] SpecTopics");]]></method>
-            <method name="onFetch"><![CDATA[logger.info("[BIRT Report Viewer] [onFetch] [" + dataSetSpecTopicsUUID + "] [Data Set] SpecTopics");]]></method>
-            <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + dataSetSpecTopicsUUID + "] [Data Set] SpecTopics");]]></method>
-            <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + dataSetSpecTopicsUUID + "] [Data Set] SpecTopics");]]></method>
+logger.info("[BIRT Report Viewer] [beforeOpen] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");]]></method>
+            <method name="beforeClose"><![CDATA[logger.info("[BIRT Report Viewer] [beforeClose] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");]]></method>
+            <method name="onFetch"><![CDATA[logger.info("[BIRT Report Viewer] [onFetch] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");]]></method>
+            <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");]]></method>
+            <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");]]></method>
             <property name="dataSource">SpecTopics</property>
-            <method name="open"><![CDATA[logger.info("[open] [" + dataSetSpecTopicsUUID + "] [Data Set] SpecTopics");
+            <method name="open"><![CDATA[logger.info("[open] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");
 
 /*
 	--------------------- Global variables ---------------------
@@ -2589,9 +2650,9 @@ skippedTopics = 0;
 		}
 	}
 })();]]></method>
-            <method name="describe"><![CDATA[logger.info("[BIRT Report Viewer] [describe] [" + dataSetSpecTopicsUUID + "] [Data Set] SpecTopics");
+            <method name="describe"><![CDATA[logger.info("[BIRT Report Viewer] [describe] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");
 return false;]]></method>
-            <method name="fetch"><![CDATA[logger.info("[BIRT Report Viewer] [fetch] [" + dataSetSpecTopicsUUID + "] [Data Set] SpecTopics");
+            <method name="fetch"><![CDATA[logger.info("[BIRT Report Viewer] [fetch] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");
 
 (function()
 {
@@ -2636,7 +2697,7 @@ if (specTopicAndTagCount < specTopics.length)
 }
 
 return false;]]></method>
-            <method name="close"><![CDATA[logger.info("[BIRT Report Viewer] [close] [" + dataSetSpecTopicsUUID + "] [Data Set] SpecTopics");]]></method>
+            <method name="close"><![CDATA[logger.info("[BIRT Report Viewer] [close] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");]]></method>
         </script-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="BugStatus" id="213">
             <list-property name="parameters"/>
@@ -2645,6 +2706,61 @@ return false;]]></method>
             <xml-property name="queryText"><![CDATA[select distinct bug_status
 from BugzillaS.bugs]]></xml-property>
         </oda-data-set>
+        <script-data-set name="LatestZanataSourceDocuments" id="215">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">0</property>
+                    <property name="name">Name</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">Revision</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">Name</property>
+                </structure>
+                <structure>
+                    <property name="columnName">Revision</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">Name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">Revision</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">ZanataSourceDocuments</property>
+            <method name="open"><![CDATA[latestZanataSourceDocumentsIndex = 0;]]></method>
+            <method name="fetch"><![CDATA[if(latestZanataSourceDocumentsIndex < categoryCount)
+{    
+    var docName = categoryListController.getValue("", "name", latestZanataSourceDocumentsIndex);
+    
+    var docNameSplit = docName.split("-");
+    
+    if (docNameSplit.length == 2)
+    {
+    	row["Name"] = docNameSplit[0];
+    	row["Revision"] = docNameSplit[0];
+    }
+
+	++latestZanataSourceDocumentsIndex;
+    return true;
+}
+
+return false;]]></method>
+        </script-data-set>
     </data-sets>
     <themes>
         <theme name="defaultTheme" id="4"/>
