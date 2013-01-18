@@ -3015,13 +3015,14 @@ for (docIndex = 0; docIndex < zanataCount; ++ docIndex)
 Packages.java.lang.System.out.println("Matching Topics With Latest Zanata Documents" );
 for (topicIndex = 0; topicIndex < specTopicsAndZanataCount; ++topicIndex)
 {
+	//if (topicIndex == 1)
+		//break;
+	
 	var topicID = specTopicsAndZanataController.getValue("items", "item/id", topicIndex).toString();
     var topicTitle = specTopicsAndZanataController.getValue("items", "item/title", topicIndex);
     
     if (latestDocumentNamesMap.hasOwnProperty(topicID))
     {
-    	Packages.java.lang.System.out.println("Found Topic ID " + topicID + " with Zanata Revision " +  latestDocumentNamesMap[topicID]);
-    	
     	// Create instance of the Controller class
 		var zanataStatsController = new Packages.com.actuate.json.JSONParser();
 		
@@ -3033,19 +3034,29 @@ for (topicIndex = 0; topicIndex < specTopicsAndZanataCount; ++topicIndex)
 		
 		var zanataStatsURL = zanataBaseUrl + "/stats/proj/skynet-topics/iter/1/doc/" + topicID + "-" + latestDocumentNamesMap[topicID];
 		
-		Packages.java.lang.System.out.println("Zanata URL: " + zanataStatsURL);
+		var percentDone = (topicIndex / specTopicsAndZanataCount * 100).toFixed(2);
+		
+		Packages.java.lang.System.out.println(percentDone + "% Zanata Document Stats URL: " + zanataStatsURL);
 		zanataStatsController.loadData(zanataStatsURL, headers, true, null);
 		
 		zanataStatsCount = zanataStatsController.getChildCount("stats");
 		
 		for (statsIndex = 0; statsIndex < zanataStatsCount; ++statsIndex)
 		{
-			var locale = specTopicsAndZanataController.getValue("stats", "locale", statsIndex);
-			var untranslated = specTopicsAndZanataController.getValue("stats", "untranslated", statsIndex);
-    		var translated = specTopicsAndZanataController.getValue("stats", "total", statsIndex) - untranslated;
-    		
-    		topicsWithZanataData.push[{topicID: topicID, topicTitle: topicTitle, locale: locale, translated: "Translated", value: translated}];
-    		topicsWithZanataData.push[{topicID: topicID, topicTitle: topicTitle, locale: locale, translated: "Untranslated", value: untranslated}];
+			var unit = zanataStatsController.getValue("stats", "unit", statsIndex);
+			
+			if (unit == "MESSAGE")
+			{
+				var locale = zanataStatsController.getValue("stats", "locale", statsIndex);
+				var untranslated = zanataStatsController.getValue("stats", "untranslated", statsIndex);
+	    		var translated = zanataStatsController.getValue("stats", "total", statsIndex) - untranslated;
+	    		
+	    		var translatedObject = {topicID: topicID, topicTitle: topicTitle, locale: locale, translated: "Translated", value: translated};
+	    		var untranslatedObject = {topicID: topicID, topicTitle: topicTitle, locale: locale, translated: "Untranslated", value: untranslated};
+
+	    		topicsWithZanataData.push(translatedObject);
+	    		topicsWithZanataData.push(untranslatedObject);
+    		}
 		}
 		
 		// Rate limiting
@@ -3056,8 +3067,10 @@ for (topicIndex = 0; topicIndex < specTopicsAndZanataCount; ++topicIndex)
     	++unpushedTopics;
     }
 }]]></method>
-            <method name="fetch"><![CDATA[if(specTopicsAndZanataTranslationsIndex < topicsWithZanataData.length)
+            <method name="fetch"><![CDATA[if (specTopicsAndZanataTranslationsIndex < topicsWithZanataData.length)
 {    
+	Packages.java.lang.System.out.println("Locale: " + topicsWithZanataData[specTopicsAndZanataTranslationsIndex].locale + " Status: " + topicsWithZanataData[specTopicsAndZanataTranslationsIndex].translated + " Value: " + topicsWithZanataData[specTopicsAndZanataTranslationsIndex].value);
+	
 	row["TopicID"] = topicsWithZanataData[specTopicsAndZanataTranslationsIndex].topicID;
 	row["TopicTitle"] = topicsWithZanataData[specTopicsAndZanataTranslationsIndex].topicTitle;
 	row["ZanataLanguage"] = topicsWithZanataData[specTopicsAndZanataTranslationsIndex].locale;

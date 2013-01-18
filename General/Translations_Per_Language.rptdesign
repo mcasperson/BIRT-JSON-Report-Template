@@ -1299,5 +1299,84 @@
                 </structure>
             </list-property>
         </extended-item>
+        <grid id="64">
+            <property name="marginTop">1em</property>
+            <property name="pageBreakInside">avoid</property>
+            <property name="width">7.938144329896907in</property>
+            <column id="65">
+                <property name="width">4.979381443298969in</property>
+            </column>
+            <column id="66">
+                <property name="width">2.9587628865979383in</property>
+            </column>
+            <row id="80">
+                <cell id="81">
+                    <property name="colSpan">2</property>
+                    <property name="rowSpan">1</property>
+                    <property name="backgroundColor">#A40104</property>
+                    <property name="color">#FFFFFF</property>
+                    <label id="83">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Report Notes</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="67">
+                <cell id="68">
+                    <label id="42">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Content Specification ID Included In Report</text-property>
+                    </label>
+                </cell>
+                <cell id="69">
+                    <text-data id="43">
+                        <expression name="valueExpr">params["CSPID"].value</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+            <row id="229">
+                <cell id="230">
+                    <label id="232">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Topics in Content Specifiction not Pushed to Zanata</text-property>
+                    </label>
+                </cell>
+                <cell id="231">
+                    <text-data id="233">
+                        <expression name="valueExpr">unpushedTopics;</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+            <row id="223">
+                <cell id="224">
+                    <label id="212">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Limit Topics to Those Edited in the Last Number of Days</text-property>
+                    </label>
+                </cell>
+                <cell id="225">
+                    <text-data id="227">
+                        <expression name="valueExpr">params["EditedInLastXDays"].value</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+            <row id="220">
+                <cell id="221">
+                    <label id="226">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Limit Topics to Those Not Edited in the Last Number of Days</text-property>
+                    </label>
+                </cell>
+                <cell id="222">
+                    <text-data id="228">
+                        <expression name="valueExpr">params["NotEditedInLastXDays"].value</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+        </grid>
     </body>
 </report>
