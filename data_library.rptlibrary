@@ -22,7 +22,17 @@
     <property name="theme">defaultTheme</property>
     <data-sources>
         <script-data-source name="By Query" id="8">
-            <method name="open"><![CDATA[Packages.java.lang.System.out.println("[START] PressGang CCMS REST Data Source - open");
+            <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
+logger = Logger.getLogger("");
+logger.setLevel(Level.INFO);
+
+uuid = Packages.java.util.UUID.randomUUID().toString();
+
+logger.info("[beforeOpen] [" + uuid + "] [Data Source] By Query");]]></method>
+            <method name="beforeClose"><![CDATA[logger.info("[beforeClose] [" + uuid + "] [Data Source] By Query");]]></method>
+            <method name="afterOpen"><![CDATA[logger.info("[afterOpen] [" + uuid + "] [Data Source] By Query");]]></method>
+            <method name="afterClose"><![CDATA[logger.info("[afterClose] [" + uuid + "] [Data Source] By Query");]]></method>
+            <method name="open"><![CDATA[logger.info("[open] [" + uuid + "] [Data Source] By Query");
 
 /* Add the ability to search an array */
 
@@ -63,15 +73,22 @@ catch (exception)
 {
 	Packages.java.lang.System.out.println("An exception was thrown: " + exception);
 	Packages.java.lang.System.out.println("Make sure the JSONParser class is available in the class path");
-}
-finally
-{
-	Packages.java.lang.System.out.println("[END] PressGang CCMS REST Data Source - open");
 }]]></method>
+            <method name="close"><![CDATA[logger.info("[close] [" + uuid + "] [Data Source] By Query");]]></method>
         </script-data-source>
         <script-data-source name="SpecTopics" id="202">
             <property name="comments">This data source make use of the custom JSONParser class to peform a request of the CCMS REST API using the URL saved in the JSONURL parameter. It will then parse the result, the details of which can then be extracted by the Data Sets.</property>
-            <method name="open"><![CDATA[Packages.java.lang.System.out.println("[START] By Specs - open");
+            <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
+logger = Logger.getLogger("");
+logger.setLevel(Level.INFO);
+
+uuid = Packages.java.util.UUID.randomUUID().toString();
+
+logger.info("[beforeOpen] [" + uuid + "] [Data Source] SpecTopics");]]></method>
+            <method name="beforeClose"><![CDATA[logger.info("[beforeClose] [" + uuid + "] [Data Source] SpecTopics");]]></method>
+            <method name="afterOpen"><![CDATA[logger.info("[afterOpen] [" + uuid + "] [Data Source] SpecTopics");]]></method>
+            <method name="afterClose"><![CDATA[logger.info("[afterClose] [" + uuid + "] [Data Source] SpecTopics");]]></method>
+            <method name="open"><![CDATA[logger.info("[open] [" + uuid + "] [Data Source] SpecTopics");
 
 /* Add the ability to search an array */
 
@@ -158,7 +175,7 @@ categoryListController = null;
 					
 					var completeRestUrl = restUrl + filter  + restExpansion;
 					
-					Packages.java.lang.System.out.println("REST URL: " + completeRestUrl);
+					//Packages.java.lang.System.out.println("REST URL: " + completeRestUrl);
 					
 					// Create instance of the Controller class
 					var controller = new Packages.com.actuate.json.JSONParser();
@@ -185,10 +202,23 @@ categoryListController = null;
 		Packages.java.lang.System.out.println("[END] By Specs - open");
 	}
 })();]]></method>
+            <method name="close"><![CDATA[logger.info("[close] [" + uuid + "] [Data Source] SpecTopics");]]></method>
         </script-data-source>
         <script-data-source name="Categories" id="204">
             <property name="comments">This data source obtains a collection of all the categories in the CCMS.</property>
-            <method name="open"><![CDATA[// The list of categories
+            <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
+logger = Logger.getLogger("");
+logger.setLevel(Level.INFO);
+
+uuid = Packages.java.util.UUID.randomUUID().toString();
+
+logger.info("[beforeOpen] [" + uuid + "] [Data Source] Categories");]]></method>
+            <method name="beforeClose"><![CDATA[logger.info("[beforeClose] [" + uuid + "] [Data Source] Categories");]]></method>
+            <method name="afterOpen"><![CDATA[logger.info("[afterOpen] [" + uuid + "] [Data Source] Categories");]]></method>
+            <method name="afterClose"><![CDATA[logger.info("[afterClose] [" + uuid + "] [Data Source] Categories");]]></method>
+            <method name="open"><![CDATA[logger.info("[open] [" + uuid + "] [Data Source] Categories");
+
+// The list of categories
 categoryIdList = [];
 categoryNameList = [];
 categoryCount = 0;
@@ -201,7 +231,17 @@ categoryListController.loadData(categoryListRestUrl);
 categoryCount = categoryListController.getChildCount("items");]]></method>
         </script-data-source>
         <script-data-source name="By Spec and Categories" id="206">
-            <method name="open"><![CDATA[Packages.java.lang.System.out.println("[START] By Specs and Catgeory - open");
+            <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
+logger = Logger.getLogger("");
+logger.setLevel(Level.INFO);
+
+uuid = Packages.java.util.UUID.randomUUID().toString();
+
+logger.info("[beforeOpen] [" + uuid + "] [Data Source] By Spec and Categories");]]></method>
+            <method name="beforeClose"><![CDATA[logger.info("[beforeClose] [" + uuid + "] [Data Source] By Spec and Categories");]]></method>
+            <method name="afterOpen"><![CDATA[logger.info("[afterOpen] [" + uuid + "] [Data Source] By Spec and Categories");]]></method>
+            <method name="afterClose"><![CDATA[logger.info("[afterClose] [" + uuid + "] [Data Source] By Spec and Categories");]]></method>
+            <method name="open"><![CDATA[logger.info("[open] [" + uuid + "] [Data Source] By Spec and Categories");
 
 /* Add the ability to search an array */
 
@@ -338,10 +378,19 @@ else
 }
 
 Packages.java.lang.System.out.println("[END] By Specs and Catgeory - open");]]></method>
+            <method name="close"><![CDATA[logger.info("[close] [" + uuid + "] [Data Source] By Spec and Categories");]]></method>
         </script-data-source>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Bugzilla" id="208">
-            <method name="beforeOpen"><![CDATA[Packages.java.lang.System.out.println("Bugzilla Data Source - beforeOpen");]]></method>
-            <method name="afterClose"><![CDATA[Packages.java.lang.System.out.println("Bugzilla Data Source - afterClose");]]></method>
+            <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
+logger = Logger.getLogger("");
+logger.setLevel(Level.INFO);
+
+uuid = Packages.java.util.UUID.randomUUID().toString();
+
+logger.info("[beforeOpen] [" + uuid + "] [Data Source] Bugzilla");]]></method>
+            <method name="beforeClose"><![CDATA[logger.info("[beforeClose] [" + uuid + "] [Data Source] Bugzilla");]]></method>
+            <method name="afterOpen"><![CDATA[logger.info("[afterOpen] [" + uuid + "] [Data Source] Bugzilla");]]></method>
+            <method name="afterClose"><![CDATA[logger.info("[afterClose] [" + uuid + "] [Data Source] Bugzilla");]]></method>
             <list-property name="privateDriverProperties">
                 <ex-property>
                     <name>metadataBidiFormatStr</name>
@@ -666,8 +715,19 @@ Filtered by Spec Topic Tag included in supplied Category</property>
                     </structure>
                 </list-property>
             </structure>
+            <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
+logger = Logger.getLogger("");
+logger.setLevel(Level.INFO);
+
+uuid = Packages.java.util.UUID.randomUUID().toString();
+
+logger.info("[beforeOpen] [" + uuid + "] [Data Set] SpecTopicAndTag");]]></method>
+            <method name="beforeClose"><![CDATA[logger.info("[beforeClose] [" + uuid + "] [Data Set] SpecTopicAndTag");]]></method>
+            <method name="onFetch"><![CDATA[logger.info("[onFetch] [" + uuid + "] [Data Set] SpecTopicAndTag");]]></method>
+            <method name="afterOpen"><![CDATA[logger.info("[afterOpen] [" + uuid + "] [Data Set] SpecTopicAndTag");]]></method>
+            <method name="afterClose"><![CDATA[logger.info("[afterClose] [" + uuid + "] [Data Set] SpecTopicAndTag");]]></method>
             <property name="dataSource">SpecTopics</property>
-            <method name="open"><![CDATA[Packages.java.lang.System.out.println("[START] SpecTopicAndTag - open");
+            <method name="open"><![CDATA[logger.info("[open] [" + uuid + "] [Data Set] SpecTopicAndTag");
 
 /*
 	--------------------- Global variables ---------------------
@@ -760,10 +820,11 @@ allTopics = [];
 		    }
 		}
 	}
-})();
+})();]]></method>
+            <method name="describe"><![CDATA[logger.info("[describe] [" + uuid + "] [Data Set] SpecTopicAndTag");]]></method>
+            <method name="fetch"><![CDATA[logger.info("[fetch] [" + uuid + "] [Data Set] SpecTopicAndTag");
 
-Packages.java.lang.System.out.println("[END] SpecTopicAndTag - open");]]></method>
-            <method name="fetch"><![CDATA[while (specTopicAndTagFilter.length != 0 &amp;&amp; specTopicAndTagCount < specTopics.length)
+while (specTopicAndTagFilter.length != 0 &amp;&amp; specTopicAndTagCount < specTopics.length)
 {
 	// if the topic does not contain one of the filter tags, skip it
 	if (specTopicAndTagFilter.customIndexOf(specTopics[specTopicAndTagCount].topicTagID) == -1)
@@ -802,6 +863,7 @@ else
 }
 
 return false;]]></method>
+            <method name="close"><![CDATA[logger.info("[close] [" + uuid + "] [Data Set] SpecTopicAndTag");]]></method>
         </script-data-set>
         <script-data-set name="Categories" id="205">
             <property name="comments">Categories
