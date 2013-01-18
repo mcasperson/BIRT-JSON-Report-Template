@@ -441,6 +441,7 @@ zanataRestUrl = zanataBaseUrl + "/projects/p/skynet-topics/iterations/i/1/r";
 
 // The controllers holds the JSON results
 zanataController = null;
+zanataCount = 0;
 
 /*
 	Processing
@@ -450,7 +451,7 @@ zanataController = null;
 	try
 	{					
 		// Create instance of the Controller class
-		var zanataController = new Packages.com.actuate.json.JSONParser();
+		zanataController = new Packages.com.actuate.json.JSONParser();
 		
 		// The Zanata headers
 		var headers = new Packages.java.util.HashMap();
@@ -458,8 +459,15 @@ zanataController = null;
 		headers.put("X-Auth-Token", zanataApiKey);
 		headers.put("Accept", "application/json");
 		
+		var jsonWrap = ["{\"items\":", "}"];
+		
+		Packages.java.lang.System.out.println("Zanata URL: " + zanataRestUrl);
+		
 		// Load the JSON Source
-		zanataController.loadData(zanataRestUrl, headers);
+		zanataController.loadData(zanataRestUrl, headers, true, jsonWrap);
+		zanataCount = zanataController.getChildCount("items");
+		
+		Packages.java.lang.System.out.println("Zanata Count: " + zanataCount);
 
 	}
 	catch (exception)
@@ -2741,18 +2749,23 @@ from BugzillaS.bugs]]></xml-property>
                     </structure>
                 </list-property>
             </structure>
+            <method name="beforeOpen"><![CDATA[zanataDataSetUUID = Packages.java.util.UUID.randomUUID().toString();]]></method>
             <property name="dataSource">ZanataSourceDocuments</property>
-            <method name="open"><![CDATA[latestZanataSourceDocumentsIndex = 0;]]></method>
-            <method name="fetch"><![CDATA[if(latestZanataSourceDocumentsIndex < categoryCount)
+            <method name="open"><![CDATA[logger.info("[open] [" + zanataDataSetUUID + "] [Data Set] [LatestZanataSourceDocuments]");
+
+latestZanataSourceDocumentsIndex = 0;]]></method>
+            <method name="fetch"><![CDATA[logger.info("[fetch] [" + zanataDataSetUUID + "] [Data Set] [LatestZanataSourceDocuments]");
+
+if(latestZanataSourceDocumentsIndex < zanataCount)
 {    
-    var docName = categoryListController.getValue("", "name", latestZanataSourceDocumentsIndex);
+    var docName = zanataController.getValue("items", "name", latestZanataSourceDocumentsIndex);
     
     var docNameSplit = docName.split("-");
     
     if (docNameSplit.length == 2)
     {
     	row["Name"] = docNameSplit[0];
-    	row["Revision"] = docNameSplit[0];
+    	row["Revision"] = docNameSplit[1];
     }
 
 	++latestZanataSourceDocumentsIndex;
