@@ -140,11 +140,11 @@
                 </cell>
             </row>
         </grid>
-        <extended-item extensionName="Chart" id="160">
+        <extended-item extensionName="Chart" id="208">
             <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:data="http://www.birt.eclipse.org/ChartModelData" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
   <Version>2.5.3</Version>
   <Type>Bar Chart</Type>
-  <SubType>Stacked</SubType>
+  <SubType>Side-by-side</SubType>
   <Block>
     <Children xsi:type="layout:TitleBlock">
       <Bounds>
@@ -177,7 +177,7 @@
       <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Zanata Translations Per Language</Value>
+          <Value>Chart Title</Value>
           <Font>
             <Size>16.0</Size>
             <Bold>true</Bold>
@@ -330,7 +330,7 @@
         </Color>
         <Visible>true</Visible>
       </Separator>
-      <Position>Below</Position>
+      <Position>Right</Position>
       <ItemType>Series</ItemType>
       <Title>
         <Caption>
@@ -395,7 +395,7 @@
     </Outline>
     <Visible>true</Visible>
   </Block>
-  <Dimension>Two_Dimensional_With_Depth</Dimension>
+  <Dimension>Two_Dimensional</Dimension>
   <Units>Points</Units>
   <SeriesThickness>10.0</SeriesThickness>
   <ExtendedProperties>
@@ -527,7 +527,7 @@
         <Query>
           <Definition>row[&quot;ZanataTranslationState&quot;]</Definition>
           <Grouping>
-            <GroupType>Numeric</GroupType>
+            <GroupType>Text</GroupType>
           </Grouping>
         </Query>
         <SeriesPalette>
@@ -761,7 +761,6 @@
           <DataDefinition>
             <Definition>row[&quot;ZanataTranslationCount&quot;]</Definition>
             <Grouping>
-              <Enabled>true</Enabled>
               <GroupType>Text</GroupType>
               <AggregateExpression>Sum</AggregateExpression>
             </Grouping>
@@ -773,24 +772,15 @@
             </Components>
             <Separator>, </Separator>
           </DataPoint>
-          <LabelPosition>Inside</LabelPosition>
-          <Stacked>true</Stacked>
+          <LabelPosition>Outside</LabelPosition>
+          <Stacked>false</Stacked>
           <Triggers>
             <Condition>onmouseover</Condition>
             <Action>
               <Type>Show_Tooltip</Type>
               <Value xsi:type="attribute:TooltipValue">
-                <Text>row[&quot;SpecID&quot;] + &quot; - &quot; + row[&quot;TopicTag&quot;]</Text>
+                <Text></Text>
                 <Delay>200</Delay>
-              </Value>
-            </Action>
-          </Triggers>
-          <Triggers>
-            <Condition>onclick</Condition>
-            <Action>
-              <Type>Invoke_Script</Type>
-              <Value xsi:type="attribute:ScriptValue">
-                <Script>alert( &quot;Tag Name: &quot; + valueSeriesName + &quot;\nCSP ID: &quot; + categoryData + &quot;\nTopic Count: &quot; + valueData );</Script>
               </Value>
             </Action>
           </Triggers>
@@ -1279,8 +1269,8 @@
             <property name="outputFormat">PNG</property>
             <property name="inheritColumns">true</property>
             <property name="dataSet">SpecTopicsAndZanataTranslations</property>
-            <property name="height">7.135416666666667in</property>
-            <property name="width">7.96875in</property>
+            <property name="height">4.969072164948454in</property>
+            <property name="width">7.752577319587629in</property>
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">TopicID</property>
@@ -1300,7 +1290,7 @@
                 <structure>
                     <property name="name">ZanataTranslationState</property>
                     <expression name="expression" type="javascript">dataSetRow["ZanataTranslationState"]</expression>
-                    <property name="dataType">boolean</property>
+                    <property name="dataType">string</property>
                 </structure>
                 <structure>
                     <property name="name">ZanataTranslationCount</property>

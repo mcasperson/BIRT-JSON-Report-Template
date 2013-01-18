@@ -2903,27 +2903,27 @@ return false;]]></method>
         <script-data-set name="SpecTopicsAndZanataTranslations" id="217">
             <list-property name="resultSetHints">
                 <structure>
-                    <property name="position">0</property>
+                    <property name="position">1</property>
                     <property name="name">TopicID</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">1</property>
+                    <property name="position">2</property>
                     <property name="name">TopicTitle</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">2</property>
+                    <property name="position">3</property>
                     <property name="name">ZanataLanguage</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">3</property>
+                    <property name="position">4</property>
                     <property name="name">ZanataTranslationState</property>
-                    <property name="dataType">boolean</property>
+                    <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">4</property>
+                    <property name="position">5</property>
                     <property name="name">ZanataTranslationCount</property>
                     <property name="dataType">integer</property>
                 </structure>
@@ -2965,7 +2965,7 @@ return false;]]></method>
                     <structure>
                         <property name="position">4</property>
                         <property name="name">ZanataTranslationState</property>
-                        <property name="dataType">boolean</property>
+                        <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">5</property>
@@ -3036,7 +3036,7 @@ for (topicIndex = 0; topicIndex < specTopicsAndZanataCount; ++topicIndex)
 		Packages.java.lang.System.out.println("Zanata URL: " + zanataStatsURL);
 		zanataStatsController.loadData(zanataStatsURL, headers, true, null);
 		
-		zanataStatsCount = zanataController.getChildCount("stats");
+		zanataStatsCount = zanataStatsController.getChildCount("stats");
 		
 		for (statsIndex = 0; statsIndex < zanataStatsCount; ++statsIndex)
 		{
