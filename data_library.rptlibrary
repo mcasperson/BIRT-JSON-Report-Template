@@ -2858,9 +2858,9 @@ return false;]]></method>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="BugStatus" id="213">
             <list-property name="parameters"/>
             <structure name="cachedMetaData"/>
-            <property name="dataSource">Bugzilla</property>
-            <xml-property name="queryText"><![CDATA[select distinct bug_status
-from BugzillaS.bugs]]></xml-property>
+            <property name="dataSource">BugzillaPostgress</property>
+            <xml-property name="queryText"><![CDATA[SELECT DISTINCT bug_status
+FROM BugzillaS.bugs]]></xml-property>
         </oda-data-set>
         <script-data-set name="LatestZanataSourceDocuments" id="215">
             <list-property name="resultSetHints">
