@@ -16,7 +16,7 @@ To run the reports in the BIRT Web Viewer, add the following system properties t
 
     <system-properties>
         <property name="BIRT_CCMS_BASE_URL" value="http://pressgang-rest-server:8080/TopicIndex/seam/resource/rest/"/>
-        <property name="BugzillaDatabase" value="EngVDBF"/>
+        <property name="BugzillaDatabase" value="database"/>
         <property name="BugzillaDatabaseURL" value="jdbc:teiid:database@mms://teiidhost:12345"/>
         <property name="BugzillaUsername" value="username"/>
         <property name="BugzillaPassword" value="password"/>
