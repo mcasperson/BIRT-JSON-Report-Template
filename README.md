@@ -11,3 +11,20 @@ If you want to set this property in Eclipse (which you need to do to preview dat
 -DBugzillaPassword=password
 
 Refer to the book "Using the Internal Engineering Tools Virtual Database" to find out how to configure Java with the correct certificates when accessing the Bugzilla database.
+
+To run the reports in the BIRT Web Viewer, add the following system properties the AS7 configuration file:
+
+    <system-properties>
+        <property name="BIRT_CCMS_BASE_URL" value="http://pressgang-rest-server:8080/TopicIndex/seam/resource/rest/"/>
+        <property name="BugzillaDatabase" value="EngVDBF"/>
+        <property name="BugzillaDatabaseURL" value="jdbc:teiid:database@mms://teiidhost:12345"/>
+        <property name="BugzillaUsername" value="username"/>
+        <property name="BugzillaPassword" value="password"/>
+        <property name="BugzillaPostgressDatabase" value="database"/>
+        <property name="BugzillaPostgressDatabaseURL" value="jdbc:postgresql://postrgresshost:12345/database"/>
+        <property name="BugzillaPostgressUsername" value="username"/>
+        <property name="BugzillaPostgressPassword" value="password"/>
+        <property name="ZanataURL" value="https://zanatahost/seam/resource/restv1"/>
+        <property name="ZanataUsername" value="username"/>
+        <property name="ZanataAPIKey" value="1234567890abcdef"/>
+    </system-properties>
