@@ -53,6 +53,45 @@
             <property name="name">rowFetchSize</property>
             <property name="id">219</property>
         </structure>
+        <structure>
+            <property name="name">odaDriverClass</property>
+            <property name="id">218</property>
+        </structure>
+        <structure>
+            <property name="name">odaURL</property>
+            <property name="id">218</property>
+            <expression name="value" type="javascript">Packages.java.lang.System.getProperty("BugzillaPostgressDatabaseURL");</expression>
+        </structure>
+        <structure>
+            <property name="name">odaUser</property>
+            <property name="id">218</property>
+            <expression name="value" type="javascript">Packages.java.lang.System.getProperty("BugzillaPostgressUsername");</expression>
+        </structure>
+        <structure>
+            <property name="name">odaAutoCommit</property>
+            <property name="id">218</property>
+        </structure>
+        <structure>
+            <property name="name">odaIsolationMode</property>
+            <property name="id">218</property>
+        </structure>
+        <structure>
+            <property name="name">odaPassword</property>
+            <property name="id">218</property>
+            <expression name="value" type="javascript">Packages.java.lang.System.getProperty("BugzillaPostgressPassword");</expression>
+        </structure>
+        <structure>
+            <property name="name">odaJndiName</property>
+            <property name="id">218</property>
+        </structure>
+        <structure>
+            <property name="name">OdaConnProfileName</property>
+            <property name="id">218</property>
+        </structure>
+        <structure>
+            <property name="name">OdaConnProfileStorePath</property>
+            <property name="id">218</property>
+        </structure>
     </list-property>
     <property name="units">in</property>
     <property name="theme">defaultTheme</property>
@@ -2643,7 +2682,70 @@ WHERE bugs.cf_build_id LIKE '%-% __ ___ ____ __:__%']]></xml-property>
                     <text-property name="displayName">SpecTopics::TopicID</text-property>
                 </structure>
             </list-property>
-            <structure name="cachedMetaData"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">SpecTopics::SpecID</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">SpecTopics::TopicID</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">SpecTopics::TopicTitle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">SpecTopics::TopicTagIDs</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">SpecTopics::TopicTagNames</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">TopicBugs::bug_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">TopicBugs::bug_status</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">TopicBugs::bug_severity</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">TopicBugs::creation_ts</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">TopicBugs::cf_build_id</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">TopicBugs::short_desc</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">TopicBugs::topic_id</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
             <simple-property-list name="dataSets">
                 <value>SpecTopics</value>
                 <value>TopicBugs</value>
@@ -2891,8 +2993,24 @@ return false;]]></method>
         </script-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="BugStatus" id="213">
             <list-property name="parameters"/>
-            <structure name="cachedMetaData"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">bug_status</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
             <property name="dataSource">BugzillaPostgress</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">bug_status</property>
+                    <property name="nativeName">bug_status</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
             <xml-property name="queryText"><![CDATA[SELECT DISTINCT bug_status
 FROM BugzillaS.bugs]]></xml-property>
         </oda-data-set>
