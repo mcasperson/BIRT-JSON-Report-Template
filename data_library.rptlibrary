@@ -56,37 +56,13 @@
             <property name="id">218</property>
             <expression name="value" type="javascript">Packages.java.lang.System.getProperty("BugzillaPostgressPassword");</expression>
         </structure>
-        <structure>
-            <property name="name">odaDriverClass</property>
-            <property name="id">218</property>
-        </structure>
-        <structure>
-            <property name="name">odaAutoCommit</property>
-            <property name="id">218</property>
-        </structure>
-        <structure>
-            <property name="name">odaIsolationMode</property>
-            <property name="id">218</property>
-        </structure>
-        <structure>
-            <property name="name">odaJndiName</property>
-            <property name="id">218</property>
-        </structure>
-        <structure>
-            <property name="name">OdaConnProfileName</property>
-            <property name="id">218</property>
-        </structure>
-        <structure>
-            <property name="name">OdaConnProfileStorePath</property>
-            <property name="id">218</property>
-        </structure>
     </list-property>
     <property name="units">in</property>
     <property name="theme">defaultTheme</property>
     <data-sources>
         <script-data-source name="By Query" id="8">
             <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
-logger = Logger.getLogger("");
+logger = Logger.getLogger("BIRT");
 logger.setLevel(Level.INFO);
 
 uuid = Packages.java.util.UUID.randomUUID().toString();
@@ -142,7 +118,7 @@ catch (exception)
         <script-data-source name="SpecTopicsAndCategories" id="202">
             <property name="comments">This data source make use of the custom JSONParser class to peform a request of the CCMS REST API using the URL saved in the JSONURL parameter. It will then parse the result, the details of which can then be extracted by the Data Sets.</property>
             <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
-logger = Logger.getLogger("");
+logger = Logger.getLogger("BIRT");
 logger.setLevel(Level.INFO);
 
 uuid = Packages.java.util.UUID.randomUUID().toString();
@@ -264,7 +240,7 @@ categoryListController = null;
         <script-data-source name="Categories" id="204">
             <property name="comments">This data source obtains a collection of all the categories in the CCMS.</property>
             <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
-logger = Logger.getLogger("");
+logger = Logger.getLogger("BIRT");
 logger.setLevel(Level.INFO);
 
 uuid = Packages.java.util.UUID.randomUUID().toString();
@@ -289,7 +265,7 @@ categoryCount = categoryListController.getChildCount("items");]]></method>
         </script-data-source>
         <script-data-source name="By Spec and Categories" id="206">
             <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
-logger = Logger.getLogger("");
+logger = Logger.getLogger("BIRT");
 logger.setLevel(Level.INFO);
 
 uuid = Packages.java.util.UUID.randomUUID().toString();
@@ -439,7 +415,7 @@ Packages.java.lang.System.out.println("[END] By Specs and Catgeory - open");]]><
         </script-data-source>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Bugzilla" id="208">
             <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
-logger = Logger.getLogger("");
+logger = Logger.getLogger("BIRT");
 logger.setLevel(Level.INFO);
 
 dataSourceBugzillaUUID = Packages.java.util.UUID.randomUUID().toString();
@@ -470,7 +446,7 @@ logger.info("[BIRT Report Viewer] [beforeOpen] [" + dataSourceBugzillaUUID + "] 
         <script-data-source name="ZanataSourceDocuments" id="214">
             <property name="comments">This data source make use of the custom JSONParser class to peform a request of the Zanata REST API. It will then parse the result, the details of which can then be extracted by the Data Sets.</property>
             <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
-logger = Logger.getLogger("");
+logger = Logger.getLogger("BIRT");
 logger.setLevel(Level.INFO);
 
 zanataUUID = Packages.java.util.UUID.randomUUID().toString();
@@ -543,7 +519,7 @@ zanataCount = 0;
         </script-data-source>
         <script-data-source name="SpecTopicsAndZanata" id="216">
             <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
-logger = Logger.getLogger("");
+logger = Logger.getLogger("BIRT");
 logger.setLevel(Level.INFO);
 
 specTopicsAndZanataUUID = Packages.java.util.UUID.randomUUID().toString();
@@ -976,7 +952,7 @@ Filtered by Spec Topic Tag included in supplied Category</property>
                 </list-property>
             </structure>
             <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
-logger = Logger.getLogger("");
+logger = Logger.getLogger("BIRT");
 logger.setLevel(Level.INFO);
 
 uuid = Packages.java.util.UUID.randomUUID().toString();
@@ -2706,7 +2682,7 @@ WHERE bugs.cf_build_id LIKE '%-% __ ___ ____ __:__ %']]></xml-property>
                 </list-property>
             </structure>
             <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
-logger = Logger.getLogger("");
+logger = Logger.getLogger("BIRT");
 logger.setLevel(Level.INFO);
 
 dataSetSpecTopicsUUID = Packages.java.util.UUID.randomUUID().toString();
