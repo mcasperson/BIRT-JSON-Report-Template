@@ -27,6 +27,19 @@
     </list-property>
     <parameters>
         <scalar-parameter name="TopicIDParameter" id="252" extends="data_library.TopicIDParameter"/>
+        <scalar-parameter name="ShowOnlyData" id="261">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="dataType">boolean</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">False</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">check-box</property>
+            <structure name="format"/>
+        </scalar-parameter>
     </parameters>
     <data-sets>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="SingleTopicBugs" id="214"
@@ -82,6 +95,12 @@
             <property name="marginBottom">1em</property>
             <property name="height">1.03125in</property>
             <property name="width">7.947916666666667in</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">!params["ShowOnlyData"].value</expression>
+                </structure>
+            </list-property>
             <column id="71">
                 <property name="width">2.59375in</property>
             </column>
@@ -115,6 +134,12 @@
         <label id="260">
             <property name="fontWeight">bold</property>
             <property name="textAlign">center</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">!params["ShowOnlyData"].value</expression>
+                </structure>
+            </list-property>
             <text-property name="text">Bugzilla Bugs for a Topic</text-property>
         </label>
         <table id="215">
@@ -292,6 +317,12 @@
             <property name="marginTop">1em</property>
             <property name="pageBreakInside">avoid</property>
             <property name="width">7.938144329896907in</property>
+            <list-property name="visibility">
+                <structure>
+                    <property name="format">all</property>
+                    <expression name="valueExpr" type="javascript">!params["ShowOnlyData"].value</expression>
+                </structure>
+            </list-property>
             <column id="34">
                 <property name="width">5in</property>
             </column>

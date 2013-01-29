@@ -242,7 +242,9 @@ return false;]]></method>
     </page-setup>
     <body>
         <grid id="70">
+            <property name="fontSize">18pt</property>
             <property name="marginBottom">1em</property>
+            <property name="display">block</property>
             <property name="height">1.0520833333333333in</property>
             <property name="width">7.947916666666667in</property>
             <column id="71">
