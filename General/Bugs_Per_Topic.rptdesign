@@ -111,6 +111,11 @@
                 </cell>
             </row>
         </grid>
+        <label id="260">
+            <property name="fontWeight">bold</property>
+            <property name="textAlign">center</property>
+            <text-property name="text">Bugzilla Bugs for a Topic</text-property>
+        </label>
         <table id="215">
             <property name="width">7.948453608247423in</property>
             <property name="dataSet">SingleTopicBugs</property>
