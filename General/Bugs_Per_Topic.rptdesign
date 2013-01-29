@@ -98,7 +98,7 @@
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">!params["ShowOnlyData"].value</expression>
+                    <expression name="valueExpr" type="javascript">params["ShowOnlyData"].value</expression>
                 </structure>
             </list-property>
             <column id="71">
@@ -133,11 +133,12 @@
         </grid>
         <label id="260">
             <property name="fontWeight">bold</property>
+            <property name="marginBottom">1em</property>
             <property name="textAlign">center</property>
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">!params["ShowOnlyData"].value</expression>
+                    <expression name="valueExpr" type="javascript">params["ShowOnlyData"].value</expression>
                 </structure>
             </list-property>
             <text-property name="text">Bugzilla Bugs for a Topic</text-property>
@@ -320,7 +321,7 @@
             <list-property name="visibility">
                 <structure>
                     <property name="format">all</property>
-                    <expression name="valueExpr" type="javascript">!params["ShowOnlyData"].value</expression>
+                    <expression name="valueExpr" type="javascript">params["ShowOnlyData"].value</expression>
                 </structure>
             </list-property>
             <column id="34">
