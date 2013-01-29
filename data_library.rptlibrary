@@ -57,7 +57,7 @@
     <property name="units">in</property>
     <property name="theme">defaultTheme</property>
     <parameters>
-        <scalar-parameter name="TopicIDParameter" id="220">
+        <scalar-parameter name="TopicIDParameter" id="221">
             <property name="hidden">true</property>
             <property name="valueType">static</property>
             <property name="dataType">string</property>
@@ -455,7 +455,7 @@ logger.info("[BIRT Report Viewer] [beforeOpen] [" + dataSourceBugzillaUUID + "] 
                 </ex-property>
             </list-property>
             <property name="odaDriverClass">org.teiid.jdbc.TeiidDriver</property>
-            <property name="odaURL">jdbc:postgresql://vdb.engineering.redhat.com:35432/EngVDBF</property>
+            <property name="odaURL">jdbc:prot:database@mms://hostname:1234;</property>
         </oda-data-source>
         <script-data-source name="ZanataSourceDocuments" id="214">
             <property name="comments">This data source make use of the custom JSONParser class to peform a request of the Zanata REST API. It will then parse the result, the details of which can then be extracted by the Data Sets.</property>
