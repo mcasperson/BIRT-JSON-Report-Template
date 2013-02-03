@@ -54,10 +54,6 @@
             <property name="id">219</property>
         </structure>
         <structure>
-            <property name="name">odaDriverClass</property>
-            <property name="id">218</property>
-        </structure>
-        <structure>
             <property name="name">odaURL</property>
             <property name="id">218</property>
             <expression name="value" type="javascript">Packages.java.lang.System.getProperty("BugzillaPostgressDatabaseURL");</expression>
@@ -68,29 +64,9 @@
             <expression name="value" type="javascript">Packages.java.lang.System.getProperty("BugzillaPostgressUsername");</expression>
         </structure>
         <structure>
-            <property name="name">odaAutoCommit</property>
-            <property name="id">218</property>
-        </structure>
-        <structure>
-            <property name="name">odaIsolationMode</property>
-            <property name="id">218</property>
-        </structure>
-        <structure>
             <property name="name">odaPassword</property>
             <property name="id">218</property>
             <expression name="value" type="javascript">Packages.java.lang.System.getProperty("BugzillaPostgressPassword");</expression>
-        </structure>
-        <structure>
-            <property name="name">odaJndiName</property>
-            <property name="id">218</property>
-        </structure>
-        <structure>
-            <property name="name">OdaConnProfileName</property>
-            <property name="id">218</property>
-        </structure>
-        <structure>
-            <property name="name">OdaConnProfileStorePath</property>
-            <property name="id">218</property>
         </structure>
     </list-property>
     <property name="units">in</property>
@@ -104,6 +80,18 @@
             <simple-property-list name="defaultValue">
                 <value type="constant">%</value>
             </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="BugzillaProduct" id="223">
+            <text-property name="promptText">Please enter the Bugzilla product name</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="controlType">text-box</property>
@@ -4511,6 +4499,27 @@ WHERE bugs.cf_build_id LIKE CONCAT(?, '-% __ ___ ____ __:__%')]]></xml-property>
     </design:resultSetDefinitions>
   </design:ResultSets>
 </model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ProductBugs" id="222">
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">Product</property>
+                    <property name="paramName">BugzillaProduct</property>
+                    <property name="dataType">string</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData"/>
+            <property name="dataSource">BugzillaPostgress</property>
+            <xml-property name="queryText"><![CDATA[SELECT bugs.*, components.name 
+FROM BugzillaS.bugs bugs 
+LEFT JOIN BugzillaS.products products 
+ON bugs.product_id = products.id
+LEFT JOIN BugzillaS.components components
+ON bugs.component_id = components.id
+WHERE products.name = ?]]></xml-property>
         </oda-data-set>
     </data-sets>
     <themes>
