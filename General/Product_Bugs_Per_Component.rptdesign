@@ -748,7 +748,7 @@
             <Action>
               <Type>Invoke_Script</Type>
               <Value xsi:type="attribute:ScriptValue">
-                <Script>alert( &quot;CSP ID: &quot; + categoryData + &quot;\nBug Status: &quot; + valueSeriesName + &quot;\nBug Count: &quot; + valueData );</Script>
+                <Script>window.open(&quot;https://bugzilla.redhat.com/buglist.cgi?component=&quot; + categoryData + &quot;&amp;bug_status=&quot; + valueSeriesName + &quot;&amp;product=&quot; + params[&quot;BugzillaProduct&quot;].value)</Script>
               </Value>
             </Action>
           </Triggers>
