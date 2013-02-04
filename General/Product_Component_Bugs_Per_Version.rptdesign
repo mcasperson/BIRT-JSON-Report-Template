@@ -739,7 +739,7 @@
             <Action>
               <Type>Show_Tooltip</Type>
               <Value xsi:type="attribute:TooltipValue">
-                <Text>row[&quot;SpecTopics::SpecID&quot;] + &quot; - &quot; + row[&quot;TopicBugs::bug_status&quot;]</Text>
+                <Text>row[&quot;name&quot;] + &quot; - &quot; + row[&quot;bug_status&quot;]</Text>
                 <Delay>200</Delay>
               </Value>
             </Action>
@@ -1498,6 +1498,57 @@
                 </structure>
             </list-property>
         </extended-item>
+        <grid id="168">
+            <property name="marginTop">1em</property>
+            <property name="pageBreakInside">avoid</property>
+            <property name="width">7.938144329896907in</property>
+            <column id="169">
+                <property name="width">5in</property>
+            </column>
+            <column id="170">
+                <property name="width">2.9381443298969074in</property>
+            </column>
+            <row id="171">
+                <cell id="172">
+                    <property name="colSpan">2</property>
+                    <property name="rowSpan">1</property>
+                    <label id="173">
+                        <property name="backgroundColor">#A40104</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="color">#FFFFFF</property>
+                        <text-property name="text">Report Notes</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="200">
+                <cell id="196">
+                    <label id="201">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Bugzilla Product	</text-property>
+                    </label>
+                </cell>
+                <cell id="202">
+                    <text-data id="203">
+                        <expression name="valueExpr">params["BugzillaProduct"].value</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+            <row id="219">
+                <cell id="220">
+                    <label id="222">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Bugzilla Component</text-property>
+                    </label>
+                </cell>
+                <cell id="221">
+                    <text-data id="223">
+                        <expression name="valueExpr">params["Component"].value</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+        </grid>
         <grid id="33">
             <property name="marginTop">1em</property>
             <property name="pageBreakInside">avoid</property>
