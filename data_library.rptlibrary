@@ -89,7 +89,10 @@
         </scalar-parameter>
         <scalar-parameter name="BugzillaProduct" id="223">
             <text-property name="promptText">Please enter the Bugzilla product name</text-property>
-            <property name="valueType">static</property>
+            <property name="valueType">dynamic</property>
+            <property name="dataSetName">BugzillaProducts</property>
+            <expression name="valueExpr" type="javascript">row["name"]</expression>
+            <expression name="labelExpr" type="javascript">row["name"]</expression>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
@@ -97,7 +100,9 @@
             </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
-            <property name="controlType">text-box</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
             <structure name="format">
                 <property name="category">Unformatted</property>
             </structure>
@@ -5699,6 +5704,13 @@ LEFT JOIN BugzillaS.components components
 ON bugs.component_id = components.id
 WHERE products.name = ?
 AND components.name = ?]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="BugzillaProducts" id="226">
+            <structure name="cachedMetaData"/>
+            <property name="dataSource">BugzillaPostgress</property>
+            <xml-property name="queryText"><![CDATA[SELECT DISTINCT name
+FROM BugzillaS.products]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[]]></xml-property>
         </oda-data-set>
     </data-sets>
     <themes>
