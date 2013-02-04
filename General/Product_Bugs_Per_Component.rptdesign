@@ -1236,8 +1236,266 @@
 ]]></xml-property>
             <property name="outputFormat">PNG</property>
             <property name="inheritColumns">true</property>
+            <property name="dataSet">ProductBugs</property>
             <property name="height">6.65979381443299in</property>
             <property name="width">7.948453608247423in</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">bug_id</property>
+                    <expression name="expression" type="javascript">dataSetRow["bug_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">assigned_to</property>
+                    <expression name="expression" type="javascript">dataSetRow["assigned_to"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">bug_file_loc</property>
+                    <expression name="expression" type="javascript">dataSetRow["bug_file_loc"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">bug_severity</property>
+                    <expression name="expression" type="javascript">dataSetRow["bug_severity"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">bug_status</property>
+                    <expression name="expression" type="javascript">dataSetRow["bug_status"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">creation_ts</property>
+                    <expression name="expression" type="javascript">dataSetRow["creation_ts"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">delta_ts</property>
+                    <expression name="expression" type="javascript">dataSetRow["delta_ts"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">op_sys</property>
+                    <expression name="expression" type="javascript">dataSetRow["op_sys"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">priority</property>
+                    <expression name="expression" type="javascript">dataSetRow["priority"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">product_id</property>
+                    <expression name="expression" type="javascript">dataSetRow["product_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">rep_platform</property>
+                    <expression name="expression" type="javascript">dataSetRow["rep_platform"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">reporter</property>
+                    <expression name="expression" type="javascript">dataSetRow["reporter"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">version</property>
+                    <expression name="expression" type="javascript">dataSetRow["version"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">component_id</property>
+                    <expression name="expression" type="javascript">dataSetRow["component_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">resolution</property>
+                    <expression name="expression" type="javascript">dataSetRow["resolution"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">target_milestone</property>
+                    <expression name="expression" type="javascript">dataSetRow["target_milestone"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">qa_contact</property>
+                    <expression name="expression" type="javascript">dataSetRow["qa_contact"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">votes</property>
+                    <expression name="expression" type="javascript">dataSetRow["votes"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">lastdiffed</property>
+                    <expression name="expression" type="javascript">dataSetRow["lastdiffed"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">everconfirmed</property>
+                    <expression name="expression" type="javascript">dataSetRow["everconfirmed"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">reporter_accessible</property>
+                    <expression name="expression" type="javascript">dataSetRow["reporter_accessible"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">cclist_accessible</property>
+                    <expression name="expression" type="javascript">dataSetRow["cclist_accessible"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">estimated_time</property>
+                    <expression name="expression" type="javascript">dataSetRow["estimated_time"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">remaining_time</property>
+                    <expression name="expression" type="javascript">dataSetRow["remaining_time"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_internal_whiteboard</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_internal_whiteboard"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_devel_whiteboard</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_devel_whiteboard"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_qa_whiteboard</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_qa_whiteboard"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_fixed_in</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_fixed_in"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_cust_facing</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_cust_facing"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">deadline</property>
+                    <expression name="expression" type="javascript">dataSetRow["deadline"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_release_notes</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_release_notes"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_pm_score</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_pm_score"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_build_id</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_build_id"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_targetrelease</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_targetrelease"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_clone_of</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_clone_of"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_environment</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_environment"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_securityimpact</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_securityimpact"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_last_closed</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_last_closed"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_story_points</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_story_points"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_type</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_type"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_regression_status</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_regression_status"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_documentation_action</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_documentation_action"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_mount_type</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_mount_type"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_verified_branch</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_verified_branch"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_crm</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_crm"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_doc_type</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_doc_type"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_show_homepage</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_show_homepage"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">short_desc</property>
+                    <expression name="expression" type="javascript">dataSetRow["short_desc"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">status_whiteboard</property>
+                    <expression name="expression" type="javascript">dataSetRow["status_whiteboard"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_srtnotes</property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_srtnotes"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">name</property>
+                    <expression name="expression" type="javascript">dataSetRow["name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
         </extended-item>
         <grid id="33">
             <property name="marginTop">1em</property>
