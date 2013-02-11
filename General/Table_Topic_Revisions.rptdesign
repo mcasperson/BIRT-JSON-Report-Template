@@ -431,7 +431,7 @@
                         <property name="borderTopWidth">thin</property>
                         <text id="234">
                             <property name="contentType">html</property>
-                            <text-property name="content"><![CDATA[<input type="button" onclick="displayDiff(<VALUE-OF>"'" + row["TopicRevisionXML"].replace(/'/g, "\\'").replace(/"/g, "&amp;quot;") + "', '" + row["TopicRevisionDate"] + "', '" + (row["TopicPreviousRevisionXML"] == null ? '' : row["TopicPreviousRevisionXML"].replace(/'/g, "\\'").replace(/"/g, "&amp;quot;") + "', 'Previous Revision', true";</VALUE-OF>)"  value="Click Me!" />]]></text-property>
+                            <text-property name="content"><![CDATA[<input type="button" onclick="displayDiff(<VALUE-OF>"'" + row["TopicRevisionXML"].replace(/'/g, "\\'").replace(/"/g, "&amp;quot;").replace(/\n/g, "\\n") + "', '" + row["TopicRevisionDate"] + "', '" + (row["TopicPreviousRevisionXML"] == null ? '' : row["TopicPreviousRevisionXML"].replace(/'/g, "\\'").replace(/"/g, "&amp;quot;") + "', 'Previous Revision', true";</VALUE-OF>)"  value="Click Me!" />]]></text-property>
                         </text>
                     </cell>
                 </row>
