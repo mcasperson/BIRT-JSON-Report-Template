@@ -4758,6 +4758,29 @@ specTopicAndRevisionsCount = 0;
 // use a function to limit variable scopes
 (function()
 {
+	var earliestEdit = new Date(0);
+	var latestEdit = Date.today();
+	
+	if (params["EditedInLastXDays"] != null)
+	{
+		var daysFilter = parseInt(params["EditedInLastXDays"]);
+		
+		if (!isNaN(daysFilter) &amp;&amp; daysFilter > 0)
+		{						
+			earliestEdit = Date.today().add({ days: -daysFilter});
+		}
+	}
+
+	if (params["NotEditedInLastXDays"] != null)
+	{
+		var notDaysFilter = parseInt(params["NotEditedInLastXDays"]);
+		
+		if (!isNaN(notDaysFilter) &amp;&amp; notDaysFilter > 0)
+		{						
+			latestEdit = Date.today().add({ days: -notDaysFilter});
+		}
+	}
+	
 	// Used for debugging messages
 	var totalRows = 1;
 	
@@ -4780,30 +4803,34 @@ specTopicAndRevisionsCount = 0;
 		    for (var i = 0; i < childCount; ++i)
 		    {
 			    var topicRevisions = new Packages.com.actuate.json.JSONArrayIndex(i, "item/revisions/items");
-			    var revisionXML = controller.getValue([topic, topicRevisions], "item/xml");	    			 	
-			 	var revisionDate = new Date(parseInt(controller.getValue([topic, topicRevisions], "item/lastModified"))).toString("dd MMM yyyy hh:mm");
-			 	var revisionNumber = controller.getValue([topic, topicRevisions], "item/revision");	
-			 	var revisionMessage = controller.getValue([topic, topicRevisions], "item/logDetails/message");    
-    		    
-    		    /*Packages.java.lang.System.out.println("Adding row " + totalRows + 
-    		    	". specId: " + currentSpecId + 					
-    		    	", topicId: " + topicId + 
-    		    	", topicTitle: " + topicTitle + 
-    		    	", topicTagName: " + tagName + 
-    		    	", topicTagID: " + tag);*/
-    		    ++totalRows;
-    		    
-    		    // save the row
-    		    var newRow = {
-    		    	specId: currentSpecId, 
-    		    	topicId: topicId, 
-    		    	topicTitle: topicTitle, 
-    		    	topicRevision: revisionNumber, 
-    		    	topicRevisionXML: revisionXML, 
-    		    	topicRevisionDate: revisionDate, 
-    		    	topicRevisionMessage: revisionMessage 
-    		   	};
-			    specTopics.push(newRow);			    			    
+			    var revisionDate = new Date(parseInt(controller.getValue([topic, topicRevisions], "item/lastModified")));
+			    			    
+			    if (revisionDate > earliestEdit &amp;&amp; revisionDate < latestEdit) {
+			    				    
+				    var revisionXML = controller.getValue([topic, topicRevisions], "item/xml");	    			 					 	
+				 	var revisionNumber = controller.getValue([topic, topicRevisions], "item/revision");	
+				 	var revisionMessage = controller.getValue([topic, topicRevisions], "item/logDetails/message");    
+	    		    
+	    		    /*Packages.java.lang.System.out.println("Adding row " + totalRows + 
+	    		    	". specId: " + currentSpecId + 					
+	    		    	", topicId: " + topicId + 
+	    		    	", topicTitle: " + topicTitle + 
+	    		    	", topicTagName: " + tagName + 
+	    		    	", topicTagID: " + tag);*/
+	    		    ++totalRows;
+	    		    
+	    		    // save the row
+	    		    var newRow = {
+	    		    	specId: currentSpecId, 
+	    		    	topicId: topicId, 
+	    		    	topicTitle: topicTitle, 
+	    		    	topicRevision: revisionNumber, 
+	    		    	topicRevisionXML: revisionXML, 
+	    		    	topicRevisionDate: revisionDate.toString("dd MMM yyyy hh:mm"), 
+	    		    	topicRevisionMessage: revisionMessage 
+	    		   	};
+				    specTopics.push(newRow);	
+				}		    			    
 		    }
 		}
 	}

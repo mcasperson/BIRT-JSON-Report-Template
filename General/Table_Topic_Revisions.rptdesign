@@ -458,7 +458,7 @@
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">thin</property>
                         <text-data id="239">
-                            <expression name="valueExpr">row["TopicRevisionMessage"]</expression>
+                            <expression name="valueExpr">row["TopicRevisionMessage"] == null ? '' : row["TopicRevisionMessage"]</expression>
                             <property name="contentType">html</property>
                         </text-data>
                     </cell>
