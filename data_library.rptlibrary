@@ -4781,7 +4781,7 @@ specTopicAndRevisionsCount = 0;
 		    {
 			    var topicRevisions = new Packages.com.actuate.json.JSONArrayIndex(i, "item/revisions/items");
 			    var revisionXML = controller.getValue([topic, topicRevisions], "item/xml");	    			 	
-			 	var revisionDate = new Date(controller.getValue([topic, topicRevisions], "item/lastModified") * 1000).toString("dd MMM yyyy hh:mm");
+			 	var revisionDate = new Date(parseInt(controller.getValue([topic, topicRevisions], "item/lastModified"))).toString("dd MMM yyyy hh:mm");
 			 	var revisionNumber = controller.getValue([topic, topicRevisions], "item/revision");	
 			 	var revisionMessage = controller.getValue([topic, topicRevisions], "item/logDetails/message");    
     		    
