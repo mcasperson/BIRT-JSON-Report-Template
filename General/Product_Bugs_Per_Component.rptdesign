@@ -135,7 +135,7 @@
       <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Bugzilla Bugs by Content Specification Grouped by Status</Value>
+          <Value>Product Bugzilla Bugs by Component Grouped by Status</Value>
           <Font>
             <Size>16.0</Size>
             <Bold>true</Bold>

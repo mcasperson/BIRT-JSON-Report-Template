@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <library xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
     <property name="createdBy">Eclipse BIRT Designer Version 4.2.1.v201209101448 Build &lt;4.2.1.v20120912-1721></property>
+    <list-property name="includeScripts">
+        <property>Resources/prettydiff.js</property>
+        <property>Resources/jquery-1.9.1.min.js</property>
+    </list-property>
     <list-property name="propertyBindings">
         <structure>
             <property name="name">odaURL</property>
@@ -690,6 +694,102 @@ zanataCount = 0;
             <property name="odaUser">username</property>
             <encrypted-property name="odaPassword" encryptionID="base64">cGFzc3dvcmQ=</encrypted-property>
         </oda-data-source>
+        <script-data-source name="SpecTopicsAndRevisions" id="224">
+            <property name="comments">This data source make use of the custom JSONParser class to peform a request of the CCMS REST API using the URL saved in the JSONURL parameter. It will then parse the result, the details of which can then be extracted by the Data Sets.</property>
+            <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
+logger = Logger.getLogger("BIRT");
+logger.setLevel(Level.INFO);
+
+uuid = Packages.java.util.UUID.randomUUID().toString();
+
+logger.info("[BIRT Report Viewer] [beforeOpen] [" + uuid + "] [Data Source] [SpecTopicsAndRevisions]");]]></method>
+            <method name="beforeClose"><![CDATA[logger.info("[BIRT Report Viewer] [beforeClose] [" + uuid + "] [Data Source] [SpecTopicsAndRevisions]");]]></method>
+            <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + uuid + "] [Data Source] [SpecTopicsAndRevisions]");]]></method>
+            <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + uuid + "] [Data Source] [SpecTopicsAndRevisions]");]]></method>
+            <method name="open"><![CDATA[logger.info("[BIRT Report Viewer] [open] [" + uuid + "] [Data Source] [SpecTopicsAndRevisions]");
+
+/*
+	Globals used by other scripts
+*/
+
+// The controllers holds the JSON results
+controllers = [];
+// The CSPIDs that were used to create the controllers
+controllerCSPIDs = [];
+
+
+/*
+	Processing
+*/
+(function()
+{
+	try
+	{
+		baseUrl = Packages.java.lang.System.getProperty("BIRT_CCMS_BASE_URL");
+		restUrl = baseUrl + "1/topics/get/json/";
+		restExpansion = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22topics%22%7D%2C%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22revisions%22%7D%2C%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%22logDetails%22%7D%7D%5D%7D%5D%7D%5D%7D";
+		
+		var cspIds = params["CSPIDS"];
+		if (cspIds != null)
+		{
+			var cspIdsArray = cspIds.split(",");
+			
+			for (var cspIndex = 0; cspIndex < cspIdsArray.length; ++cspIndex)
+			{
+				var csp = parseInt(cspIdsArray[cspIndex]);
+				if (csp != NaN)
+				{
+					var filter = "query;topicIncludedInSpec=" + csp;
+
+					// optionally filter to only those topics edited in the specified last number of days
+					if (params["EditedInLastXDays"] != null)
+					{
+						var daysFilter = parseInt(params["EditedInLastXDays"]);
+						
+						if (!isNaN(daysFilter) &amp;&amp; daysFilter > 0)
+						{						
+							filter += ";topicEditedInLastDays=" + daysFilter;
+						}
+					}
+					
+					// optionally filter to only those topics edited in the specified last number of days
+					if (params["NotEditedInLastXDays"] != null)
+					{
+						var notDaysFilter = parseInt(params["NotEditedInLastXDays"]);
+						
+						if (!isNaN(notDaysFilter) &amp;&amp; notDaysFilter > 0)
+						{						
+							filter += ";topicNotEditedInLastDays=" + notDaysFilter;
+						}
+					}
+					
+					var completeRestUrl = restUrl + filter  + restExpansion;
+					
+					//Packages.java.lang.System.out.println("REST URL: " + completeRestUrl);
+					
+					// Create instance of the Controller class
+					var controller = new Packages.com.actuate.json.JSONParser();
+					
+					// Load the JSON Source
+					controller.loadData(completeRestUrl);
+					
+					// save the controller
+					controllers.push(controller);
+					
+					// save the csp ID
+					controllerCSPIDs.push(csp);
+				}
+			}
+		}
+	}
+	catch (exception)
+	{
+		Packages.java.lang.System.out.println("An exception was thrown: " + exception);
+		Packages.java.lang.System.out.println("Make sure the JSONParser class is available in the class path");
+	}
+})();]]></method>
+            <method name="close"><![CDATA[logger.info("[BIRT Report Viewer] [close] [" + uuid + "] [Data Source] [SpecTopicsAndRevisions]");]]></method>
+        </script-data-source>
     </data-sources>
     <data-sets>
         <script-data-set name="TagSummary" id="84">
@@ -4524,6 +4624,223 @@ LEFT JOIN BugzillaS.components components
 ON bugs.component_id = components.id
 WHERE products.name = ?]]></xml-property>
         </oda-data-set>
+        <script-data-set name="SpecTopicAndRevisions" id="225">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">TopicID</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">TopicRevision</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">TopicRevisionDate</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">TopicRevisionXML</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">TopicPreviousRevisionXML</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">TopicRevisionMessage</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">SpecID</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">TopicTitle</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">TopicID</property>
+                    <text-property name="displayName">Topic ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicRevision</property>
+                    <text-property name="displayName">Topic Revision</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicRevisionDate</property>
+                    <text-property name="displayName">Topic Revision Date</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicRevisionXML</property>
+                    <text-property name="displayName">Topic Revision XML</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicPreviousRevisionXML</property>
+                    <text-property name="displayName">Topic Previous Revision XML</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicRevisionMessage</property>
+                    <text-property name="displayName">Topic Revision Message</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">SpecID</property>
+                    <text-property name="displayName">Spec ID</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicTitle</property>
+                    <text-property name="displayName">Topic Title</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">TopicID</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">TopicRevision</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">TopicRevisionDate</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">TopicRevisionXML</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">TopicPreviousRevisionXML</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">TopicRevisionMessage</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">SpecID</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">TopicTitle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">SpecTopicsAndRevisions</property>
+            <method name="open"><![CDATA[/*
+	--------------------- Global variables ---------------------
+*/
+
+// specs mapped to topics
+specTopics = [];
+
+// This will track your current row later on
+specTopicAndRevisionsCount = 0;
+
+// use a function to limit variable scopes
+(function()
+{
+	// Used for debugging messages
+	var totalRows = 1;
+	
+	// process the results of each query against a spec
+	for (var specIndex = 0; specIndex < controllerCSPIDs.length; ++specIndex)
+	{		
+		var controller = controllers[specIndex];
+		var currentSpecId = controllerCSPIDs[specIndex];
+		var controllerTopicCount = controller.getChildCount("items");
+		
+		// process the topics in each spec query
+		for (var topicIndex = 0; topicIndex < controllerTopicCount; ++topicIndex)
+		{
+		    var topicId = controller.getValue("items", "item/id", topicIndex);
+		    var topicTitle = controller.getValue("items", "item/title", topicIndex);
+		    
+		    var topic = new Packages.com.actuate.json.JSONArrayIndex(topicIndex, "items");
+		    			
+			var childCount = parseInt(controller.getValue("items", "item/revisions/size", topicIndex));
+		    for (var i = 0; i < childCount; ++i)
+		    {
+			    var topicRevisions = new Packages.com.actuate.json.JSONArrayIndex(i, "item/revisions/items");
+			    var revisionXML = controller.getValue([topic, topicRevisions], "item/xml");	    			 	
+			 	var revisionDate = controller.getValue([topic, topicRevisions], "item/date");
+			 	var revisionNumber = controller.getValue([topic, topicRevisions], "item/revision");	
+			 	var revisionMessage = controller.getValue([topic, topicRevisions], "item/logDetails/message");    
+    		    
+    		    /*Packages.java.lang.System.out.println("Adding row " + totalRows + 
+    		    	". specId: " + currentSpecId + 					
+    		    	", topicId: " + topicId + 
+    		    	", topicTitle: " + topicTitle + 
+    		    	", topicTagName: " + tagName + 
+    		    	", topicTagID: " + tag);*/
+    		    ++totalRows;
+    		    
+    		    // save the row
+    		    var newRow = {
+    		    	specId: currentSpecId, 
+    		    	topicId: topicId, 
+    		    	topicTitle: topicTitle, 
+    		    	topicRevision: revisionNumber, 
+    		    	topicRevisionXML: revisionXML, 
+    		    	topicRevisionDate: revisionDate, 
+    		    	topicRevisionMessage: revisionMessage 
+    		   	};
+			    specTopics.push(newRow);			    			    
+		    }
+		}
+	}
+})();]]></method>
+            <method name="fetch"><![CDATA[if (specTopicAndRevisionsCount < specTopics.length)
+{
+	//Packages.java.lang.System.out.println("Adding topic " + specTopics[specTopicAndTagCount].topicTagID + " " + (specTopicAndTagCount / specTopics.length * 100).toFixed(2) + "%");
+	
+	row["SpecID"] = specTopics[specTopicAndRevisionsCount].specId.toString();
+	row["TopicID"] = specTopics[specTopicAndRevisionsCount].topicId;
+	row["TopicTitle"] = specTopics[specTopicAndRevisionsCount].topicTitle;
+	row["TopicRevisionDate"] = specTopics[specTopicAndRevisionsCount].topicRevisionDate;
+	row["TopicRevision"] = specTopics[specTopicAndRevisionsCount].topicRevision;
+	row["TopicRevisionXML"] = specTopics[specTopicAndRevisionsCount].topicRevisionXML;
+	row["TopicRevisionMessage"] = specTopics[specTopicAndRevisionsCount].topicRevisionMessage;
+	
+	/*var newRow = {
+    	specId: currentSpecId, 
+    	topicId: topicId, 
+    	topicTitle: topicTitle, 
+    	topicRevision: revisionNumber, 
+    	topicRevisionXML: revisionXML, 
+    	topicRevisionDate: revisionDate, 
+    	topicRevisionMessage: revisionMessage 
+   	};*/
+	
+	++specTopicAndRevisionsCount;
+	return true;
+}
+else
+{
+	return false;
+}
+
+]]></method>
+        </script-data-set>
     </data-sets>
     <themes>
         <theme name="defaultTheme" id="4"/>

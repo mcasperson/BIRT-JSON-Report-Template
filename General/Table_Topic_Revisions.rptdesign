@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.2.1.v201209101448 Build &lt;4.2.1.v20120912-1721></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">97</property>
+    <list-property name="libraries">
+        <structure>
+            <property name="fileName">data_library.rptlibrary</property>
+            <property name="namespace">data_library</property>
+        </structure>
+    </list-property>
+    <parameters>
+        <scalar-parameter name="CSPIDS" id="180">
+            <property name="hidden">false</property>
+            <text-property name="helpText">This option specifies the CSPs that will be included in the chart. You can inlcude 1 CSP ID, or more than 1 as a comma separated list.</text-property>
+            <text-property name="promptText">Please enter a comma separated list of CSP IDs</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">8699,11862,7463,8740</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="EditedInLastXDays" id="195">
+            <text-property name="helpText">If this value is specified, the topics included in the chart will only be those that that were modified in the last specified number of days.</text-property>
+            <text-property name="promptText">Limit to topics edited in the last number of days</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">30</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="NotEditedInLastXDays" id="197">
+            <property name="hidden">false</property>
+            <text-property name="helpText">If this value is specified, the topics included in the chart will only be those that that were not modified in the last specified number of days.</text-property>
+            <text-property name="promptText">Limit to topics not edited in the last number of days</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sets>
+        <script-data-set name="SpecTopicAndRevisions" id="229" extends="data_library.SpecTopicAndRevisions"/>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="marginTop">1em</property>
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid id="70">
+            <property name="marginBottom">1em</property>
+            <property name="height">1.03125in</property>
+            <property name="width">7.947916666666667in</property>
+            <column id="71">
+                <property name="width">2.59375in</property>
+            </column>
+            <column id="72">
+                <property name="width">5.354166666666667in</property>
+            </column>
+            <row id="73">
+                <property name="height">1.03125in</property>
+                <cell id="74">
+                    <property name="width">240px</property>
+                    <property name="backgroundColor">#A40104</property>
+                    <image id="76">
+                        <property name="height">87px</property>
+                        <property name="width">237px</property>
+                        <property name="source">file</property>
+                        <expression name="uri" type="constant">Images/logo.png</expression>
+                    </image>
+                </cell>
+                <cell id="75">
+                    <property name="backgroundColor">#FFFFFF</property>
+                    <property name="textAlign">right</property>
+                    <image id="152">
+                        <property name="height">87px</property>
+                        <property name="width">293px</property>
+                        <property name="source">file</property>
+                        <expression name="uri" type="constant">Images/pressgang_logo_600px.png</expression>
+                    </image>
+                </cell>
+            </row>
+        </grid>
+        <table id="155">
+            <property name="borderBottomColor">#808080</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">thin</property>
+            <property name="borderLeftColor">#808080</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">thin</property>
+            <property name="borderRightColor">#808080</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">thin</property>
+            <property name="borderTopColor">#808080</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">thin</property>
+            <property name="width">7.907216494845361in</property>
+            <property name="dataSet">SpecTopicAndRevisions</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">TopicID</property>
+                    <text-property name="displayName">Topic ID</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicID"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicRevision</property>
+                    <text-property name="displayName">Topic Revision</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicRevision"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicRevisionDate</property>
+                    <text-property name="displayName">Topic Revision Date</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicRevisionDate"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicRevisionXML</property>
+                    <text-property name="displayName">Topic Revision XML</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicRevisionXML"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicPreviousRevisionXML</property>
+                    <text-property name="displayName">Topic Previous Revision XML</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicPreviousRevisionXML"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicRevisionMessage</property>
+                    <text-property name="displayName">Topic Revision Message</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicRevisionMessage"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">SpecID</property>
+                    <text-property name="displayName">Spec ID</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["SpecID"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicTitle</property>
+                    <text-property name="displayName">Topic Title</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicTitle"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">Column Binding</property>
+                    <expression name="expression" type="javascript">row["TopicRevisionMessage"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <list-property name="sort">
+                <structure>
+                    <expression name="key" type="javascript">row["TopicID"]</expression>
+                    <property name="direction">asc</property>
+                    <property name="strength">-1</property>
+                </structure>
+            </list-property>
+            <column id="174">
+                <property name="width">0.6391752577319587in</property>
+            </column>
+            <column id="175">
+                <property name="width">2.5463917525773194in</property>
+            </column>
+            <column id="176">
+                <property name="width">0.7628865979381443in</property>
+            </column>
+            <column id="177">
+                <property name="width">0.8556701030927835in</property>
+            </column>
+            <column id="178">
+                <property name="width">3.1030927835051547in</property>
+            </column>
+            <header>
+                <row id="156">
+                    <property name="backgroundColor">#A40104</property>
+                    <cell id="157">
+                        <property name="borderBottomColor">#808080</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#808080</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#808080</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#808080</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="204">
+                            <property name="fontWeight">bold</property>
+                            <property name="color">#FFFFFF</property>
+                            <text-property name="text">Topic ID</text-property>
+                        </label>
+                    </cell>
+                    <cell id="158">
+                        <property name="borderBottomColor">#808080</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#808080</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#808080</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#808080</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="205">
+                            <property name="fontWeight">bold</property>
+                            <property name="color">#FFFFFF</property>
+                            <text-property name="text">Topic Title</text-property>
+                        </label>
+                    </cell>
+                    <cell id="159">
+                        <property name="borderBottomColor">#808080</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#808080</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#808080</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#808080</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="206">
+                            <property name="fontWeight">bold</property>
+                            <property name="color">#FFFFFF</property>
+                            <text-property name="text">Topic Revision</text-property>
+                        </label>
+                    </cell>
+                    <cell id="160">
+                        <property name="borderBottomColor">#808080</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#808080</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#808080</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#808080</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="207">
+                            <property name="fontWeight">bold</property>
+                            <property name="color">#FFFFFF</property>
+                            <text-property name="text">Topic Revision Date</text-property>
+                        </label>
+                    </cell>
+                    <cell id="161">
+                        <property name="borderBottomColor">#808080</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#808080</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#808080</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#808080</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="208">
+                            <property name="fontWeight">bold</property>
+                            <property name="color">#FFFFFF</property>
+                            <text-property name="text">Topic Revision Message</text-property>
+                        </label>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="162">
+                    <cell id="163">
+                        <property name="borderBottomColor">#808080</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#808080</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#808080</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#808080</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <text-data id="179">
+                            <expression name="valueExpr">row["TopicID"]</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                    <cell id="164">
+                        <property name="borderBottomColor">#808080</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#808080</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#808080</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#808080</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <text-data id="200">
+                            <expression name="valueExpr">row["TopicTitle"]</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                    <cell id="165">
+                        <property name="borderBottomColor">#808080</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#808080</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#808080</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#808080</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <text-data id="230">
+                            <expression name="valueExpr">row["TopicRevision"]</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                    <cell id="166">
+                        <property name="borderBottomColor">#808080</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#808080</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#808080</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#808080</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <text-data id="202">
+                            <expression name="valueExpr">row["TopicRevisionDate"]</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                    <cell id="167">
+                        <property name="borderBottomColor">#808080</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#808080</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#808080</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#808080</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <data id="231">
+                            <property name="resultSetColumn">Column Binding</property>
+                            <list-property name="action">
+                                <structure>
+                                    <property name="linkType">hyperlink</property>
+                                    <expression name="uri" type="javascript">var diffTable = window.prettydiff({
+            source : row["TopicRevisionXML"],
+            sourcelabel : row["TopicRevision"] + "-" + row["TopicRevisionDate"],
+            diff : row["TopicPreviousRevisionXML"],
+            difflabel : "Previous Revision",
+            lang : "markup",
+            mode : "diff",
+            diffview : "sidebyside"
+        })[0];
+
+        var win = window.open("", "_blank", "width=" + (screen.width - 200) + ", height=" + (screen.height - 200) + ",scrollbars=yes"); // a window object
+        if (win != null) {
+            win.document.open("text/html", "replace");
+            win.document
+                .write("&lt;HTML>&lt;HEAD>&lt;TITLE>PressGangCCMS XML Diff&lt;/TITLE>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"../prettydiff.css\">&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"prettydiff.css\">&lt;/HEAD>&lt;BODY>"
+                    + diffTable + "&lt;/BODY>&lt;/HTML>");
+            win.document.close();
+        }</expression>
+                                    <property name="targetWindow">_blank</property>
+                                </structure>
+                            </list-property>
+                        </data>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+        <grid id="64">
+            <property name="marginTop">1em</property>
+            <property name="pageBreakInside">avoid</property>
+            <property name="width">7.938144329896907in</property>
+            <column id="65">
+                <property name="width">4.979381443298969in</property>
+            </column>
+            <column id="66">
+                <property name="width">2.9587628865979383in</property>
+            </column>
+            <row id="80">
+                <cell id="81">
+                    <property name="colSpan">2</property>
+                    <property name="rowSpan">1</property>
+                    <property name="backgroundColor">#A40104</property>
+                    <property name="color">#FFFFFF</property>
+                    <label id="83">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Report Notes</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="67">
+                <cell id="68">
+                    <label id="42">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Content Specification IDs Included In Report</text-property>
+                    </label>
+                </cell>
+                <cell id="69">
+                    <text-data id="43">
+                        <expression name="valueExpr">params["CSPIDS"].value</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+            <row id="223">
+                <cell id="224">
+                    <label id="212">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Limit Topics to Those Edited in the Last Number of Days</text-property>
+                    </label>
+                </cell>
+                <cell id="225">
+                    <text-data id="227">
+                        <expression name="valueExpr">params["EditedInLastXDays"].value</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+            <row id="220">
+                <cell id="221">
+                    <label id="226">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Limit Topics to Those Not Edited in the Last Number of Days</text-property>
+                    </label>
+                </cell>
+                <cell id="222">
+                    <text-data id="228">
+                        <expression name="valueExpr">params["NotEditedInLastXDays"].value</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+        </grid>
+        <grid id="33">
+            <property name="marginTop">1em</property>
+            <property name="pageBreakInside">avoid</property>
+            <property name="width">7.938144329896907in</property>
+            <column id="34">
+                <property name="width">5in</property>
+            </column>
+            <column id="35">
+                <property name="width">2.9381443298969074in</property>
+            </column>
+            <row id="84">
+                <cell id="85">
+                    <property name="colSpan">2</property>
+                    <property name="rowSpan">1</property>
+                    <label id="87">
+                        <property name="backgroundColor">#A40104</property>
+                        <property name="fontWeight">bold</property>
+                        <property name="color">#FFFFFF</property>
+                        <text-property name="text">Report History</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="49">
+                <cell id="50">
+                    <label id="52">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Report Created By</text-property>
+                    </label>
+                </cell>
+                <cell id="51">
+                    <label id="53">
+                        <text-property name="text">Matthew Casperson</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="54">
+                <cell id="55">
+                    <label id="57">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Reported Created On</text-property>
+                    </label>
+                </cell>
+                <cell id="56">
+                    <label id="58">
+                        <text-property name="text">12 February 2013</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="59">
+                <cell id="60">
+                    <label id="62">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Report Last Modified By</text-property>
+                    </label>
+                </cell>
+                <cell id="61">
+                    <label id="63">
+                        <text-property name="text"></text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="44">
+                <cell id="45">
+                    <label id="47">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Report Last Modified On</text-property>
+                    </label>
+                </cell>
+                <cell id="46">
+                    <label id="48">
+                        <text-property name="text"></text-property>
+                    </label>
+                </cell>
+            </row>
+        </grid>
+    </body>
+</report>
