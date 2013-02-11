@@ -13,10 +13,11 @@
     </list-property>
     <parameters>
         <scalar-parameter name="BugzillaProduct" id="216" extends="data_library.BugzillaProduct"/>
+        <scalar-parameter name="Component" id="218" extends="data_library.Component"/>
     </parameters>
     <data-sets>
-        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ProductBugs" id="219"
- extends="data_library.ProductBugs"/>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ProductComponentBugs" id="217"
+ extends="data_library.ProductComponentBugs"/>
     </data-sets>
     <styles>
         <style name="report" id="4">
@@ -135,7 +136,7 @@
       <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Product Bugzilla Bugs by Component Grouped by Status</Value>
+          <Value>Product Component Bugzilla Bugs by Version Grouped by Status</Value>
           <Font>
             <Size>16.0</Size>
             <Bold>true</Bold>
@@ -748,7 +749,7 @@
             <Action>
               <Type>Invoke_Script</Type>
               <Value xsi:type="attribute:ScriptValue">
-                <Script>window.open(&quot;https://bugzilla.redhat.com/buglist.cgi?component=&quot; + categoryData + &quot;&amp;bug_status=&quot; + valueSeriesName + &quot;&amp;product=&quot; + params[&quot;BugzillaProduct&quot;].value)</Script>
+                <Script>window.open(&quot;https://bugzilla.redhat.com/buglist.cgi?version=&quot; + categoryData + &quot;&amp;component=&quot;  + params[&quot;Component&quot;].value +  &quot;&amp;bug_status=&quot; + valueSeriesName + &quot;&amp;product=&quot; + params[&quot;BugzillaProduct&quot;].value)</Script>
               </Value>
             </Action>
           </Triggers>
@@ -860,9 +861,6 @@
       </Origin>
       <PrimaryAxis>true</PrimaryAxis>
       <Percent>false</Percent>
-      <Cursor>
-        <Type>Auto</Type>
-      </Cursor>
     </AssociatedAxes>
     <SeriesDefinitions>
       <Query>
@@ -1097,7 +1095,7 @@
           <Visible>false</Visible>
         </Label>
         <DataDefinition>
-          <Definition>row[&quot;name&quot;]</Definition>
+          <Definition>row[&quot;version&quot;]</Definition>
         </DataDefinition>
         <SeriesIdentifier></SeriesIdentifier>
         <DataPoint>
@@ -1115,7 +1113,7 @@
         <AggregateExpression>Sum</AggregateExpression>
       </Grouping>
       <SortKey>
-        <Definition>row[&quot;name&quot;]</Definition>
+        <Definition>row[&quot;version&quot;]</Definition>
       </SortKey>
     </SeriesDefinitions>
     <Orientation>Horizontal</Orientation>
@@ -1162,15 +1160,6 @@
       <Visible>true</Visible>
     </Label>
     <LabelPosition>Below</LabelPosition>
-    <Triggers>
-      <Condition>onclick</Condition>
-      <Action>
-        <Type>Invoke_Script</Type>
-        <Value xsi:type="attribute:ScriptValue">
-          <Script>window.open(&quot;/birt/frameset?__report=General/Product_Component_Bugs_Per_Version.rptdesign&amp;Component=&quot; +  axisLabel  + &quot;&amp;BugzillaProduct=&quot; + params[&quot;BugzillaProduct&quot;].value)</Script>
-        </Value>
-      </Action>
-    </Triggers>
     <MajorGrid>
       <LineAttributes>
         <Style>Solid</Style>
@@ -1247,15 +1236,8 @@
 </model:ChartWithAxes>
 ]]></xml-property>
             <property name="outputFormat">PNG</property>
-            <list-property name="action">
-                <structure>
-                    <property name="targetWindow">_blank</property>
-                    <property name="linkType">hyperlink</property>
-                    <expression name="uri" type="javascript">"/birt/frameset?__report=General/Product_Component_Bugs_Per_Version.rptdesign?Component=" + categoryData + "&amp;BugzillaProduct=" + params["BugzillaProduct"].value</expression>
-                </structure>
-            </list-property>
             <property name="inheritColumns">true</property>
-            <property name="dataSet">ProductBugs</property>
+            <property name="dataSet">ProductComponentBugs</property>
             <property name="height">6.65979381443299in</property>
             <property name="width">7.948453608247423in</property>
             <list-property name="boundDataColumns">
@@ -1552,6 +1534,20 @@
                     </text-data>
                 </cell>
             </row>
+            <row id="219">
+                <cell id="220">
+                    <label id="222">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Bugzilla Component</text-property>
+                    </label>
+                </cell>
+                <cell id="221">
+                    <text-data id="223">
+                        <expression name="valueExpr">params["Component"].value</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
         </grid>
         <grid id="33">
             <property name="marginTop">1em</property>
@@ -1597,7 +1593,7 @@
                 </cell>
                 <cell id="56">
                     <label id="58">
-                        <text-property name="text">4 February 2012</text-property>
+                        <text-property name="text">16 January 2012</text-property>
                     </label>
                 </cell>
             </row>
