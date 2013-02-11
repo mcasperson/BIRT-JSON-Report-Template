@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <library xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
     <property name="createdBy">Eclipse BIRT Designer Version 4.2.1.v201209101448 Build &lt;4.2.1.v20120912-1721></property>
+    <list-property name="includeScripts">
+        <property>Resources/date.js</property>
+    </list-property>
     <list-property name="propertyBindings">
         <structure>
             <property name="name">odaURL</property>
@@ -4778,7 +4781,7 @@ specTopicAndRevisionsCount = 0;
 		    {
 			    var topicRevisions = new Packages.com.actuate.json.JSONArrayIndex(i, "item/revisions/items");
 			    var revisionXML = controller.getValue([topic, topicRevisions], "item/xml");	    			 	
-			 	var revisionDate = controller.getValue([topic, topicRevisions], "item/date");
+			 	var revisionDate = new Date(controller.getValue([topic, topicRevisions], "item/lastModified") * 1000).toString("dd MMM yyyy hh:mm");
 			 	var revisionNumber = controller.getValue([topic, topicRevisions], "item/revision");	
 			 	var revisionMessage = controller.getValue([topic, topicRevisions], "item/logDetails/message");    
     		    
