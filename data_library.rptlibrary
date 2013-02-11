@@ -4807,27 +4807,45 @@ specTopicAndRevisionsCount = 0;
 })();]]></method>
             <method name="fetch"><![CDATA[if (specTopicAndRevisionsCount < specTopics.length)
 {
-	//Packages.java.lang.System.out.println("Adding topic " + specTopics[specTopicAndTagCount].topicTagID + " " + (specTopicAndTagCount / specTopics.length * 100).toFixed(2) + "%");
-	
-	row["SpecID"] = specTopics[specTopicAndRevisionsCount].specId.toString();
-	row["TopicID"] = specTopics[specTopicAndRevisionsCount].topicId;
-	row["TopicTitle"] = specTopics[specTopicAndRevisionsCount].topicTitle;
-	row["TopicRevisionDate"] = specTopics[specTopicAndRevisionsCount].topicRevisionDate;
-	row["TopicRevision"] = specTopics[specTopicAndRevisionsCount].topicRevision;
-	row["TopicRevisionXML"] = specTopics[specTopicAndRevisionsCount].topicRevisionXML;
-	row["TopicRevisionMessage"] = specTopics[specTopicAndRevisionsCount].topicRevisionMessage;
-	
-	/*var newRow = {
-    	specId: currentSpecId, 
-    	topicId: topicId, 
-    	topicTitle: topicTitle, 
-    	topicRevision: revisionNumber, 
-    	topicRevisionXML: revisionXML, 
-    	topicRevisionDate: revisionDate, 
-    	topicRevisionMessage: revisionMessage 
-   	};*/
-	
-	++specTopicAndRevisionsCount;
+	(function(){
+		//Packages.java.lang.System.out.println("Adding topic " + specTopics[specTopicAndTagCount].topicTagID + " " + (specTopicAndTagCount / specTopics.length * 100).toFixed(2) + "%");
+		
+		row["SpecID"] = specTopics[specTopicAndRevisionsCount].specId.toString();
+		row["TopicID"] = specTopics[specTopicAndRevisionsCount].topicId;
+		row["TopicTitle"] = specTopics[specTopicAndRevisionsCount].topicTitle;
+		row["TopicRevisionDate"] = specTopics[specTopicAndRevisionsCount].topicRevisionDate;
+		row["TopicRevision"] = specTopics[specTopicAndRevisionsCount].topicRevision;
+		row["TopicRevisionXML"] = specTopics[specTopicAndRevisionsCount].topicRevisionXML;
+		row["TopicRevisionMessage"] = specTopics[specTopicAndRevisionsCount].topicRevisionMessage;
+		
+		var nextHighestRevision = -1;
+		var nextHighestRevisionIndex = -1;
+		for (var i = 0; i < specTopics.length; ++i) {
+			if (specTopics[specTopicAndRevisionsCount].topicId == specTopics[i].topicId) {
+				if (specTopics[i].topicRevision < specTopics[specTopicAndRevisionsCount].topicRevision &amp;&amp;
+					specTopics[i].topicRevision > nextHighestRevision) {
+					nextHighestRevision = specTopics[i].topicRevision;
+					nextHighestRevisionIndex = i;	
+				}
+			}
+		}
+		
+		if (nextHighestRevisionIndex != -1) {
+			row["TopicPreviousRevisionXML"] = specTopics[nextHighestRevisionIndex].topicRevisionXML;
+		}
+		
+		/*var newRow = {
+	    	specId: currentSpecId, 
+	    	topicId: topicId, 
+	    	topicTitle: topicTitle, 
+	    	topicRevision: revisionNumber, 
+	    	topicRevisionXML: revisionXML, 
+	    	topicRevisionDate: revisionDate, 
+	    	topicRevisionMessage: revisionMessage 
+	   	};*/
+		
+		++specTopicAndRevisionsCount;
+	})();
 	return true;
 }
 else
