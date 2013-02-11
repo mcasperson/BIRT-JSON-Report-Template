@@ -10,6 +10,10 @@
             <property name="fileName">data_library.rptlibrary</property>
             <property name="namespace">data_library</property>
         </structure>
+        <structure>
+            <property name="fileName">ResourceLoader.rptlibrary</property>
+            <property name="namespace">ResourceLoader</property>
+        </structure>
     </list-property>
     <parameters>
         <scalar-parameter name="CSPIDS" id="180">
@@ -20,7 +24,7 @@
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
-                <value type="constant">8699,11862,7463,8740</value>
+                <value type="constant">8699</value>
             </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -425,33 +429,10 @@
                         <property name="borderTopColor">#808080</property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">thin</property>
-                        <data id="231">
-                            <property name="resultSetColumn">Column Binding</property>
-                            <list-property name="action">
-                                <structure>
-                                    <property name="linkType">hyperlink</property>
-                                    <expression name="uri" type="javascript">var diffTable = window.prettydiff({
-            source : row["TopicRevisionXML"],
-            sourcelabel : row["TopicRevision"] + "-" + row["TopicRevisionDate"],
-            diff : row["TopicPreviousRevisionXML"],
-            difflabel : "Previous Revision",
-            lang : "markup",
-            mode : "diff",
-            diffview : "sidebyside"
-        })[0];
-
-        var win = window.open("", "_blank", "width=" + (screen.width - 200) + ", height=" + (screen.height - 200) + ",scrollbars=yes"); // a window object
-        if (win != null) {
-            win.document.open("text/html", "replace");
-            win.document
-                .write("&lt;HTML>&lt;HEAD>&lt;TITLE>PressGangCCMS XML Diff&lt;/TITLE>&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"../prettydiff.css\">&lt;link rel=\"stylesheet\" type=\"text/css\" href=\"prettydiff.css\">&lt;/HEAD>&lt;BODY>"
-                    + diffTable + "&lt;/BODY>&lt;/HTML>");
-            win.document.close();
-        }</expression>
-                                    <property name="targetWindow">_blank</property>
-                                </structure>
-                            </list-property>
-                        </data>
+                        <text id="234">
+                            <property name="contentType">html</property>
+                            <text-property name="content"><![CDATA[<input type="button" onclick="displayDiff(<VALUE-OF>"'" + row["TopicRevisionXML"].replace(/'/g, "\\'").replace(/"/g, "&amp;quot;") + "', '" + row["TopicRevisionDate"] + "', '" + (row["TopicPreviousRevisionXML"] == null ? '' : row["TopicPreviousRevisionXML"].replace(/'/g, "\\'").replace(/"/g, "&amp;quot;") + "', 'Previous Revision', true";</VALUE-OF>)"  value="Click Me!" />]]></text-property>
+                        </text>
                     </cell>
                 </row>
             </detail>
@@ -596,5 +577,16 @@
                 </cell>
             </row>
         </grid>
+        <text name="Script Loader" id="232" extends="ResourceLoader.Script Loader"/>
     </body>
+    <property name="pageVariables">
+        <variable-element name="Script_prettydiff">
+            <expression name="value" type="javascript">"/birt/Resources/prettydiff.js"</expression>
+            <property name="type">report</property>
+        </variable-element>
+        <variable-element name="Script_prettydiff_laoder">
+            <expression name="value" type="javascript">"/birt/Resources/prettydiff_loader.js"</expression>
+            <property name="type">report</property>
+        </variable-element>
+    </property>
 </report>
