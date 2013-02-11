@@ -115,6 +115,7 @@
         </simple-master-page>
     </page-setup>
     <body>
+        <text name="Script Loader" id="235" extends="ResourceLoader.Script Loader"/>
         <grid id="70">
             <property name="marginBottom">1em</property>
             <property name="height">1.03125in</property>
@@ -577,15 +578,14 @@
                 </cell>
             </row>
         </grid>
-        <text name="Script Loader" id="232" extends="ResourceLoader.Script Loader"/>
     </body>
     <property name="pageVariables">
         <variable-element name="Script_prettydiff">
-            <expression name="value" type="javascript">"/birt/Resources/prettydiff.js"</expression>
+            <expression name="value" type="javascript">"http://localhost:8080/birt/Resources/prettydiff.js"</expression>
             <property name="type">report</property>
         </variable-element>
         <variable-element name="Script_prettydiff_laoder">
-            <expression name="value" type="javascript">"/birt/Resources/prettydiff_loader.js"</expression>
+            <expression name="value" type="javascript">"http://localhost:8080/birt/Resources/prettydiff_loader.js"</expression>
             <property name="type">report</property>
         </variable-element>
     </property>

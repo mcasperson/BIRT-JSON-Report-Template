@@ -1,4 +1,4 @@
-function displayDiff(final String source, final String sourceLabel, final String diff, final String diffLabel, final boolean isXML)
+function displayDiff(source, sourceLabel, diff, diffLabel, isXML)
 {
     var diffTable = prettydiff({
         source : source,
