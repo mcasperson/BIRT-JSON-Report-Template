@@ -163,7 +163,7 @@
             <property name="borderTopColor">#808080</property>
             <property name="borderTopStyle">solid</property>
             <property name="borderTopWidth">thin</property>
-            <property name="width">7.907216494845361in</property>
+            <property name="width">7.927835051546392in</property>
             <property name="dataSet">SpecTopicAndRevisions</property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -246,7 +246,10 @@
                 <property name="width">0.8556701030927835in</property>
             </column>
             <column id="178">
-                <property name="width">3.1030927835051547in</property>
+                <property name="width">1.9278350515463918in</property>
+            </column>
+            <column id="238">
+                <property name="width">1.2164948453608246in</property>
             </column>
             <header>
                 <row id="156">
@@ -346,6 +349,25 @@
                             <text-property name="text">Topic Revision Message</text-property>
                         </label>
                     </cell>
+                    <cell id="236">
+                        <property name="borderBottomColor">#808080</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#808080</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#808080</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#808080</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <label id="241">
+                            <property name="fontWeight">bold</property>
+                            <property name="color">#FFFFFF</property>
+                            <text-property name="text">View Diff</text-property>
+                        </label>
+                    </cell>
                 </row>
             </header>
             <detail>
@@ -423,6 +445,24 @@
                         </text-data>
                     </cell>
                     <cell id="167">
+                        <property name="borderBottomColor">#808080</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#808080</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#808080</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#808080</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <text-data id="239">
+                            <expression name="valueExpr">row["TopicRevisionMessage"]</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                    <cell id="237">
                         <property name="borderBottomColor">#808080</property>
                         <property name="borderBottomStyle">solid</property>
                         <property name="borderBottomWidth">thin</property>
