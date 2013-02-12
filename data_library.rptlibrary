@@ -4665,6 +4665,16 @@ WHERE products.name = ?]]></xml-property>
                     <property name="name">TopicTitle</property>
                     <property name="dataType">string</property>
                 </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">TopicPreviousRevision</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">TopicPreviousRevisionDate</property>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="columnHints">
                 <structure>
@@ -4698,6 +4708,14 @@ WHERE products.name = ?]]></xml-property>
                 <structure>
                     <property name="columnName">TopicTitle</property>
                     <text-property name="displayName">Topic Title</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicPreviousRevision</property>
+                    <text-property name="displayName">Topic Previous Revision</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicPreviousRevisionDate</property>
+                    <text-property name="displayName">Topic Previous Revision Date</text-property>
                 </structure>
             </list-property>
             <structure name="cachedMetaData">
@@ -4740,6 +4758,16 @@ WHERE products.name = ?]]></xml-property>
                     <structure>
                         <property name="position">8</property>
                         <property name="name">TopicTitle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">TopicPreviousRevision</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">TopicPreviousRevisionDate</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
@@ -4871,6 +4899,8 @@ if (specTopicAndRevisionsCount < specTopics.length)
 		
 		if (nextHighestRevisionIndex != -1) {
 			row["TopicPreviousRevisionXML"] = specTopics[nextHighestRevisionIndex].topicRevisionXML;
+			row["TopicPreviousRevision"] = specTopics[nextHighestRevisionIndex].topicRevision;
+			row["TopicPreviousRevisionDate"] = specTopics[nextHighestRevisionIndex].topicRevisionDate.toString("dd MMM yyyy hh:mm");
 		}
 				
 		++specTopicAndRevisionsCount;

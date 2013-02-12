@@ -220,6 +220,24 @@
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">Column Binding_1</property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicID"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicPreviousRevision</property>
+                    <text-property name="displayName">Topic Previous Revision</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicPreviousRevision"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicPreviousRevisionDate</property>
+                    <text-property name="displayName">Topic Previous Revision Date</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicPreviousRevisionDate"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <list-property name="sort">
                 <structure>
@@ -385,10 +403,16 @@
                         <property name="borderTopColor">#808080</property>
                         <property name="borderTopStyle">solid</property>
                         <property name="borderTopWidth">thin</property>
-                        <text-data id="179">
-                            <expression name="valueExpr">row["TopicID"]</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
+                        <data id="242">
+                            <property name="resultSetColumn">Column Binding_1</property>
+                            <list-property name="action">
+                                <structure>
+                                    <property name="linkType">hyperlink</property>
+                                    <expression name="uri" type="javascript">"/pressgang-ccms-ui/#SearchResultsAndTopicView;query;topicIds=" + row["TopicID"]</expression>
+                                    <property name="targetWindow">_blank</property>
+                                </structure>
+                            </list-property>
+                        </data>
                     </cell>
                     <cell id="164">
                         <property name="borderBottomColor">#808080</property>
@@ -477,7 +501,7 @@
                         <property name="borderTopWidth">thin</property>
                         <text id="234">
                             <property name="contentType">html</property>
-                            <text-property name="content"><![CDATA[<input type="button" onclick="displayDiff(<VALUE-OF>"'" + row["TopicRevisionXML"].replace(/'/g, "\\'").replace(/"/g, "&amp;quot;").replace(/(\r\n|\n|\r)/g, "\\n") + "', '" + row["TopicRevisionDate"] + "', '" + (row["TopicPreviousRevisionXML"] == null ? '' : row["TopicPreviousRevisionXML"].replace(/'/g, "\\'").replace(/"/g, "&amp;quot;").replace(/(\r\n|\n|\r)/g, "\\n")) + "', 'Previous Revision', true";</VALUE-OF>)"  value="View Diff" />]]></text-property>
+                            <text-property name="content"><![CDATA[<input type="button" onclick="displayDiff(<VALUE-OF>"'" + row["TopicRevisionXML"].replace(/'/g, "\\'").replace(/"/g, "&amp;quot;").replace(/(\r\n|\n|\r)/g, "\\n") + "', '" + row["TopicRevision"] + " - " + row["TopicRevisionDate"] + "', '" + (row["TopicPreviousRevisionXML"] == null ? '' : row["TopicPreviousRevisionXML"].replace(/'/g, "\\'").replace(/"/g, "&amp;quot;").replace(/(\r\n|\n|\r)/g, "\\n")) + "', '" + row["TopicPreviousRevision"] + " - " + row["TopicPreviousRevisionDate"] + "', true";</VALUE-OF>)"  value="View Diff" />]]></text-property>
                         </text>
                     </cell>
                 </row>
