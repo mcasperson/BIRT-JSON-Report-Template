@@ -650,11 +650,11 @@
     </body>
     <property name="pageVariables">
         <variable-element name="Script_prettydiff">
-            <expression name="value" type="javascript">"http://localhost:8080/birt/Resources/prettydiff.js"</expression>
+            <expression name="value" type="javascript">"http://skynet.usersys.redhat.com:8080/birt/Resources/prettydiff.js"</expression>
             <property name="type">report</property>
         </variable-element>
         <variable-element name="Script_prettydiff_laoder">
-            <expression name="value" type="javascript">"http://localhost:8080/birt/Resources/prettydiff_loader.js"</expression>
+            <expression name="value" type="javascript">"http://skynet.usersys.redhat.com:8080/birt/Resources/prettydiff_loader.js"</expression>
             <property name="type">report</property>
         </variable-element>
     </property>

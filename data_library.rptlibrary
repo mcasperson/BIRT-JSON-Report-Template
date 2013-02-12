@@ -4892,7 +4892,7 @@ if (specTopicAndRevisionsCount < specTopics.length)
 				if (specTopics[i].topicRevision < specTopics[specTopicAndRevisionsCount].topicRevision &amp;&amp;
 					specTopics[i].topicRevision > nextHighestRevision) {
 					nextHighestRevision = specTopics[i].topicRevision;
-					nextHighestRevisionIndex = i;	
+					nextHighestRevisionIndex = specTopics[i].topicRevision;	
 				}
 			}
 		}
