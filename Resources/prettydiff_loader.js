@@ -1,6 +1,11 @@
 function displayDiff(source, sourceLabel, diff, diffLabel, isXML)
 {
-    var diffTable = prettydiff({
+    if (source == null || source.trim().length == 0 || diff == null || diff.trim().length == 0) {
+    	alert("Either the current or previous revision has no XML.");
+    	return;
+    }
+	
+	var diffTable = prettydiff({
         source : source,
         sourcelabel : sourceLabel,
         diff : diff,

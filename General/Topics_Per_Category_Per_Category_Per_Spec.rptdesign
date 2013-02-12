@@ -2,7 +2,13 @@
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
     <property name="createdBy">Eclipse BIRT Designer Version 4.2.1.v201209101448 Build &lt;4.2.1.v20120912-1721></property>
     <property name="units">in</property>
-    <method name="initialize"><![CDATA[logger.info("[BIRT Report Viewer] [initialize] [" + uuid + "] Bugs_Per_Spec");]]></method>
+    <method name="initialize"><![CDATA[importPackage(Packages.java.util.logging);
+logger = Logger.getLogger("BIRT");
+logger.setLevel(Level.INFO);
+
+uuid = Packages.java.util.UUID.randomUUID().toString();
+
+logger.info("[BIRT Report Viewer] [initialize] [" + uuid + "] Bugs_Per_Spec");]]></method>
     <method name="onPageEnd"><![CDATA[logger.info("[BIRT Report Viewer] [onPageEnd] [" + uuid + "] Bugs_Per_Spec");]]></method>
     <property name="iconFile">/templates/blank_report.gif</property>
     <property name="bidiLayoutOrientation">ltr</property>
