@@ -163,7 +163,7 @@
             <property name="borderTopColor">#808080</property>
             <property name="borderTopStyle">solid</property>
             <property name="borderTopWidth">thin</property>
-            <property name="width">7.927835051546392in</property>
+            <property name="width">7.917525773195877in</property>
             <property name="dataSet">SpecTopicAndRevisions</property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -264,10 +264,10 @@
                 <property name="width">0.8556701030927835in</property>
             </column>
             <column id="178">
-                <property name="width">1.9278350515463918in</property>
+                <property name="width">2.3195876288659796in</property>
             </column>
             <column id="238">
-                <property name="width">1.2164948453608246in</property>
+                <property name="width">0.8041237113402062in</property>
             </column>
             <header>
                 <row id="156">
