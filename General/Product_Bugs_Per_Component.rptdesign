@@ -17,6 +17,8 @@
     <data-sets>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ProductBugs" id="219"
  extends="data_library.ProductBugs"/>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="BugzillaProjectsAndComponents" id="220"
+ extends="data_library.BugzillaProjectsAndComponents"/>
     </data-sets>
     <styles>
         <style name="report" id="4">
