@@ -20,7 +20,7 @@
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
-                <value type="constant">8699</value>
+                <value type="constant">8699,11862,7463,8740</value>
             </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
@@ -81,9 +81,9 @@
         </cascading-parameter-group>
     </parameters>
     <data-sets>
-        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="BugzillaBugsWithVersion" id="237"
- extends="data_library.BugzillaBugsWithVersion"/>
         <joint-data-set name="TopicBugsAndTopics" id="238" extends="data_library.TopicBugsAndTopics"/>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="BugzillaBugsWithVersion" id="285"
+ extends="data_library.BugzillaBugsWithVersion"/>
     </data-sets>
     <styles>
         <style name="report" id="4">
@@ -316,7 +316,7 @@
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>true</Visible>
+      <Visible>false</Visible>
       <ClientArea>
         <Outline>
           <Style>Solid</Style>
@@ -1322,7 +1322,7 @@
             <property name="outputFormat">PNG</property>
             <property name="inheritColumns">true</property>
             <property name="dataSet">TopicBugsAndTopics</property>
-            <property name="height">3.6907216494845363in</property>
+            <property name="height">2in</property>
             <property name="width">7.948453608247423in</property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -1543,7 +1543,7 @@
         </Color>
         <Visible>false</Visible>
       </Outline>
-      <Visible>true</Visible>
+      <Visible>false</Visible>
       <ClientArea>
         <Outline>
           <Style>Solid</Style>
@@ -2550,7 +2550,7 @@
             <property name="inheritColumns">true</property>
             <property name="pageBreakBefore">avoid</property>
             <property name="dataSet">BugzillaBugsWithVersion</property>
-            <property name="height">3.6907216494845363in</property>
+            <property name="height">2in</property>
             <property name="width">7.948453608247423in</property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -2810,6 +2810,590 @@
                 </structure>
             </list-property>
         </extended-item>
+        <table id="290">
+            <property name="marginTop">1em</property>
+            <property name="width">7.948453608247423in</property>
+            <property name="dataSet">TopicBugsAndTopics</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">SpecTopics::SpecID</property>
+                    <text-property name="displayName">SpecTopics::SpecID</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["SpecTopics::SpecID"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">SpecTopics::TopicID</property>
+                    <text-property name="displayName">SpecTopics::TopicID</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["SpecTopics::TopicID"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">SpecTopics::TopicTitle</property>
+                    <text-property name="displayName">SpecTopics::TopicTitle</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["SpecTopics::TopicTitle"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">SpecTopics::TopicTagIDs</property>
+                    <text-property name="displayName">SpecTopics::TopicTagIDs</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["SpecTopics::TopicTagIDs"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">SpecTopics::TopicTagNames</property>
+                    <text-property name="displayName">SpecTopics::TopicTagNames</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["SpecTopics::TopicTagNames"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicBugs::bug_id</property>
+                    <text-property name="displayName">TopicBugs::bug_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicBugs::bug_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicBugs::bug_status</property>
+                    <text-property name="displayName">TopicBugs::bug_status</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicBugs::bug_status"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicBugs::bug_severity</property>
+                    <text-property name="displayName">TopicBugs::bug_severity</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicBugs::bug_severity"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicBugs::creation_ts</property>
+                    <text-property name="displayName">TopicBugs::creation_ts</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicBugs::creation_ts"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicBugs::cf_build_id</property>
+                    <text-property name="displayName">TopicBugs::cf_build_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicBugs::cf_build_id"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicBugs::short_desc</property>
+                    <text-property name="displayName">TopicBugs::short_desc</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicBugs::short_desc"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TopicBugs::topic_id</property>
+                    <text-property name="displayName">TopicBugs::topic_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicBugs::topic_id"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TableID</property>
+                    <text-property name="displayName">TableID</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TableID"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">TotalBugCount</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNTDISTINCT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["TopicBugs::bug_id"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">MinDate</property>
+                    <property name="dataType">date</property>
+                    <property name="aggregateFunction">MIN</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["TopicBugs::creation_ts"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">MaxDate</property>
+                    <property name="dataType">date</property>
+                    <property name="aggregateFunction">MAX</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["TopicBugs::creation_ts"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="296">
+                <property name="width">6.587628865979381in</property>
+            </column>
+            <column id="297">
+                <property name="width">1.3608247422680413in</property>
+            </column>
+            <header>
+                <row id="304">
+                    <cell id="305">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
+                        <text-data id="307">
+                            <property name="backgroundColor">#A40104</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">#FFFFFF</property>
+                            <property name="textAlign">left</property>
+                            <expression name="valueExpr">"Content Specifications " + params["CSPIDS"].value</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                </row>
+            </header>
+            <footer>
+                <row id="291">
+                    <cell id="292">
+                        <label id="308">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Total Bug Count</text-property>
+                        </label>
+                    </cell>
+                    <cell id="294">
+                        <text-data id="295">
+                            <property name="fontWeight">normal</property>
+                            <expression name="valueExpr">row["TotalBugCount"]</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                </row>
+                <row id="301">
+                    <cell id="302">
+                        <label id="309">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Average Bugs Per Month</text-property>
+                        </label>
+                    </cell>
+                    <cell id="303">
+                        <text-data id="310">
+                            <expression name="valueExpr">var months;
+months = (BirtDateTime.year(row["MaxDate"]) - BirtDateTime.year(row["MinDate"])) * 12;
+months -= BirtDateTime.month(row["MaxDate"]);
+months += BirtDateTime.month(row["MinDate"]);
+months &lt;= 0 ? 0 : Math.round(row["TotalBugCount"] / months);</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                </row>
+            </footer>
+        </table>
+        <table id="268">
+            <property name="marginTop">1em</property>
+            <property name="width">7.948453608247423in</property>
+            <property name="dataSet">BugzillaBugsWithVersion</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">bug_id</property>
+                    <text-property name="displayName">bug_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["bug_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">assigned_to</property>
+                    <text-property name="displayName">assigned_to</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["assigned_to"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">bug_file_loc</property>
+                    <text-property name="displayName">bug_file_loc</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["bug_file_loc"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">bug_severity</property>
+                    <text-property name="displayName">bug_severity</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["bug_severity"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">bug_status</property>
+                    <text-property name="displayName">bug_status</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["bug_status"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">creation_ts</property>
+                    <text-property name="displayName">creation_ts</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["creation_ts"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">delta_ts</property>
+                    <text-property name="displayName">delta_ts</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["delta_ts"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">op_sys</property>
+                    <text-property name="displayName">op_sys</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["op_sys"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">priority</property>
+                    <text-property name="displayName">priority</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["priority"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">product_id</property>
+                    <text-property name="displayName">product_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["product_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">rep_platform</property>
+                    <text-property name="displayName">rep_platform</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["rep_platform"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">reporter</property>
+                    <text-property name="displayName">reporter</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["reporter"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">version</property>
+                    <text-property name="displayName">version</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["version"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">component_id</property>
+                    <text-property name="displayName">component_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["component_id"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">resolution</property>
+                    <text-property name="displayName">resolution</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["resolution"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">target_milestone</property>
+                    <text-property name="displayName">target_milestone</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["target_milestone"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">qa_contact</property>
+                    <text-property name="displayName">qa_contact</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["qa_contact"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">votes</property>
+                    <text-property name="displayName">votes</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["votes"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">lastdiffed</property>
+                    <text-property name="displayName">lastdiffed</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["lastdiffed"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">everconfirmed</property>
+                    <text-property name="displayName">everconfirmed</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["everconfirmed"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">reporter_accessible</property>
+                    <text-property name="displayName">reporter_accessible</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["reporter_accessible"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">cclist_accessible</property>
+                    <text-property name="displayName">cclist_accessible</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cclist_accessible"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">estimated_time</property>
+                    <text-property name="displayName">estimated_time</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["estimated_time"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">remaining_time</property>
+                    <text-property name="displayName">remaining_time</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["remaining_time"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_internal_whiteboard</property>
+                    <text-property name="displayName">cf_internal_whiteboard</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_internal_whiteboard"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_devel_whiteboard</property>
+                    <text-property name="displayName">cf_devel_whiteboard</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_devel_whiteboard"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_qa_whiteboard</property>
+                    <text-property name="displayName">cf_qa_whiteboard</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_qa_whiteboard"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_fixed_in</property>
+                    <text-property name="displayName">cf_fixed_in</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_fixed_in"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_cust_facing</property>
+                    <text-property name="displayName">cf_cust_facing</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_cust_facing"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">deadline</property>
+                    <text-property name="displayName">deadline</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["deadline"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_release_notes</property>
+                    <text-property name="displayName">cf_release_notes</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_release_notes"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_pm_score</property>
+                    <text-property name="displayName">cf_pm_score</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_pm_score"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_build_id</property>
+                    <text-property name="displayName">cf_build_id</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_build_id"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_targetrelease</property>
+                    <text-property name="displayName">cf_targetrelease</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_targetrelease"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_clone_of</property>
+                    <text-property name="displayName">cf_clone_of</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_clone_of"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_environment</property>
+                    <text-property name="displayName">cf_environment</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_environment"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_securityimpact</property>
+                    <text-property name="displayName">cf_securityimpact</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_securityimpact"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_last_closed</property>
+                    <text-property name="displayName">cf_last_closed</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_last_closed"]</expression>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_story_points</property>
+                    <text-property name="displayName">cf_story_points</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_story_points"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_type</property>
+                    <text-property name="displayName">cf_type</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_type"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_regression_status</property>
+                    <text-property name="displayName">cf_regression_status</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_regression_status"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_documentation_action</property>
+                    <text-property name="displayName">cf_documentation_action</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_documentation_action"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_mount_type</property>
+                    <text-property name="displayName">cf_mount_type</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_mount_type"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_verified_branch</property>
+                    <text-property name="displayName">cf_verified_branch</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_verified_branch"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_crm</property>
+                    <text-property name="displayName">cf_crm</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_crm"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_doc_type</property>
+                    <text-property name="displayName">cf_doc_type</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_doc_type"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_show_homepage</property>
+                    <text-property name="displayName">cf_show_homepage</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_show_homepage"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">short_desc</property>
+                    <text-property name="displayName">short_desc</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["short_desc"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">status_whiteboard</property>
+                    <text-property name="displayName">status_whiteboard</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["status_whiteboard"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">cf_srtnotes</property>
+                    <text-property name="displayName">cf_srtnotes</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["cf_srtnotes"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">TableID</property>
+                    <text-property name="displayName">TableID</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["TableID"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">TotalBugCount</property>
+                    <property name="dataType">integer</property>
+                    <property name="aggregateFunction">COUNT</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["bug_id"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">MinDate</property>
+                    <property name="dataType">date</property>
+                    <property name="aggregateFunction">MIN</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["creation_ts"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">MaxDate</property>
+                    <property name="dataType">date</property>
+                    <property name="aggregateFunction">MAX</property>
+                    <list-property name="arguments">
+                        <structure>
+                            <property name="name">Expression</property>
+                            <expression name="value" type="javascript">row["creation_ts"]</expression>
+                        </structure>
+                    </list-property>
+                    <property name="allowExport">true</property>
+                </structure>
+            </list-property>
+            <column id="281">
+                <property name="width">6.587628865979381in</property>
+            </column>
+            <column id="282">
+                <property name="width">1.3608247422680413in</property>
+            </column>
+            <header>
+                <row id="311">
+                    <cell id="312">
+                        <property name="colSpan">2</property>
+                        <property name="rowSpan">1</property>
+                        <text-data id="314">
+                            <property name="backgroundColor">#A40104</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">#FFFFFF</property>
+                            <property name="textAlign">left</property>
+                            <expression name="valueExpr">"Bugzilla Product " + params["BugzillaProductWithComponent"].displayText + " and Components " + params["BugzillaComponent"].displayText</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                </row>
+            </header>
+            <footer>
+                <row id="277">
+                    <cell id="278">
+                        <label id="315">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Total Bug Count</text-property>
+                        </label>
+                    </cell>
+                    <cell id="279">
+                        <text-data id="289">
+                            <property name="fontWeight">normal</property>
+                            <expression name="valueExpr">row["TotalBugCount"]</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                </row>
+                <row id="319">
+                    <cell id="320">
+                        <label id="322">
+                            <property name="fontWeight">bold</property>
+                            <text-property name="text">Average Bugs Per Month</text-property>
+                        </label>
+                    </cell>
+                    <cell id="321">
+                        <text-data id="323">
+                            <expression name="valueExpr">var months;
+months = (BirtDateTime.year(row["MaxDate"]) - BirtDateTime.year(row["MinDate"])) * 12;
+months -= BirtDateTime.month(row["MaxDate"]);
+months += BirtDateTime.month(row["MinDate"]);
+months &lt;= 0 ? 0 : Math.round(row["TotalBugCount"] / months);</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
+                    </cell>
+                </row>
+            </footer>
+        </table>
         <grid id="168">
             <property name="marginTop">1em</property>
             <property name="pageBreakInside">avoid</property>
@@ -2855,7 +3439,7 @@
                 </cell>
                 <cell id="243">
                     <text-data id="245">
-                        <expression name="valueExpr">params["BugzillaProductWithComponent"].value</expression>
+                        <expression name="valueExpr">params["BugzillaProductWithComponent"].displayText</expression>
                         <property name="contentType">html</property>
                     </text-data>
                 </cell>
@@ -2869,7 +3453,7 @@
                 </cell>
                 <cell id="248">
                     <text-data id="250">
-                        <expression name="valueExpr">params["BugzillaComponent"].value</expression>
+                        <expression name="valueExpr">params["BugzillaComponent"].displayText</expression>
                         <property name="contentType">html</property>
                     </text-data>
                 </cell>

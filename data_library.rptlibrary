@@ -5699,6 +5699,212 @@ WHERE components.product_id = products.id]]></xml-property>
                     <property name="dataType">integer</property>
                 </structure>
             </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">bug_id</property>
+                    <property name="alias">bug_id</property>
+                </structure>
+                <structure>
+                    <property name="columnName">assigned_to</property>
+                    <property name="alias">assigned_to</property>
+                </structure>
+                <structure>
+                    <property name="columnName">bug_file_loc</property>
+                    <property name="alias">bug_file_loc</property>
+                </structure>
+                <structure>
+                    <property name="columnName">bug_severity</property>
+                    <property name="alias">bug_severity</property>
+                </structure>
+                <structure>
+                    <property name="columnName">bug_status</property>
+                    <property name="alias">bug_status</property>
+                </structure>
+                <structure>
+                    <property name="columnName">creation_ts</property>
+                    <property name="alias">creation_ts</property>
+                </structure>
+                <structure>
+                    <property name="columnName">delta_ts</property>
+                    <property name="alias">delta_ts</property>
+                </structure>
+                <structure>
+                    <property name="columnName">op_sys</property>
+                    <property name="alias">op_sys</property>
+                </structure>
+                <structure>
+                    <property name="columnName">priority</property>
+                    <property name="alias">priority</property>
+                </structure>
+                <structure>
+                    <property name="columnName">product_id</property>
+                    <property name="alias">product_id</property>
+                </structure>
+                <structure>
+                    <property name="columnName">rep_platform</property>
+                    <property name="alias">rep_platform</property>
+                </structure>
+                <structure>
+                    <property name="columnName">reporter</property>
+                    <property name="alias">reporter</property>
+                </structure>
+                <structure>
+                    <property name="columnName">version</property>
+                    <property name="alias">version</property>
+                </structure>
+                <structure>
+                    <property name="columnName">component_id</property>
+                    <property name="alias">component_id</property>
+                </structure>
+                <structure>
+                    <property name="columnName">resolution</property>
+                    <property name="alias">resolution</property>
+                </structure>
+                <structure>
+                    <property name="columnName">target_milestone</property>
+                    <property name="alias">target_milestone</property>
+                </structure>
+                <structure>
+                    <property name="columnName">qa_contact</property>
+                    <property name="alias">qa_contact</property>
+                </structure>
+                <structure>
+                    <property name="columnName">votes</property>
+                    <property name="alias">votes</property>
+                </structure>
+                <structure>
+                    <property name="columnName">lastdiffed</property>
+                    <property name="alias">lastdiffed</property>
+                </structure>
+                <structure>
+                    <property name="columnName">everconfirmed</property>
+                    <property name="alias">everconfirmed</property>
+                </structure>
+                <structure>
+                    <property name="columnName">reporter_accessible</property>
+                    <property name="alias">reporter_accessible</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cclist_accessible</property>
+                    <property name="alias">cclist_accessible</property>
+                </structure>
+                <structure>
+                    <property name="columnName">estimated_time</property>
+                    <property name="alias">estimated_time</property>
+                </structure>
+                <structure>
+                    <property name="columnName">remaining_time</property>
+                    <property name="alias">remaining_time</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_internal_whiteboard</property>
+                    <property name="alias">cf_internal_whiteboard</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_devel_whiteboard</property>
+                    <property name="alias">cf_devel_whiteboard</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_qa_whiteboard</property>
+                    <property name="alias">cf_qa_whiteboard</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_fixed_in</property>
+                    <property name="alias">cf_fixed_in</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_cust_facing</property>
+                    <property name="alias">cf_cust_facing</property>
+                </structure>
+                <structure>
+                    <property name="columnName">deadline</property>
+                    <property name="alias">deadline</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_release_notes</property>
+                    <property name="alias">cf_release_notes</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_pm_score</property>
+                    <property name="alias">cf_pm_score</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_build_id</property>
+                    <property name="alias">cf_build_id</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_targetrelease</property>
+                    <property name="alias">cf_targetrelease</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_clone_of</property>
+                    <property name="alias">cf_clone_of</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_environment</property>
+                    <property name="alias">cf_environment</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_securityimpact</property>
+                    <property name="alias">cf_securityimpact</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_last_closed</property>
+                    <property name="alias">cf_last_closed</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_story_points</property>
+                    <property name="alias">cf_story_points</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_type</property>
+                    <property name="alias">cf_type</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_regression_status</property>
+                    <property name="alias">cf_regression_status</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_documentation_action</property>
+                    <property name="alias">cf_documentation_action</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_mount_type</property>
+                    <property name="alias">cf_mount_type</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_verified_branch</property>
+                    <property name="alias">cf_verified_branch</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_crm</property>
+                    <property name="alias">cf_crm</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_doc_type</property>
+                    <property name="alias">cf_doc_type</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_show_homepage</property>
+                    <property name="alias">cf_show_homepage</property>
+                </structure>
+                <structure>
+                    <property name="columnName">short_desc</property>
+                    <property name="alias">short_desc</property>
+                </structure>
+                <structure>
+                    <property name="columnName">status_whiteboard</property>
+                    <property name="alias">status_whiteboard</property>
+                </structure>
+                <structure>
+                    <property name="columnName">cf_srtnotes</property>
+                    <property name="alias">cf_srtnotes</property>
+                </structure>
+                <structure>
+                    <property name="columnName">TableID</property>
+                    <property name="alias">TableID</property>
+                </structure>
+            </list-property>
             <list-property name="parameters">
                 <structure>
                     <property name="name">param_1</property>
@@ -5712,15 +5918,577 @@ WHERE components.product_id = products.id]]></xml-property>
                     <property name="isOutput">false</property>
                 </structure>
             </list-property>
-            <structure name="cachedMetaData"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">bug_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">assigned_to</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">bug_file_loc</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">bug_severity</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">bug_status</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">creation_ts</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">delta_ts</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">op_sys</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">priority</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">product_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">rep_platform</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">reporter</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">version</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">component_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">15</property>
+                        <property name="name">resolution</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">16</property>
+                        <property name="name">target_milestone</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">17</property>
+                        <property name="name">qa_contact</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">18</property>
+                        <property name="name">votes</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">19</property>
+                        <property name="name">lastdiffed</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">20</property>
+                        <property name="name">everconfirmed</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">21</property>
+                        <property name="name">reporter_accessible</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">22</property>
+                        <property name="name">cclist_accessible</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">23</property>
+                        <property name="name">estimated_time</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">24</property>
+                        <property name="name">remaining_time</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">25</property>
+                        <property name="name">cf_internal_whiteboard</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">26</property>
+                        <property name="name">cf_devel_whiteboard</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">27</property>
+                        <property name="name">cf_qa_whiteboard</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">28</property>
+                        <property name="name">cf_fixed_in</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">29</property>
+                        <property name="name">cf_cust_facing</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">30</property>
+                        <property name="name">deadline</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">31</property>
+                        <property name="name">cf_release_notes</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">32</property>
+                        <property name="name">cf_pm_score</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">33</property>
+                        <property name="name">cf_build_id</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">34</property>
+                        <property name="name">cf_targetrelease</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">35</property>
+                        <property name="name">cf_clone_of</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">36</property>
+                        <property name="name">cf_environment</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">37</property>
+                        <property name="name">cf_securityimpact</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">38</property>
+                        <property name="name">cf_last_closed</property>
+                        <property name="dataType">date-time</property>
+                    </structure>
+                    <structure>
+                        <property name="position">39</property>
+                        <property name="name">cf_story_points</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">40</property>
+                        <property name="name">cf_type</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">41</property>
+                        <property name="name">cf_regression_status</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">42</property>
+                        <property name="name">cf_documentation_action</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">43</property>
+                        <property name="name">cf_mount_type</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">44</property>
+                        <property name="name">cf_verified_branch</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">45</property>
+                        <property name="name">cf_crm</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">46</property>
+                        <property name="name">cf_doc_type</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">47</property>
+                        <property name="name">cf_show_homepage</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">48</property>
+                        <property name="name">short_desc</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">49</property>
+                        <property name="name">status_whiteboard</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">50</property>
+                        <property name="name">cf_srtnotes</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">51</property>
+                        <property name="name">TableID</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
             <method name="beforeOpen"><![CDATA[componentsParameter = reportContext.getParameterValue("BugzillaComponent");
 selectedComponents = "";
 for (var index = 0; index < componentsParameter.length; ++index) {
 	selectedComponents += componentsParameter[index] + ",";	
 }
-selectedComponents = selectedComponents.substring(0, selectedComponents.length-1);
-this.queryText += " AND bugs.component_id IN (" + selectedComponents + ")";]]></method>
+if (selectedComponents.length != 0) {
+	selectedComponents = selectedComponents.substring(0, selectedComponents.length-1);
+	this.queryText += " AND bugs.component_id IN (" + selectedComponents + ")";
+}]]></method>
             <property name="dataSource">BugzillaPostgress</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">bug_id</property>
+                    <property name="nativeName">bug_id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">assigned_to</property>
+                    <property name="nativeName">assigned_to</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">bug_file_loc</property>
+                    <property name="nativeName">bug_file_loc</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">bug_severity</property>
+                    <property name="nativeName">bug_severity</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">bug_status</property>
+                    <property name="nativeName">bug_status</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">creation_ts</property>
+                    <property name="nativeName">creation_ts</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">delta_ts</property>
+                    <property name="nativeName">delta_ts</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">op_sys</property>
+                    <property name="nativeName">op_sys</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">priority</property>
+                    <property name="nativeName">priority</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">product_id</property>
+                    <property name="nativeName">product_id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">rep_platform</property>
+                    <property name="nativeName">rep_platform</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">reporter</property>
+                    <property name="nativeName">reporter</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">version</property>
+                    <property name="nativeName">version</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">component_id</property>
+                    <property name="nativeName">component_id</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">15</property>
+                    <property name="name">resolution</property>
+                    <property name="nativeName">resolution</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">16</property>
+                    <property name="name">target_milestone</property>
+                    <property name="nativeName">target_milestone</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">17</property>
+                    <property name="name">qa_contact</property>
+                    <property name="nativeName">qa_contact</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">18</property>
+                    <property name="name">votes</property>
+                    <property name="nativeName">votes</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">19</property>
+                    <property name="name">lastdiffed</property>
+                    <property name="nativeName">lastdiffed</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">20</property>
+                    <property name="name">everconfirmed</property>
+                    <property name="nativeName">everconfirmed</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">21</property>
+                    <property name="name">reporter_accessible</property>
+                    <property name="nativeName">reporter_accessible</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">22</property>
+                    <property name="name">cclist_accessible</property>
+                    <property name="nativeName">cclist_accessible</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">23</property>
+                    <property name="name">estimated_time</property>
+                    <property name="nativeName">estimated_time</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">24</property>
+                    <property name="name">remaining_time</property>
+                    <property name="nativeName">remaining_time</property>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="position">25</property>
+                    <property name="name">cf_internal_whiteboard</property>
+                    <property name="nativeName">cf_internal_whiteboard</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">26</property>
+                    <property name="name">cf_devel_whiteboard</property>
+                    <property name="nativeName">cf_devel_whiteboard</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">27</property>
+                    <property name="name">cf_qa_whiteboard</property>
+                    <property name="nativeName">cf_qa_whiteboard</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">28</property>
+                    <property name="name">cf_fixed_in</property>
+                    <property name="nativeName">cf_fixed_in</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">29</property>
+                    <property name="name">cf_cust_facing</property>
+                    <property name="nativeName">cf_cust_facing</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">30</property>
+                    <property name="name">deadline</property>
+                    <property name="nativeName">deadline</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">31</property>
+                    <property name="name">cf_release_notes</property>
+                    <property name="nativeName">cf_release_notes</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">32</property>
+                    <property name="name">cf_pm_score</property>
+                    <property name="nativeName">cf_pm_score</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">33</property>
+                    <property name="name">cf_build_id</property>
+                    <property name="nativeName">cf_build_id</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">34</property>
+                    <property name="name">cf_targetrelease</property>
+                    <property name="nativeName">cf_targetrelease</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">35</property>
+                    <property name="name">cf_clone_of</property>
+                    <property name="nativeName">cf_clone_of</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">36</property>
+                    <property name="name">cf_environment</property>
+                    <property name="nativeName">cf_environment</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">37</property>
+                    <property name="name">cf_securityimpact</property>
+                    <property name="nativeName">cf_securityimpact</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">38</property>
+                    <property name="name">cf_last_closed</property>
+                    <property name="nativeName">cf_last_closed</property>
+                    <property name="dataType">date-time</property>
+                </structure>
+                <structure>
+                    <property name="position">39</property>
+                    <property name="name">cf_story_points</property>
+                    <property name="nativeName">cf_story_points</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">40</property>
+                    <property name="name">cf_type</property>
+                    <property name="nativeName">cf_type</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">41</property>
+                    <property name="name">cf_regression_status</property>
+                    <property name="nativeName">cf_regression_status</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">42</property>
+                    <property name="name">cf_documentation_action</property>
+                    <property name="nativeName">cf_documentation_action</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">43</property>
+                    <property name="name">cf_mount_type</property>
+                    <property name="nativeName">cf_mount_type</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">44</property>
+                    <property name="name">cf_verified_branch</property>
+                    <property name="nativeName">cf_verified_branch</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">45</property>
+                    <property name="name">cf_crm</property>
+                    <property name="nativeName">cf_crm</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">46</property>
+                    <property name="name">cf_doc_type</property>
+                    <property name="nativeName">cf_doc_type</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">47</property>
+                    <property name="name">cf_show_homepage</property>
+                    <property name="nativeName">cf_show_homepage</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">48</property>
+                    <property name="name">short_desc</property>
+                    <property name="nativeName">short_desc</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">49</property>
+                    <property name="name">status_whiteboard</property>
+                    <property name="nativeName">status_whiteboard</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">50</property>
+                    <property name="name">cf_srtnotes</property>
+                    <property name="nativeName">cf_srtnotes</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
             <xml-property name="queryText"><![CDATA[SELECT * FROM BugzillaS.bugs
 WHERE bugs.product_id = ?]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
