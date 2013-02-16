@@ -2931,10 +2931,10 @@
                 </structure>
             </list-property>
             <column id="296">
-                <property name="width">4.041237113402062in</property>
+                <property name="width">4.278350515463917in</property>
             </column>
             <column id="297">
-                <property name="width">3.9072164948453607in</property>
+                <property name="width">3.670103092783505in</property>
             </column>
             <header>
                 <row id="304">
@@ -2970,10 +2970,11 @@
                 </row>
                 <row id="301">
                     <cell id="302">
-                        <label id="309">
+                        <text-data id="324">
                             <property name="fontWeight">bold</property>
-                            <text-property name="text">Average Bugs Per Month</text-property>
-                        </label>
+                            <expression name="valueExpr">"Average Bugs Per Month From " + row["MinDate"] + " to " + row["MaxDate"]</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="303">
                         <text-data id="310">
@@ -3337,10 +3338,10 @@ months &lt;= 0 ? 0 : Math.round(row["TotalBugCount"] / months);</expression>
                 </structure>
             </list-property>
             <column id="281">
-                <property name="width">4.041237113402062in</property>
+                <property name="width">4.278350515463917in</property>
             </column>
             <column id="282">
-                <property name="width">3.9072164948453607in</property>
+                <property name="width">3.670103092783505in</property>
             </column>
             <header>
                 <row id="311">
@@ -3376,10 +3377,11 @@ months &lt;= 0 ? 0 : Math.round(row["TotalBugCount"] / months);</expression>
                 </row>
                 <row id="319">
                     <cell id="320">
-                        <label id="322">
+                        <text-data id="325">
                             <property name="fontWeight">bold</property>
-                            <text-property name="text">Average Bugs Per Month</text-property>
-                        </label>
+                            <expression name="valueExpr">"Average Bugs Per Month From " + row["MinDate"] + " to " + row["MaxDate"]</expression>
+                            <property name="contentType">html</property>
+                        </text-data>
                     </cell>
                     <cell id="321">
                         <text-data id="323">
@@ -3399,10 +3401,10 @@ months &lt;= 0 ? 0 : Math.round(row["TotalBugCount"] / months);</expression>
             <property name="pageBreakInside">avoid</property>
             <property name="width">7.938144329896907in</property>
             <column id="169">
-                <property name="width">4.041237113402062in</property>
+                <property name="width">4.278350515463917in</property>
             </column>
             <column id="170">
-                <property name="width">3.8969072164948453in</property>
+                <property name="width">3.6597938144329896in</property>
             </column>
             <row id="171">
                 <cell id="172">
@@ -3492,10 +3494,10 @@ months &lt;= 0 ? 0 : Math.round(row["TotalBugCount"] / months);</expression>
             <property name="pageBreakInside">avoid</property>
             <property name="width">7.938144329896907in</property>
             <column id="34">
-                <property name="width">4.041237113402062in</property>
+                <property name="width">4.278350515463917in</property>
             </column>
             <column id="35">
-                <property name="width">3.8969072164948453in</property>
+                <property name="width">3.6597938144329896in</property>
             </column>
             <row id="84">
                 <cell id="85">
