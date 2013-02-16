@@ -2548,6 +2548,7 @@
 ]]></xml-property>
             <property name="outputFormat">PNG</property>
             <property name="inheritColumns">true</property>
+            <property name="pageBreakBefore">avoid</property>
             <property name="dataSet">BugzillaBugsWithVersion</property>
             <property name="height">3.6907216494845363in</property>
             <property name="width">7.948453608247423in</property>
@@ -2835,7 +2836,7 @@
                 <cell id="196">
                     <label id="201">
                         <property name="fontWeight">bold</property>
-                        <text-property name="text">CSP IDs</text-property>
+                        <text-property name="text">Content Specification IDs</text-property>
                     </label>
                 </cell>
                 <cell id="202">

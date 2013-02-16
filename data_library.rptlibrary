@@ -5711,17 +5711,6 @@ WHERE components.product_id = products.id]]></xml-property>
                     <property name="isInput">true</property>
                     <property name="isOutput">false</property>
                 </structure>
-                <structure>
-                    <property name="name">param_2</property>
-                    <property name="paramName">BugzillaComponent</property>
-                    <property name="nativeName"></property>
-                    <property name="dataType">integer</property>
-                    <property name="nativeDataType">4</property>
-                    <property name="position">2</property>
-                    <property name="isOptional">false</property>
-                    <property name="isInput">true</property>
-                    <property name="isOutput">false</property>
-                </structure>
             </list-property>
             <structure name="cachedMetaData"/>
             <method name="beforeOpen"><![CDATA[componentsParameter = reportContext.getParameterValue("BugzillaComponent");
