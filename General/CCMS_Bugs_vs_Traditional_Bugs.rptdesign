@@ -2845,6 +2845,34 @@
                     </text-data>
                 </cell>
             </row>
+            <row id="241">
+                <cell id="242">
+                    <label id="244">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Bugzilla Product</text-property>
+                    </label>
+                </cell>
+                <cell id="243">
+                    <text-data id="245">
+                        <expression name="valueExpr">params["BugzillaProductWithComponent"].value</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
+            <row id="246">
+                <cell id="247">
+                    <label id="249">
+                        <property name="fontWeight">bold</property>
+                        <text-property name="text">Bugzilla Components</text-property>
+                    </label>
+                </cell>
+                <cell id="248">
+                    <text-data id="250">
+                        <expression name="valueExpr">params["BugzillaComponent"].value</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                </cell>
+            </row>
             <row id="204">
                 <cell id="205">
                     <label id="206">
