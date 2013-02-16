@@ -2931,10 +2931,10 @@
                 </structure>
             </list-property>
             <column id="296">
-                <property name="width">6.587628865979381in</property>
+                <property name="width">4.041237113402062in</property>
             </column>
             <column id="297">
-                <property name="width">1.3608247422680413in</property>
+                <property name="width">3.9072164948453607in</property>
             </column>
             <header>
                 <row id="304">
@@ -3337,10 +3337,10 @@ months &lt;= 0 ? 0 : Math.round(row["TotalBugCount"] / months);</expression>
                 </structure>
             </list-property>
             <column id="281">
-                <property name="width">6.587628865979381in</property>
+                <property name="width">4.041237113402062in</property>
             </column>
             <column id="282">
-                <property name="width">1.3608247422680413in</property>
+                <property name="width">3.9072164948453607in</property>
             </column>
             <header>
                 <row id="311">
@@ -3434,7 +3434,7 @@ months &lt;= 0 ? 0 : Math.round(row["TotalBugCount"] / months);</expression>
                 <cell id="242">
                     <label id="244">
                         <property name="fontWeight">bold</property>
-                        <text-property name="text">Bugzilla Product</text-property>
+                        <text-property name="text">Bugzilla Product Name and ID</text-property>
                     </label>
                 </cell>
                 <cell id="243">
