@@ -805,17 +805,8 @@
             <Action>
               <Type>Show_Tooltip</Type>
               <Value xsi:type="attribute:TooltipValue">
-                <Text>row[&quot;SpecTopics::SpecID&quot;] + &quot; - &quot; + row[&quot;TopicBugs::bug_status&quot;]</Text>
+                <Text>&quot;Date: &quot; + categoryData + &quot;\nBug Count: &quot; + valueData</Text>
                 <Delay>200</Delay>
-              </Value>
-            </Action>
-          </Triggers>
-          <Triggers>
-            <Condition>onclick</Condition>
-            <Action>
-              <Type>Invoke_Script</Type>
-              <Value xsi:type="attribute:ScriptValue">
-                <Script>alert( &quot;Date: &quot; + categoryData + &quot;\nBug Count: &quot; + valueData );</Script>
               </Value>
             </Action>
           </Triggers>
@@ -2032,17 +2023,8 @@
             <Action>
               <Type>Show_Tooltip</Type>
               <Value xsi:type="attribute:TooltipValue">
-                <Text>row[&quot;SpecTopics::SpecID&quot;] + &quot; - &quot; + row[&quot;TopicBugs::bug_status&quot;]</Text>
+                <Text>&quot;Date: &quot; + categoryData + &quot;\nBug Count: &quot; + valueData</Text>
                 <Delay>200</Delay>
-              </Value>
-            </Action>
-          </Triggers>
-          <Triggers>
-            <Condition>onclick</Condition>
-            <Action>
-              <Type>Invoke_Script</Type>
-              <Value xsi:type="attribute:ScriptValue">
-                <Script>alert( &quot;Date: &quot; + categoryData + &quot;\nBug Count: &quot; + valueData );</Script>
               </Value>
             </Action>
           </Triggers>
