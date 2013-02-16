@@ -43,21 +43,6 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
-        <scalar-parameter name="Category" id="199">
-            <property name="hidden">true</property>
-            <property name="valueType">static</property>
-            <property name="dataType">string</property>
-            <property name="distinct">true</property>
-            <simple-property-list name="defaultValue">
-                <value type="constant">-1</value>
-            </simple-property-list>
-            <list-property name="selectionList"/>
-            <property name="paramType">simple</property>
-            <property name="controlType">text-box</property>
-            <structure name="format">
-                <property name="category">Unformatted</property>
-            </structure>
-        </scalar-parameter>
         <scalar-parameter name="NotEditedInLastXDays" id="197">
             <property name="hidden">false</property>
             <text-property name="helpText">If this value is specified, the topics included in the chart will only be those that that were not modified in the last specified number of days.</text-property>
@@ -79,6 +64,21 @@
                 <ref-entry baseId="229" name="BugzillaComponent" id="229"/>
             </overridden-values>
         </cascading-parameter-group>
+        <scalar-parameter name="Category" id="199">
+            <property name="hidden">true</property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">-1</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
     </parameters>
     <data-sets>
         <joint-data-set name="TopicBugsAndTopics" id="238" extends="data_library.TopicBugsAndTopics"/>
@@ -3352,7 +3352,7 @@ months &lt;= 0 ? 0 : Math.round(row["TotalBugCount"] / months);</expression>
                             <property name="fontWeight">bold</property>
                             <property name="color">#FFFFFF</property>
                             <property name="textAlign">left</property>
-                            <expression name="valueExpr">"Bugzilla Product " + params["BugzillaProductWithComponent"].displayText + " and Components " + params["BugzillaComponent"].displayText</expression>
+                            <expression name="valueExpr">"Bugzilla Product " + params["BugzillaProductWithComponent"].displayText</expression>
                             <property name="contentType">html</property>
                         </text-data>
                     </cell>
@@ -3399,10 +3399,10 @@ months &lt;= 0 ? 0 : Math.round(row["TotalBugCount"] / months);</expression>
             <property name="pageBreakInside">avoid</property>
             <property name="width">7.938144329896907in</property>
             <column id="169">
-                <property name="width">5in</property>
+                <property name="width">4.041237113402062in</property>
             </column>
             <column id="170">
-                <property name="width">2.9381443298969074in</property>
+                <property name="width">3.8969072164948453in</property>
             </column>
             <row id="171">
                 <cell id="172">
@@ -3439,7 +3439,7 @@ months &lt;= 0 ? 0 : Math.round(row["TotalBugCount"] / months);</expression>
                 </cell>
                 <cell id="243">
                     <text-data id="245">
-                        <expression name="valueExpr">params["BugzillaProductWithComponent"].displayText</expression>
+                        <expression name="valueExpr">params["BugzillaProductWithComponent"].displayText + " [" + params["BugzillaProductWithComponent"].value + "]"</expression>
                         <property name="contentType">html</property>
                     </text-data>
                 </cell>
@@ -3448,12 +3448,12 @@ months &lt;= 0 ? 0 : Math.round(row["TotalBugCount"] / months);</expression>
                 <cell id="247">
                     <label id="249">
                         <property name="fontWeight">bold</property>
-                        <text-property name="text">Bugzilla Components</text-property>
+                        <text-property name="text">Bugzilla Component IDs</text-property>
                     </label>
                 </cell>
                 <cell id="248">
                     <text-data id="250">
-                        <expression name="valueExpr">params["BugzillaComponent"].displayText</expression>
+                        <expression name="valueExpr">params["BugzillaComponent"].value</expression>
                         <property name="contentType">html</property>
                     </text-data>
                 </cell>
@@ -3492,10 +3492,10 @@ months &lt;= 0 ? 0 : Math.round(row["TotalBugCount"] / months);</expression>
             <property name="pageBreakInside">avoid</property>
             <property name="width">7.938144329896907in</property>
             <column id="34">
-                <property name="width">5in</property>
+                <property name="width">4.041237113402062in</property>
             </column>
             <column id="35">
-                <property name="width">2.9381443298969074in</property>
+                <property name="width">3.8969072164948453in</property>
             </column>
             <row id="84">
                 <cell id="85">
