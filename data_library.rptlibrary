@@ -5439,8 +5439,6 @@ specTopicAndRevisionsCount = 0;
 // use a function to limit variable scopes
 (function()
 {
-
-	
 	// Used for debugging messages
 	var totalRows = 1;
 	
@@ -5495,7 +5493,7 @@ specTopicAndRevisionsCount = 0;
 })();]]></method>
             <method name="fetch"><![CDATA[(function(){
 	var earliestEdit = new Date(0);
-	var latestEdit = Date.today();
+	var latestEdit = Date.now();
 	
 	if (params["EditedInLastXDays"] != null)
 	{
@@ -5503,7 +5501,7 @@ specTopicAndRevisionsCount = 0;
 		
 		if (!isNaN(daysFilter) &amp;&amp; daysFilter > 0)
 		{						
-			earliestEdit = Date.today().add({ days: -daysFilter});
+			earliestEdit = Date.now().add({ days: -daysFilter});
 		}
 	}
 
@@ -5513,7 +5511,7 @@ specTopicAndRevisionsCount = 0;
 		
 		if (!isNaN(notDaysFilter) &amp;&amp; notDaysFilter > 0)
 		{						
-			latestEdit = Date.today().add({ days: -notDaysFilter});
+			latestEdit = Date.now().add({ days: -notDaysFilter});
 		}
 	}
 	
