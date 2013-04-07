@@ -7591,6 +7591,138 @@ WHERE bugs.product_id = ?]]></xml-property>
   </design:ResultSets>
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
+        <script-data-set name="TopicsAndContentSpecs" id="231">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">0</property>
+                    <property name="name">TopicID</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">TopicTitle</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">ContentSpecs</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">ContentSpecCount</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">TopicID</property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicTitle</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ContentSpecs</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ContentSpecCount</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">TopicID</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">TopicTitle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">ContentSpecs</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">ContentSpecCount</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">By Query</property>
+            <method name="open"><![CDATA[logger.info("[open] [" + dataSetSpecTopicsUUID + "] [Data Set] [TopicsAndContentSpecs]");
+
+
+
+/*
+	--------------------- Global variables ---------------------
+*/
+
+// This will track your current row later on
+topicAndContentSpecCount = 0;
+
+// The topic details
+topics = [];
+
+/*
+	--------------------- Processing ---------------------
+*/
+
+
+// here we take the results of the queries against the spec ids
+// and combine them into a single table
+
+// use a function to limit variable scopes
+(function()
+{
+	var specQueryURLPrefix = "http://skynet.usersys.redhat.com:8080/TopicIndex/seam/resource/rest/1/topics/get/json/query;topicIncludedInSpec=";
+	var specQueryURLPostfix = ";logic=And?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22start%22%3A+0%2C+%22end%22%3A+15%2C+%22name%22%3A+%22topics%22%7D%7D%5D%7D";
+	
+	// find the specs that each topic is included in
+	for (var index = 0; index < totalCount; ++index)
+	{		
+		var topicId = controller.getValue("items", "item/id", tagIndex);
+		var topicTitle = controller.getValue("items", "item/title", tagIndex);
+		
+		// Create instance of the Controller class
+		var specController = new Packages.com.actuate.json.JSONParser();
+		
+		// Load the JSON Source
+		specController.loadData(specQueryURLPrefix + topicId + specQueryURLPostfix);
+		
+		// Calculate the total rows we will have
+		totalSpecCount = specController.getChildCount("items");
+		
+		var specIds = "";
+		for (var specIndex = 0; specIndex < totalSpecCount; ++specIndex) {
+			var specId = specController.getValue("items", "item/id", tagIndex);	
+			if (specIds.length != 0) {
+				specIds += ",";
+			}
+			specIds += specId;
+		}
+		
+		topics.push({topicId: topicId, topicTitle: topicTitle, specCount: totalSpecCount, specs: specIds});
+	}
+})();]]></method>
+            <method name="fetch"><![CDATA[logger.info("[BIRT Report Viewer] [fetch] [" + dataSetSpecTopicsUUID + "] [Data Set] [TopicsAndContentSpecs]");
+
+if (topicAndContentSpecCount < topic.length)
+{
+	row["TopicID"] = topic[topicAndContentSpecCount].specId.toString();
+	row["TopicTitle"] = topic[topicAndContentSpecCount].topicTitle.toString();
+	row["ContentSpecs"] = topic[topicAndContentSpecCount].specs.toString();
+	row["ContentSpecCount"] = topic[topicAndContentSpecCount].specCount;	
+	
+	++topicAndContentSpecCount;
+	return true;
+}
+
+return false;]]></method>
+        </script-data-set>
     </data-sets>
     <themes>
         <theme name="defaultTheme" id="4"/>
