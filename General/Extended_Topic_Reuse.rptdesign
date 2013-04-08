@@ -849,7 +849,7 @@
           <Visible>false</Visible>
         </Label>
         <DataDefinition>
-          <Definition>row[&quot;ContentSpecCount&quot;]</Definition>
+          <Definition>row[&quot;ContentSpecCount&quot;] == 1 ? &quot;Single Use&quot; : &quot;Reuse&quot;;</Definition>
           <Grouping>
             <Enabled>true</Enabled>
             <GroupType>Text</GroupType>
@@ -952,7 +952,7 @@
         <Visible>false</Visible>
       </Label>
       <DataDefinition>
-        <Definition>row[&quot;ContentSpecCount&quot;]</Definition>
+        <Definition>row[&quot;ContentSpecCount&quot;] == 1 ? &quot;Single Use&quot; : &quot;Reuse&quot;;</Definition>
       </DataDefinition>
       <SeriesIdentifier></SeriesIdentifier>
       <DataPoint>
@@ -966,7 +966,7 @@
     </Series>
     <Grouping>
       <Enabled>true</Enabled>
-      <GroupType>Numeric</GroupType>
+      <GroupType>Text</GroupType>
       <AggregateExpression>Sum</AggregateExpression>
     </Grouping>
     <SortKey>
@@ -1003,5 +1003,11 @@
                 </structure>
             </list-property>
         </extended-item>
+        <text-data id="183">
+            <expression name="valueExpr">controllerCSPIDs.length + " content specifications make " + totalTopicCount + " references to topics held by the CCMS. " + 
+ reusedReferences + " of these references are shared between 2 or more content specifications (reuse is " + ((reusedReferences / totalTopicCount * 100).toFixed(2))  + "%). " +
+ singleReferences + " of these references are used in only 1 content specification (single use is " + ((singleReferences / totalTopicCount * 100).toFixed(2))  + "%). "</expression>
+            <property name="contentType">html</property>
+        </text-data>
     </body>
 </report>
