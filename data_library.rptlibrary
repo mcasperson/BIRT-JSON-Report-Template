@@ -949,7 +949,11 @@ try
 				var csp = parseInt(cspIdsArray[cspIndex]);
 				
 				// make sure it is a valid number, and that we have not already processed it
-				if (csp != NaN &amp;&amp; controllerCSPIDs.customIndexOf(csp) == -1)
+				var existingIndex = controllerCSPIDs.customIndexOf(csp);
+				
+				if (existingIndex != -1) {
+					logger.info("CSP ID " + csp + " has been duplicated in the input string and ignored");
+				} else if (csp != NaN)
 				{								
 					// Create instance of the Controller class
 					var controller = new Packages.com.actuate.json.JSONParser();
