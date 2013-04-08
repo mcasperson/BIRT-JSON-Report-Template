@@ -612,7 +612,7 @@
     </SeriesPalette>
     <SeriesDefinitions>
       <Query>
-        <Definition>row[&quot;ContentSpecCount&quot;]</Definition>
+        <Definition></Definition>
         <Grouping>
           <GroupType>Numeric</GroupType>
         </Grouping>
@@ -846,7 +846,7 @@
           <Visible>false</Visible>
         </Label>
         <DataDefinition>
-          <Definition>row[&quot;TopicID&quot;]</Definition>
+          <Definition>row[&quot;ContentSpecCount&quot;]</Definition>
           <Grouping>
             <Enabled>true</Enabled>
             <GroupType>Text</GroupType>
@@ -1041,6 +1041,9 @@
             <column id="173"/>
             <header>
                 <row id="159">
+                    <property name="backgroundColor">#A40104</property>
+                    <property name="fontWeight">bold</property>
+                    <property name="color">white</property>
                     <cell id="160">
                         <label id="177">
                             <text-property name="text">Topic ID</text-property>
