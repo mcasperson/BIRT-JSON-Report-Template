@@ -947,6 +947,8 @@ try
 			for (var cspIndex = 0; cspIndex < cspIdsArray.length; ++cspIndex)
 			{
 				var csp = parseInt(cspIdsArray[cspIndex]);
+				
+				// make sure it is a valid number, and that we have not already processed it
 				if (csp != NaN &amp;&amp; controllerCSPIDs.customIndexOf(csp) == -1)
 				{								
 					// Create instance of the Controller class
