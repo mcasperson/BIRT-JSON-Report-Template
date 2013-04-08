@@ -846,7 +846,7 @@
           <Visible>false</Visible>
         </Label>
         <DataDefinition>
-          <Definition>row[&quot;ContentSpecCount&quot;] == 1 ? &quot;Single Use&quot; : &quot;Reuse&quot;;</Definition>
+          <Definition>row[&quot;ContentSpecCount&quot;]</Definition>
           <Grouping>
             <Enabled>true</Enabled>
             <GroupType>Text</GroupType>
@@ -949,7 +949,7 @@
         <Visible>false</Visible>
       </Label>
       <DataDefinition>
-        <Definition>row[&quot;ContentSpecCount&quot;] == 1 ? &quot;Single Use&quot; : &quot;Reuse&quot;;</Definition>
+        <Definition>row[&quot;ContentSpecCount&quot;]</Definition>
       </DataDefinition>
       <SeriesIdentifier></SeriesIdentifier>
       <DataPoint>
@@ -963,7 +963,7 @@
     </Series>
     <Grouping>
       <Enabled>true</Enabled>
-      <GroupType>Text</GroupType>
+      <GroupType>Numeric</GroupType>
       <AggregateExpression>Sum</AggregateExpression>
     </Grouping>
     <SortKey>
