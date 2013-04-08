@@ -874,7 +874,7 @@ baseUrl = Packages.java.lang.System.getProperty("BIRT_CCMS_BASE_URL");
 try
 {
 	var restUlrPrefix = "1/topics/get/json/query;topicIncludedInSpec=";
-	var restUrlPostfix = ";logic=And?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%20%22topics%22%7D%7D%5D%7D"
+	var restUrlPostfix = ";logic=And?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%20%22topics%22%7D%7D%5D%7D";
 	
 	// Create instance of the Controller class
 	controller = new Packages.com.actuate.json.JSONParser();
@@ -889,7 +889,83 @@ try
 	// Calculate the total rows we will have
 	totalCount = controller.getChildCount("items");
 	
-	Packages.java.lang.System.out.println("Returned " + totalCount + " topics");
+	logger.info("Returned " + totalCount + " topics");
+}
+catch (exception)
+{
+	Packages.java.lang.System.out.println("An exception was thrown: " + exception);
+	Packages.java.lang.System.out.println("Make sure the JSONParser class is available in the class path");
+}]]></method>
+        </script-data-source>
+        <script-data-source name="SpecsTopics" id="233">
+            <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
+logger = Logger.getLogger("BIRT");
+logger.setLevel(Level.INFO);
+
+uuid = Packages.java.util.UUID.randomUUID().toString();
+
+logger.info("[BIRT Report Viewer] [beforeOpen] [" + uuid + "] [Data Source] [SpecsTopics]");]]></method>
+            <method name="open"><![CDATA[logger.info("[BIRT Report Viewer] [open] [" + uuid + "] [Data Source] [SpecsTopics]");
+
+/* Add the ability to search an array */
+Array.prototype.customIndexOf = function(item) {    
+
+    for(var i = 0; i < this.length; ++i) {
+    
+        if(this[i] == item) {
+            return i;
+        }
+    }
+    return -1;
+};
+
+/*
+	Globals used by other scripts
+*/
+
+// This will track your current row later on
+baseUrl = Packages.java.lang.System.getProperty("BIRT_CCMS_BASE_URL");
+// The controllers holds the JSON results
+controllers = [];
+// The CSPIDs that were used to create the controllers
+controllerCSPIDs = [];
+
+var restUlrPrefix = "1/topics/get/json/query;topicIncludedInSpec=";
+var restUrlPostfix = ";logic=And?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%20%22topics%22%7D%7D%5D%7D";
+
+/*
+	Perform REST query
+*/
+
+try
+{
+		var cspIds = params["CSPIDS"];
+		if (cspIds != null)
+		{
+			var cspIdsArray = cspIds.split(",");
+			
+			for (var cspIndex = 0; cspIndex < cspIdsArray.length; ++cspIndex)
+			{
+				var csp = parseInt(cspIdsArray[cspIndex]);
+				if (csp != NaN)
+				{								
+					// Create instance of the Controller class
+					var controller = new Packages.com.actuate.json.JSONParser();
+					controllers.push(controller);
+					controllerCSPIDs.push(csp);
+					
+					var url = baseUrl + restUlrPrefix + csp + restUrlPostfix;
+				
+					logger.info("REST URL: " + url);
+					
+					// Load the JSON Source
+					controller.loadData(url);
+					
+					// Calculate the total rows we will have
+					logger.info("Returned " + controller.getChildCount("items") + " topics");
+				}
+			}
+		}
 }
 catch (exception)
 {
@@ -7721,7 +7797,7 @@ logger.setLevel(Level.INFO);
 
 topicsAndContentSpecsUUID = Packages.java.util.UUID.randomUUID().toString();
 
-logger.info("[BIRT Report Viewer] [beforeOpen] [" + topicsAndContentSpecsUUID + "] [Data Set] [SpecTopics]");]]></method>
+logger.info("[BIRT Report Viewer] [beforeOpen] [" + topicsAndContentSpecsUUID + "] [Data Set] [TopicsAndContentSpecs]");]]></method>
             <property name="dataSource">SpecTopics</property>
             <method name="open"><![CDATA[logger.info("[open] [" + topicsAndContentSpecsUUID + "] [Data Set] [TopicsAndContentSpecs]");
 
@@ -7779,6 +7855,148 @@ topics = [];
 	}
 })();]]></method>
             <method name="fetch"><![CDATA[logger.info("[BIRT Report Viewer] [fetch] [" + topicsAndContentSpecsUUID + "] [Data Set] [TopicsAndContentSpecs]");
+
+if (topicAndContentSpecCount < topics.length)
+{
+	row["TopicID"] = topics[topicAndContentSpecCount].topicId.toString();
+	row["TopicTitle"] = topics[topicAndContentSpecCount].topicTitle.toString();
+	row["ContentSpecs"] = topics[topicAndContentSpecCount].specs.toString();
+	row["ContentSpecCount"] = topics[topicAndContentSpecCount].specCount;	
+	
+	++topicAndContentSpecCount;
+	return true;
+}
+
+return false;]]></method>
+        </script-data-set>
+        <script-data-set name="ExtendedTopicsAndContentSpecs" id="235">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">0</property>
+                    <property name="name">TopicID</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">TopicTitle</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">ContentSpecs</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">ContentSpecCount</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">TopicID</property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicTitle</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ContentSpecs</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ContentSpecCount</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">TopicID</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">TopicTitle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">ContentSpecs</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">ContentSpecCount</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
+logger = Logger.getLogger("BIRT");
+logger.setLevel(Level.INFO);
+
+extendedTopicsAndContentSpecsUUID = Packages.java.util.UUID.randomUUID().toString();
+
+logger.info("[BIRT Report Viewer] [beforeOpen] [" + extendedTopicsAndContentSpecsUUID + "] [Data Set] [ExtendedTopicsAndContentSpecs]");]]></method>
+            <property name="dataSource">SpecsTopics</property>
+            <method name="open"><![CDATA[logger.info("[open] [" + extendedTopicsAndContentSpecsUUID + "] [Data Set] [ExtendedTopicsAndContentSpecs]");
+
+/*
+	--------------------- Global variables ---------------------
+*/
+
+// This will track your current row later on
+topicAndContentSpecCount = 0;
+
+// A list of processed topic ids
+topicIds = [];
+// A map of topic details
+topicDetails = {};
+
+// The topic details
+topics = [];
+
+/*
+	--------------------- Processing ---------------------
+*/
+
+
+// here we take the results of the queries against the spec ids
+// and combine them into a single table
+
+// use a function to limit variable scopes
+(function()
+{
+	// find the specs that each topic is included in
+	for (var index = 0; index < controllers.length; ++index)
+	{		
+		var controller = controllers[index];
+		var topicCount = controller.getChildCount("items");
+		
+		for (var topicIndex = 0; topicIndex < topicCount; ++topicIndex) {
+						
+			var topicId = controller.getValue("items", "item/id", topicIndex);
+			var topicTitle = controller.getValue("items", "item/title", topicIndex);
+
+			var thisTopicDetails = null;
+
+			if (topicIds.customIndexOf(topicId) == -1) {
+				thisTopicDetails = {topicId: topicId, topicTitle: topicTitle, specCount: 1, specs: controllerCSPIDs[index].toString()}
+			} else {
+				thisTopicDetails = topicDetails[topicId];
+				++topicDetails.specCount;
+				topicDetails.specs += "," + controllerCSPIDs[index];
+			}
+			
+			topicDetails[topicId] = thisTopicDetails;			
+			topicIds.push(topicId);
+		}
+	}
+	
+	for (var processedTopicIndex = 0; processedTopicIndex < topicIds.length; ++processedTopicIndex) {
+		topics.push(topicDetails[topicIds[processedTopicIndex]]);
+	}
+})();]]></method>
+            <method name="fetch"><![CDATA[logger.info("[BIRT Report Viewer] [fetch] [" + topicsAndContentSpecsUUID + "] [Data Set] [ExtendedTopicsAndContentSpecs]");
 
 if (topicAndContentSpecCount < topics.length)
 {
