@@ -868,7 +868,7 @@ baseUrl = Packages.java.lang.System.getProperty("BIRT_CCMS_BASE_URL");
 try
 {
 	var restUlrPrefix = "1/topics/get/json/query;topicIncludedInSpec=";
-	var restUrlPostfix = ";logic=And?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22start%22%3A+0%2C+%22end%22%3A+15%2C+%22name%22%3A+%22topics%22%7D%7D%5D%7D"
+	var restUrlPostfix = ";logic=And?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%20%22topics%22%7D%7D%5D%7D"
 	
 	// Create instance of the Controller class
 	controller = new Packages.com.actuate.json.JSONParser();
@@ -881,6 +881,8 @@ try
 	
 	// Calculate the total rows we will have
 	totalCount = controller.getChildCount("items");
+	
+	Packages.java.lang.System.out.println("Returned " + totalCount + " topics");
 }
 catch (exception)
 {
@@ -7731,7 +7733,7 @@ topics = [];
 (function()
 {
 	var specQueryURLPrefix = "1/topics/get/json/query;tag268=1;topicXml=%5B";
-	var specQueryURLPostfix = "%5D;logic=And?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22start%22%3A+0%2C+%22end%22%3A+15%2C+%22name%22%3A+%22topics%22%7D%7D%5D%7D";
+	var specQueryURLPostfix = "%5D;logic=And?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%20%22topics%22%7D%7D%5D%7D";
 	
 	// find the specs that each topic is included in
 	for (var index = 0; index < totalCount; ++index)

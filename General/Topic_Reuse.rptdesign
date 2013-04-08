@@ -143,7 +143,7 @@
       <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Chart Title</Value>
+          <Value>Number of times topics appear in Content Specification(s)</Value>
           <Font>
             <Size>16.0</Size>
             <Bold>true</Bold>
@@ -853,7 +853,6 @@
             <AggregateExpression>Count</AggregateExpression>
           </Grouping>
         </DataDefinition>
-        <SeriesIdentifier>Series 1</SeriesIdentifier>
         <DataPoint>
           <Components>
             <Type>Orthogonal_Value</Type>
