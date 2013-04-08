@@ -849,11 +849,11 @@
           <Visible>false</Visible>
         </Label>
         <DataDefinition>
-          <Definition>row[&quot;ContentSpecCount&quot;] == 1 ? &quot;Single Use&quot; : &quot;Reuse&quot;;</Definition>
+          <Definition>row[&quot;ContentSpecCount&quot;]</Definition>
           <Grouping>
-            <Enabled>true</Enabled>
+            <Enabled>false</Enabled>
             <GroupType>Text</GroupType>
-            <AggregateExpression>Count</AggregateExpression>
+            <AggregateExpression xsi:nil="true"/>
           </Grouping>
         </DataDefinition>
         <DataPoint>
