@@ -143,7 +143,7 @@
       <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Number of content specification(s) hat a topic appear in</Value>
+          <Value>Number of content specification(s) that a topic appear in</Value>
           <Font>
             <Size>16.0</Size>
             <Bold>true</Bold>

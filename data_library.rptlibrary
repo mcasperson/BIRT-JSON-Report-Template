@@ -321,6 +321,8 @@ categoryListController = null;
 					// Load the JSON Source
 					controller.loadData(completeRestUrl);
 					
+					logger.info("Returned " +  controller.getChildCount("items") + " topics");
+					
 					// save the controller
 					controllers.push(controller);
 					
@@ -491,15 +493,19 @@ else
 					
 					var completeRestUrl = restUrl + filter + restExpansion;
 					
-					logger.info("REST URL: " + completeRestUrl);
+					logger.info("Calling REST URL: " + completeRestUrl);
 					
 					// Create instance of the Controller class
 					controller = new Packages.com.actuate.json.JSONParser();
 					
+					logger.info("Finished call to REST URL: " + completeRestUrl);
+					
 					// Load the JSON Source
 					controller.loadData(completeRestUrl);	
 					
-					bySpecAndCategoryTopicCount = controller.getChildCount("items");		
+					bySpecAndCategoryTopicCount = controller.getChildCount("items");	
+					
+					logger.info("Returned " + bySpecAndCategoryTopicCount + " topics");	
 				}
 			}
 		}
