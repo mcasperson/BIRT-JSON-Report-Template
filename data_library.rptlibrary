@@ -224,11 +224,11 @@ logger.setLevel(Level.INFO);
 
 uuid = Packages.java.util.UUID.randomUUID().toString();
 
-logger.info("[BIRT Report Viewer] [beforeOpen] [" + uuid + "] [Data Source] [SpecTopics]");]]></method>
-            <method name="beforeClose"><![CDATA[logger.info("[BIRT Report Viewer] [beforeClose] [" + uuid + "] [Data Source] [SpecTopics]");]]></method>
-            <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + uuid + "] [Data Source] [SpecTopics]");]]></method>
-            <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + uuid + "] [Data Source] [SpecTopics]");]]></method>
-            <method name="open"><![CDATA[logger.info("[BIRT Report Viewer] [open] [" + uuid + "] [Data Source] [SpecTopics]");
+logger.info("[BIRT Report Viewer] [beforeOpen] [" + uuid + "] [Data Source] [SpecTopicsAndCategories]");]]></method>
+            <method name="beforeClose"><![CDATA[logger.info("[BIRT Report Viewer] [beforeClose] [" + uuid + "] [Data Source] [SpecTopicsAndCategories]");]]></method>
+            <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + uuid + "] [Data Source] [SpecTopicsAndCategories]");]]></method>
+            <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + uuid + "] [Data Source] [SpecTopicsAndCategories]");]]></method>
+            <method name="open"><![CDATA[logger.info("[BIRT Report Viewer] [open] [" + uuid + "] [Data Source] [SpecTopicsAndCategories]");
 
 /* Add the ability to search an array */
 
@@ -313,7 +313,7 @@ categoryListController = null;
 					
 					var completeRestUrl = restUrl + filter  + restExpansion;
 					
-					//Packages.java.lang.System.out.println("REST URL: " + completeRestUrl);
+					logger.info("REST URL: " + completeRestUrl);
 					
 					// Create instance of the Controller class
 					var controller = new Packages.com.actuate.json.JSONParser();
@@ -336,7 +336,7 @@ categoryListController = null;
 		Packages.java.lang.System.out.println("Make sure the JSONParser class is available in the class path");
 	}
 })();]]></method>
-            <method name="close"><![CDATA[logger.info("[BIRT Report Viewer] [close] [" + uuid + "] [Data Source] [SpecTopics]");]]></method>
+            <method name="close"><![CDATA[logger.info("[BIRT Report Viewer] [close] [" + uuid + "] [Data Source] [SpecTopicsAndCategories]");]]></method>
         </script-data-source>
         <script-data-source name="Categories" id="204">
             <property name="comments">This data source obtains a collection of all the categories in the CCMS.</property>
@@ -441,7 +441,7 @@ else
 			if (category != null &amp;&amp; category.length != 0 &amp;&amp; category != "-1")
 			{
 				var completeXAxisCategoriesRestUrl = categoryRestUrl + category + categoryRestExpansion;
-				Packages.java.lang.System.out.println("Category X Axis REST URL: " + completeXAxisCategoriesRestUrl);
+				logger.info("Category X Axis REST URL: " + completeXAxisCategoriesRestUrl);
 				xAxisCategoryController = new Packages.com.actuate.json.JSONParser();
 				xAxisCategoryController.loadData(completeXAxisCategoriesRestUrl);
 				bySpecAndCategoryXAxisTagCount = xAxisCategoryController.getChildCount("tags/items");
@@ -452,7 +452,7 @@ else
 			if (category != null &amp;&amp; category.length != 0 &amp;&amp; category != "-1")
 			{
 				var completeYAxisCategoriesRestUrl = categoryRestUrl + category + categoryRestExpansion;
-				Packages.java.lang.System.out.println("Category Y Axis REST URL: " + completeYAxisCategoriesRestUrl);
+				logger.info("Category Y Axis REST URL: " + completeYAxisCategoriesRestUrl);
 				yAxisCategoryController = new Packages.com.actuate.json.JSONParser();
 				yAxisCategoryController.loadData(completeYAxisCategoriesRestUrl);
 				bySpecAndCategoryYAxisTagCount = yAxisCategoryController.getChildCount("tags/items");
@@ -491,7 +491,7 @@ else
 					
 					var completeRestUrl = restUrl + filter + restExpansion;
 					
-					Packages.java.lang.System.out.println("REST URL: " + completeRestUrl);
+					logger.info("REST URL: " + completeRestUrl);
 					
 					// Create instance of the Controller class
 					controller = new Packages.com.actuate.json.JSONParser();
@@ -818,7 +818,7 @@ controllerCSPIDs = [];
 					
 					var completeRestUrl = restUrl + filter  + restExpansion;
 					
-					//Packages.java.lang.System.out.println("REST URL: " + completeRestUrl);
+					logger.info("REST URL: " + completeRestUrl);
 					
 					// Create instance of the Controller class
 					var controller = new Packages.com.actuate.json.JSONParser();
@@ -874,7 +874,8 @@ try
 	controller = new Packages.com.actuate.json.JSONParser();
 	
 	var url = baseUrl + restUlrPrefix + params["CSPID"] + restUrlPostfix;
-	Packages.java.lang.System.out.println(url);
+
+	logger.info("REST URL: " + url);
 	
 	// Load the JSON Source
 	controller.loadData(url);
@@ -1508,8 +1509,8 @@ Both Spec Topic Tag filtered by supplied Categories</property>
                 </list-property>
             </structure>
             <property name="dataSource">By Spec and Categories</property>
-            <method name="open"><![CDATA[Packages.java.lang.System.out.println("[START] CategorySummaryByCategoryAndSpec - open");
-Packages.java.lang.System.out.println("Total number of topics: " + bySpecAndCategoryTopicCount);
+            <method name="open"><![CDATA[logger.info("[START] CategorySummaryByCategoryAndSpec - open");
+logger.info("Total number of topics: " + bySpecAndCategoryTopicCount);
 
 // the number of topics that were in the query but don't have a tag from the x axis
 // category and a tag from the y axis category
@@ -5472,8 +5473,17 @@ WHERE products.name = ?]]></xml-property>
                     </structure>
                 </list-property>
             </structure>
+            <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
+logger = Logger.getLogger("BIRT");
+logger.setLevel(Level.INFO);
+
+specTopicsAndRevisionsUUID = Packages.java.util.UUID.randomUUID().toString();
+
+logger.info("[BIRT Report Viewer] [beforeOpen] [" + specTopicsAndRevisionsUUID + "] [Data Set] [SpecTopicAndRevisions]");]]></method>
             <property name="dataSource">SpecTopicsAndRevisions</property>
-            <method name="open"><![CDATA[/*
+            <method name="open"><![CDATA[logger.info("[BIRT Report Viewer] [open] [" + specTopicsAndRevisionsUUID + "] [Data Set] [SpecTopicAndRevisions]");
+
+/*
 	--------------------- Global variables ---------------------
 */
 
@@ -5485,9 +5495,7 @@ specTopicAndRevisionsCount = 0;
 
 // use a function to limit variable scopes
 (function()
-{
-
-	
+{	
 	// Used for debugging messages
 	var totalRows = 1;
 	
@@ -5540,7 +5548,9 @@ specTopicAndRevisionsCount = 0;
 		}
 	}
 })();]]></method>
-            <method name="fetch"><![CDATA[(function(){
+            <method name="fetch"><![CDATA[logger.info("[BIRT Report Viewer] [fetch] [" + specTopicsAndRevisionsUUID + "] [Data Set] [SpecTopicAndRevisions]");
+
+(function(){
 	var earliestEdit = new Date(0);
 	var latestEdit = Date.today();
 	
