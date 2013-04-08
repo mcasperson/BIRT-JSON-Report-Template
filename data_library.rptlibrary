@@ -843,6 +843,51 @@ controllerCSPIDs = [];
 })();]]></method>
             <method name="close"><![CDATA[logger.info("[BIRT Report Viewer] [close] [" + uuid + "] [Data Source] [SpecTopicsAndRevisions]");]]></method>
         </script-data-source>
+        <script-data-source name="SpecTopics" id="232">
+            <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
+logger = Logger.getLogger("BIRT");
+logger.setLevel(Level.INFO);
+
+uuid = Packages.java.util.UUID.randomUUID().toString();
+
+logger.info("[BIRT Report Viewer] [beforeOpen] [" + uuid + "] [Data Source] [SpecTopics]");]]></method>
+            <method name="open"><![CDATA[logger.info("[BIRT Report Viewer] [open] [" + uuid + "] [Data Source] [SpecTopics]");
+
+/*
+	Globals used by other scripts
+*/
+
+// This will track your current row later on
+totalCount = 0;
+baseUrl = Packages.java.lang.System.getProperty("BIRT_CCMS_BASE_URL");
+
+/*
+	Perform REST query
+*/
+
+try
+{
+	var restUlrPrefix = "1/topics/get/json/query;topicIncludedInSpec=";
+	var restUrlPostfix = ";logic=And?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22start%22%3A+0%2C+%22end%22%3A+15%2C+%22name%22%3A+%22topics%22%7D%7D%5D%7D"
+	
+	// Create instance of the Controller class
+	controller = new Packages.com.actuate.json.JSONParser();
+	
+	var url = baseUrl + restUlrPrefix + params["CSPID"] + restUrlPostfix;
+	Packages.java.lang.System.out.println(url);
+	
+	// Load the JSON Source
+	controller.loadData(url);
+	
+	// Calculate the total rows we will have
+	totalCount = controller.getChildCount("items");
+}
+catch (exception)
+{
+	Packages.java.lang.System.out.println("An exception was thrown: " + exception);
+	Packages.java.lang.System.out.println("Make sure the JSONParser class is available in the class path");
+}]]></method>
+        </script-data-source>
     </data-sources>
     <data-sets>
         <script-data-set name="TagSummary" id="84">
@@ -3022,15 +3067,15 @@ WHERE bugs.cf_build_id LIKE '%-% __ ___ ____ __:__%']]></xml-property>
 logger = Logger.getLogger("BIRT");
 logger.setLevel(Level.INFO);
 
-dataSetSpecTopicsUUID = Packages.java.util.UUID.randomUUID().toString();
+specTopicsUUID = Packages.java.util.UUID.randomUUID().toString();
 
-logger.info("[BIRT Report Viewer] [beforeOpen] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");]]></method>
-            <method name="beforeClose"><![CDATA[logger.info("[BIRT Report Viewer] [beforeClose] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");]]></method>
-            <method name="onFetch"><![CDATA[logger.info("[BIRT Report Viewer] [onFetch] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");]]></method>
-            <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");]]></method>
-            <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");]]></method>
+logger.info("[BIRT Report Viewer] [beforeOpen] [" + specTopicsUUID + "] [Data Set] [SpecTopics]");]]></method>
+            <method name="beforeClose"><![CDATA[logger.info("[BIRT Report Viewer] [beforeClose] [" + specTopicsUUID + "] [Data Set] [SpecTopics]");]]></method>
+            <method name="onFetch"><![CDATA[logger.info("[BIRT Report Viewer] [onFetch] [" + specTopicsUUID + "] [Data Set] [SpecTopics]");]]></method>
+            <method name="afterOpen"><![CDATA[logger.info("[BIRT Report Viewer] [afterOpen] [" + specTopicsUUID + "] [Data Set] [SpecTopics]");]]></method>
+            <method name="afterClose"><![CDATA[logger.info("[BIRT Report Viewer] [afterClose] [" + specTopicsUUID + "] [Data Set] [SpecTopics]");]]></method>
             <property name="dataSource">SpecTopicsAndCategories</property>
-            <method name="open"><![CDATA[logger.info("[open] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");
+            <method name="open"><![CDATA[logger.info("[open] [" + specTopicsUUID + "] [Data Set] [SpecTopics]");
 
 /*
 	--------------------- Global variables ---------------------
@@ -3119,9 +3164,9 @@ skippedTopics = 0;
 		}
 	}
 })();]]></method>
-            <method name="describe"><![CDATA[logger.info("[BIRT Report Viewer] [describe] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");
+            <method name="describe"><![CDATA[logger.info("[BIRT Report Viewer] [describe] [" + specTopicsUUID + "] [Data Set] [SpecTopics]");
 return false;]]></method>
-            <method name="fetch"><![CDATA[logger.info("[BIRT Report Viewer] [fetch] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");
+            <method name="fetch"><![CDATA[logger.info("[BIRT Report Viewer] [fetch] [" + specTopicsUUID + "] [Data Set] [SpecTopics]");
 
 (function()
 {
@@ -3166,7 +3211,7 @@ if (specTopicAndTagCount < specTopics.length)
 }
 
 return false;]]></method>
-            <method name="close"><![CDATA[logger.info("[BIRT Report Viewer] [close] [" + dataSetSpecTopicsUUID + "] [Data Set] [SpecTopics]");]]></method>
+            <method name="close"><![CDATA[logger.info("[BIRT Report Viewer] [close] [" + specTopicsUUID + "] [Data Set] [SpecTopics]");]]></method>
         </script-data-set>
         <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="BugStatus" id="213">
             <list-property name="parameters"/>
@@ -5439,6 +5484,8 @@ specTopicAndRevisionsCount = 0;
 // use a function to limit variable scopes
 (function()
 {
+
+	
 	// Used for debugging messages
 	var totalRows = 1;
 	
@@ -5493,7 +5540,7 @@ specTopicAndRevisionsCount = 0;
 })();]]></method>
             <method name="fetch"><![CDATA[(function(){
 	var earliestEdit = new Date(0);
-	var latestEdit = Date.now();
+	var latestEdit = Date.today();
 	
 	if (params["EditedInLastXDays"] != null)
 	{
@@ -5501,7 +5548,7 @@ specTopicAndRevisionsCount = 0;
 		
 		if (!isNaN(daysFilter) &amp;&amp; daysFilter > 0)
 		{						
-			earliestEdit = Date.now().add({ days: -daysFilter});
+			earliestEdit = Date.today().add({ days: -daysFilter});
 		}
 	}
 
@@ -5511,7 +5558,7 @@ specTopicAndRevisionsCount = 0;
 		
 		if (!isNaN(notDaysFilter) &amp;&amp; notDaysFilter > 0)
 		{						
-			latestEdit = Date.now().add({ days: -notDaysFilter});
+			latestEdit = Date.today().add({ days: -notDaysFilter});
 		}
 	}
 	
@@ -7650,8 +7697,15 @@ WHERE bugs.product_id = ?]]></xml-property>
                     </structure>
                 </list-property>
             </structure>
-            <property name="dataSource">By Query</property>
-            <method name="open"><![CDATA[logger.info("[open] [" + dataSetSpecTopicsUUID + "] [Data Set] [TopicsAndContentSpecs]");
+            <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
+logger = Logger.getLogger("BIRT");
+logger.setLevel(Level.INFO);
+
+topicsAndContentSpecsUUID = Packages.java.util.UUID.randomUUID().toString();
+
+logger.info("[BIRT Report Viewer] [beforeOpen] [" + topicsAndContentSpecsUUID + "] [Data Set] [SpecTopics]");]]></method>
+            <property name="dataSource">SpecTopics</property>
+            <method name="open"><![CDATA[logger.info("[open] [" + topicsAndContentSpecsUUID + "] [Data Set] [TopicsAndContentSpecs]");
 
 
 
@@ -7676,27 +7730,27 @@ topics = [];
 // use a function to limit variable scopes
 (function()
 {
-	var specQueryURLPrefix = "http://skynet.usersys.redhat.com:8080/TopicIndex/seam/resource/rest/1/topics/get/json/query;topicIncludedInSpec=";
-	var specQueryURLPostfix = ";logic=And?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22start%22%3A+0%2C+%22end%22%3A+15%2C+%22name%22%3A+%22topics%22%7D%7D%5D%7D";
+	var specQueryURLPrefix = "1/topics/get/json/query;tag268=1;topicXml=%5B";
+	var specQueryURLPostfix = "%5D;logic=And?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22start%22%3A+0%2C+%22end%22%3A+15%2C+%22name%22%3A+%22topics%22%7D%7D%5D%7D";
 	
 	// find the specs that each topic is included in
 	for (var index = 0; index < totalCount; ++index)
 	{		
-		var topicId = controller.getValue("items", "item/id", tagIndex);
-		var topicTitle = controller.getValue("items", "item/title", tagIndex);
+		var topicId = controller.getValue("items", "item/id", index);
+		var topicTitle = controller.getValue("items", "item/title", index);
 		
 		// Create instance of the Controller class
 		var specController = new Packages.com.actuate.json.JSONParser();
 		
 		// Load the JSON Source
-		specController.loadData(specQueryURLPrefix + topicId + specQueryURLPostfix);
+		specController.loadData(baseUrl + specQueryURLPrefix + topicId + specQueryURLPostfix);
 		
 		// Calculate the total rows we will have
 		totalSpecCount = specController.getChildCount("items");
 		
 		var specIds = "";
 		for (var specIndex = 0; specIndex < totalSpecCount; ++specIndex) {
-			var specId = specController.getValue("items", "item/id", tagIndex);	
+			var specId = specController.getValue("items", "item/id", specIndex);	
 			if (specIds.length != 0) {
 				specIds += ",";
 			}
@@ -7706,14 +7760,14 @@ topics = [];
 		topics.push({topicId: topicId, topicTitle: topicTitle, specCount: totalSpecCount, specs: specIds});
 	}
 })();]]></method>
-            <method name="fetch"><![CDATA[logger.info("[BIRT Report Viewer] [fetch] [" + dataSetSpecTopicsUUID + "] [Data Set] [TopicsAndContentSpecs]");
+            <method name="fetch"><![CDATA[logger.info("[BIRT Report Viewer] [fetch] [" + topicsAndContentSpecsUUID + "] [Data Set] [TopicsAndContentSpecs]");
 
-if (topicAndContentSpecCount < topic.length)
+if (topicAndContentSpecCount < topics.length)
 {
-	row["TopicID"] = topic[topicAndContentSpecCount].specId.toString();
-	row["TopicTitle"] = topic[topicAndContentSpecCount].topicTitle.toString();
-	row["ContentSpecs"] = topic[topicAndContentSpecCount].specs.toString();
-	row["ContentSpecCount"] = topic[topicAndContentSpecCount].specCount;	
+	row["TopicID"] = topics[topicAndContentSpecCount].topicId.toString();
+	row["TopicTitle"] = topics[topicAndContentSpecCount].topicTitle.toString();
+	row["ContentSpecs"] = topics[topicAndContentSpecCount].specs.toString();
+	row["ContentSpecCount"] = topics[topicAndContentSpecCount].specCount;	
 	
 	++topicAndContentSpecCount;
 	return true;
