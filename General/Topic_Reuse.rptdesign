@@ -1033,6 +1033,12 @@
                     <property name="dataType">string</property>
                     <property name="allowExport">true</property>
                 </structure>
+                <structure>
+                    <property name="name">Column Binding_1</property>
+                    <expression name="expression" type="javascript">dataSetRow["TopicID"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <list-property name="sort">
                 <structure>
@@ -1069,10 +1075,16 @@
             <detail>
                 <row id="163">
                     <cell id="164">
-                        <text-data id="174">
-                            <expression name="valueExpr">row["TopicID"]</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
+                        <data id="181">
+                            <property name="resultSetColumn">Column Binding_1</property>
+                            <list-property name="action">
+                                <structure>
+                                    <property name="linkType">hyperlink</property>
+                                    <expression name="uri" type="javascript">"/pressgang-ccms-ui/#SearchResultsAndTopicView;query;topicIds=" + row["TopicID"]</expression>
+                                    <property name="targetWindow">_blank</property>
+                                </structure>
+                            </list-property>
+                        </data>
                     </cell>
                     <cell id="165">
                         <text-data id="175">
