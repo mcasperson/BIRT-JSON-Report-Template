@@ -143,7 +143,7 @@
       <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Number of times topics appear in Content Specification(s)</Value>
+          <Value>Number of content specification(s) hat a topic appear in</Value>
           <Font>
             <Size>16.0</Size>
             <Bold>true</Bold>
@@ -1027,6 +1027,12 @@
                     <expression name="expression" type="javascript">dataSetRow["ContentSpecCount"]</expression>
                     <property name="dataType">integer</property>
                 </structure>
+                <structure>
+                    <property name="name">Column Binding</property>
+                    <expression name="expression" type="javascript">dataSetRow["ContentSpecs"]</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
             </list-property>
             <list-property name="sort">
                 <structure>
@@ -1075,10 +1081,16 @@
                         </text-data>
                     </cell>
                     <cell id="166">
-                        <text-data id="176">
-                            <expression name="valueExpr">row["ContentSpecs"]</expression>
-                            <property name="contentType">html</property>
-                        </text-data>
+                        <data id="180">
+                            <property name="resultSetColumn">Column Binding</property>
+                            <list-property name="action">
+                                <structure>
+                                    <property name="linkType">hyperlink</property>
+                                    <expression name="uri" type="javascript">"/pressgang-ccms-ui/#SearchResultsAndTopicView;query;topicIds=" + row["ContentSpecs"]</expression>
+                                    <property name="targetWindow">_blank</property>
+                                </structure>
+                            </list-property>
+                        </data>
                     </cell>
                 </row>
             </detail>
