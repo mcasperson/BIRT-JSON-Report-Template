@@ -947,7 +947,7 @@ try
 			for (var cspIndex = 0; cspIndex < cspIdsArray.length; ++cspIndex)
 			{
 				var csp = parseInt(cspIdsArray[cspIndex]);
-				if (csp != NaN)
+				if (csp != NaN &amp;&amp; controllerCSPIDs.customIndexOf(csp) == -1)
 				{								
 					// Create instance of the Controller class
 					var controller = new Packages.com.actuate.json.JSONParser();
@@ -7980,15 +7980,14 @@ topics = [];
 			var thisTopicDetails = null;
 
 			if (topicIds.customIndexOf(topicId) == -1) {
-				thisTopicDetails = {topicId: topicId, topicTitle: topicTitle, specCount: 1, specs: controllerCSPIDs[index].toString()}
+				thisTopicDetails = {topicId: topicId, topicTitle: topicTitle, specCount: 1, specs: controllerCSPIDs[index].toString()};
+				topicDetails[topicId] = thisTopicDetails;
+				topicIds.push(topicId);
 			} else {
 				thisTopicDetails = topicDetails[topicId];
-				++topicDetails.specCount;
-				topicDetails.specs += "," + controllerCSPIDs[index];
+				thisTopicDetails.specCount += 1;
+				thisTopicDetails.specs += "," + controllerCSPIDs[index];
 			}
-			
-			topicDetails[topicId] = thisTopicDetails;			
-			topicIds.push(topicId);
 		}
 	}
 	
@@ -7996,7 +7995,7 @@ topics = [];
 		topics.push(topicDetails[topicIds[processedTopicIndex]]);
 	}
 })();]]></method>
-            <method name="fetch"><![CDATA[logger.info("[BIRT Report Viewer] [fetch] [" + topicsAndContentSpecsUUID + "] [Data Set] [ExtendedTopicsAndContentSpecs]");
+            <method name="fetch"><![CDATA[logger.info("[BIRT Report Viewer] [fetch] [" + extendedTopicsAndContentSpecsUUID + "] [Data Set] [ExtendedTopicsAndContentSpecs]");
 
 if (topicAndContentSpecCount < topics.length)
 {
