@@ -8145,9 +8145,10 @@ singleReferences = 0;
 		var productMatches = productRegex.exec(xml);
 		var versionMatches = versionRegex.exec(xml);
 		
-		if (productMatches != null &amp;&amp; productMatches.length == 2 &amp;&amp; versionMatches != null &amp;&amp; versionMatches.length == 2) {
+		if (productMatches != null &amp;&amp; productMatches.length == 2) {// &amp;&amp; versionMatches != null &amp;&amp; versionMatches.length == 2) {
 		
-			var productName = productMatches[1].trim() + " " + versionMatches[1].trim();
+			//var productName = productMatches[1].trim() + " " + versionMatches[1].trim();
+			var productName = productMatches[1].trim();
 				
 			if (products.customIndexOf(productName) == -1) {
 				products.push(productName);
