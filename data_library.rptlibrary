@@ -8032,6 +8032,173 @@ if (topicAndContentSpecCount < topics.length)
 
 return false;]]></method>
         </script-data-set>
+        <script-data-set name="TopicsAndProductLines" id="236">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">TopicID</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">TopicTitle</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">ProductCount</property>
+                    <property name="dataType">integer</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">TopicID</property>
+                </structure>
+                <structure>
+                    <property name="columnName">TopicTitle</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ProductCount</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">TopicID</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">TopicTitle</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">ProductCount</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
+logger = Logger.getLogger("BIRT");
+logger.setLevel(Level.INFO);
+
+extendedTopicsAndContentSpecsUUID = Packages.java.util.UUID.randomUUID().toString();
+
+logger.info("[BIRT Report Viewer] [beforeOpen] [" + extendedTopicsAndContentSpecsUUID + "] [Data Set] [ExtendedTopicsAndContentSpecs]");]]></method>
+            <property name="dataSource">SpecsTopics</property>
+            <method name="open"><![CDATA[logger.info("[open] [" + extendedTopicsAndContentSpecsUUID + "] [Data Set] [ExtendedTopicsAndContentSpecs]");
+
+/*
+	--------------------- Global variables ---------------------
+*/
+
+// This will track your current row later on
+topicAndContentSpecCount = 0;
+
+// A list of processed topic ids
+topicIds = [];
+// A list of products
+products = [];
+// A map of topic details
+topicDetails = {};
+
+// The topic details
+topics = [];
+
+reusedReferences = 0;
+singleReferences = 0;
+
+/*
+	--------------------- Processing ---------------------
+*/
+
+
+// here we take the results of the queries against the spec ids
+// and combine them into a single table
+
+// use a function to limit variable scopes
+(function()
+{
+	var cspRestUlrPrefix = "1/topic/get/json/";
+	var productRegex = /\nProduct\s*=\s*(.*?)\n/;
+	var versionRegex = /\nVersion\s*=\s*(.*?)\n/;
+	
+	// find the specs that each topic is included in
+	for (var index = 0; index < controllers.length; ++index)
+	{		
+		var controller = controllers[index];
+		var topicCount = controller.getChildCount("items");
+		
+		contentSpecController = new Packages.com.actuate.json.JSONParser();
+			
+		var cspUrl = baseUrl + cspRestUlrPrefix + controllerCSPIDs[index];
+		logger.info("Content Spec URL: " + cspUrl);
+		
+		// Load the JSON Source
+		contentSpecController.loadData(cspUrl);
+		
+		var xml = contentSpecController.getValue("xml");
+		var productMatches = productRegex.exec(xml);
+		var versionMatches = versionRegex.exec(xml);
+		
+		if (productMatches.length == 2 &amp;&amp; versionMatches.length == 2) {
+		
+			var productName = productMatches[1] + " " + versionMatches[1];
+				
+			if (products.customIndexOf(productName) == -1) {
+				products.push(productName);
+			}
+			
+			logger.info(productName);
+		
+			for (var topicIndex = 0; topicIndex < topicCount; ++topicIndex) {
+
+				var topicId = controller.getValue("items", "item/id", topicIndex);
+				var topicTitle = controller.getValue("items", "item/title", topicIndex);
+
+				var thisTopicDetails = null;
+	
+				if (topicIds.customIndexOf(topicId) == -1) {
+					thisTopicDetails = {topicId: topicId, topicTitle: topicTitle, products: [productName]};
+					topicDetails[topicId] = thisTopicDetails;
+					topicIds.push(topicId);
+				} else {
+					thisTopicDetails = topicDetails[topicId];
+					if (thisTopicDetails.products.customIndexOf(productName) == -1) {
+						thisTopicDetails.products.push(productName);
+					}
+				}
+			}
+		}
+	}
+	
+	for (var processedTopicIndex = 0; processedTopicIndex < topicIds.length; ++processedTopicIndex) {
+		var thisTopicDetails = topicDetails[topicIds[processedTopicIndex]];
+		topics.push(thisTopicDetails);
+		
+		if (thisTopicDetails.products.length == 1) {
+			++singleReferences;
+		} else {
+			reusedReferences += thisTopicDetails.products.length;
+		}
+	}
+})();]]></method>
+            <method name="fetch"><![CDATA[logger.info("[BIRT Report Viewer] [fetch] [" + extendedTopicsAndContentSpecsUUID + "] [Data Set] [ExtendedTopicsAndContentSpecs]");
+
+if (topicAndContentSpecCount < topics.length)
+{
+	row["TopicID"] = topics[topicAndContentSpecCount].topicId.toString();
+	row["TopicTitle"] = topics[topicAndContentSpecCount].topicTitle.toString();
+	row["ProductCount"] = topics[topicAndContentSpecCount].products.length;
+	
+	++topicAndContentSpecCount;
+	return true;
+}
+
+return false;]]></method>
+        </script-data-set>
     </data-sets>
     <themes>
         <theme name="defaultTheme" id="4"/>
