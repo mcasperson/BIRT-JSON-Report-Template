@@ -153,7 +153,7 @@
         <Caption>
           <Value>Topic reuse</Value>
           <Font>
-            <Size>10.0</Size>
+            <Size>14.0</Size>
             <Bold>true</Bold>
             <Alignment>
               <horizontalAlignment>Center</horizontalAlignment>
@@ -288,6 +288,7 @@
       <Text>
         <Value></Value>
         <Font>
+          <Size>10.0</Size>
           <Alignment/>
         </Font>
       </Text>
@@ -851,7 +852,7 @@
             <Bottom>0.0</Bottom>
             <Right>3.0</Right>
           </Insets>
-          <Visible>false</Visible>
+          <Visible>true</Visible>
         </Label>
         <DataDefinition>
           <Definition>row[&quot;ReferenceCount&quot;]</Definition>
@@ -861,10 +862,10 @@
             <AggregateExpression xsi:nil="true"/>
           </Grouping>
         </DataDefinition>
-        <SeriesIdentifier></SeriesIdentifier>
+        <SeriesIdentifier>hi</SeriesIdentifier>
         <DataPoint>
           <Components>
-            <Type>Orthogonal_Value</Type>
+            <Type>Base_Value</Type>
           </Components>
           <Separator>, </Separator>
         </DataPoint>
@@ -880,13 +881,13 @@
             </Value>
           </Action>
         </Triggers>
+        <Translucent>true</Translucent>
         <Explosion>0</Explosion>
         <Title>
           <Caption>
             <Value></Value>
             <Font>
-              <Size>16.0</Size>
-              <Bold>true</Bold>
+              <Size>10.0</Size>
               <Alignment/>
             </Font>
           </Caption>
@@ -920,6 +921,7 @@
           <Thickness>1</Thickness>
           <Visible>true</Visible>
         </LeaderLineAttributes>
+        <LeaderLineStyle>Fixed_Length</LeaderLineStyle>
         <LeaderLineLength>10.0</LeaderLineLength>
       </Series>
     </SeriesDefinitions>
@@ -960,7 +962,6 @@
       <DataDefinition>
         <Definition>row[&quot;OtherProduct&quot;]</Definition>
       </DataDefinition>
-      <SeriesIdentifier></SeriesIdentifier>
       <DataPoint>
         <Components>
           <Type>Orthogonal_Value</Type>

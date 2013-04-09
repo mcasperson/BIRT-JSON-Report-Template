@@ -950,6 +950,8 @@ try
 			
 			for (var cspIndex = 0; cspIndex < cspIdsArray.length; ++cspIndex)
 			{
+				logger.info((cspIndex / cspIdsArray.length * 100).toFixed(2) + "% Done Loading Content Spec Topics");
+				
 				var csp = parseInt(cspIdsArray[cspIndex]);
 				
 				// make sure it is a valid number, and that we have not already processed it
@@ -8323,7 +8325,7 @@ topics = [];
 	// find the specs that each topic is included in
 	for (var index = 0; index < controllers.length; ++index)
 	{		
-		logger.info((index / controllers.length * 100).toFixed(2) + "% Done Loading Content Spec Topics");
+		logger.info((index / controllers.length * 100).toFixed(2) + "% Done Processing Content Spec Topics");
 		
 		var controller = controllers[index];
 		var topicCount = controller.getChildCount("items");
