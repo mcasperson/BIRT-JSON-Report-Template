@@ -8414,7 +8414,7 @@ topics = [];
 				If it turns out the product we are processing was not included in these references,
 				these temp rows will be discarded.
 			*/
-			for (var productMapIndex = 0; productMapIndex < productMapArray.length; ++productMapArray) {
+			for (var productMapIndex = 0; productMapIndex < productMapArray.length; ++productMapIndex) {
 				var productMap = productMapArray[productMapIndex];
 				if (productMap.productName == product) {
 					productFoundInTopic = true;	
