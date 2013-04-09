@@ -72,6 +72,7 @@
         <simple-master-page name="Simple MasterPage" id="2">
             <page-footer>
                 <text id="3">
+                    <property name="marginTop">1em</property>
                     <property name="contentType">html</property>
                     <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
                 </text>
@@ -152,7 +153,7 @@
         <Caption>
           <Value>Topic reuse</Value>
           <Font>
-            <Size>16.0</Size>
+            <Size>10.0</Size>
             <Bold>true</Bold>
             <Alignment>
               <horizontalAlignment>Center</horizontalAlignment>
@@ -983,8 +984,8 @@
             <property name="outputFormat">SVG</property>
             <property name="inheritColumns">true</property>
             <property name="dataSet">TopicsAndProductLinesGrouped</property>
-            <property name="height">1024px</property>
-            <property name="width">1280px</property>
+            <property name="height">1050px</property>
+            <property name="width">1680px</property>
             <list-property name="boundDataColumns">
                 <structure>
                     <property name="name">TopicID</property>
