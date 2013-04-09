@@ -852,7 +852,7 @@
             <Bottom>0.0</Bottom>
             <Right>3.0</Right>
           </Insets>
-          <Visible>true</Visible>
+          <Visible>false</Visible>
         </Label>
         <DataDefinition>
           <Definition>row[&quot;ReferenceCount&quot;]</Definition>
@@ -862,7 +862,6 @@
             <AggregateExpression xsi:nil="true"/>
           </Grouping>
         </DataDefinition>
-        <SeriesIdentifier>hi</SeriesIdentifier>
         <DataPoint>
           <Components>
             <Type>Base_Value</Type>
