@@ -8349,6 +8349,9 @@ topics = [];
 			
 			logger.info(productName);
 		
+			/*
+				Loop over each topic reference from the content spec
+			*/
 			for (var topicIndex = 0; topicIndex < topicCount; ++topicIndex) {
 
 				var topicId = controller.getValue("items", "item/id", topicIndex);
@@ -8392,6 +8395,9 @@ topics = [];
 		}
 	}
 	
+	/*
+		Now we need to structure the data to look like it came from a SQL query.
+	*/
 	for (var processedTopicIndex = 0; processedTopicIndex < topicIds.length; ++processedTopicIndex) {
 		var topicId = topicIds[processedTopicIndex];
 		var productMapArray = topicDetails[topicId];
@@ -8401,6 +8407,11 @@ topics = [];
 			var productFoundInTopic = false;
 			var tempTopics =[];
 			
+			/*
+				Loop over all the references from all the products, and add them as temporary rows.
+				If it turns out the product we are processing was not included in these references,
+				these temp rows will be discarded.
+			*/
 			for (var productMapIndex = 0; productMapIndex < productMapArray.length; ++productMapArray) {
 				var productMap = productMapArray[productMapIndex];
 				if (productMap.productName == product) {
