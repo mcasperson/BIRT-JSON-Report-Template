@@ -1006,15 +1006,18 @@
             </list-property>
         </extended-item>
         <text-data id="186">
-            <expression name="valueExpr">controllerCSPIDs + " content specifications across " + products.length + " product lines make " + totalTopicCount + 
-		"references to topics held by the CCMS. " + 
-		 reusedReferences + " of those references are shared by content specifications that are from different products (reuse between products is " 
-		+ (totalTopicCount/reusedReferences*100).toFixed(2) + "%). " +
+            <expression name="valueExpr">controllerCSPIDs.length + " content specifications across " + products.length + " product lines make " + totalTopicCount + 
+		" references to topics held by the CCMS. " + 
+		 reusedReferences + " of those references are shared by content specifications from 2 or more products (reuse between products is " 
+		+ (reusedReferences/totalTopicCount*100).toFixed(2) + "%). " +
 		singleReferences + " of those references are shared by content specifications that are from the same product (single use between products is " 
-		+ (totalTopicCount/singleReferences*100).toFixed(2) + "%). ";</expression>
+		+ (singleReferences/totalTopicCount*100).toFixed(2) + "%). \n" + 
+		(totalTopicCount - reusedReferences - singleReferences) + " references are not accounted for due to incomplete metadata.";</expression>
             <property name="contentType">html</property>
         </text-data>
         <text-data id="187">
+            <property name="marginTop">1em</property>
+            <property name="paddingTop">1pt</property>
             <expression name="valueExpr">var message = "Product lines included in this report: ";
 var productsList = "";
 for (var i = 0; i &lt; products.length; ++i) {
