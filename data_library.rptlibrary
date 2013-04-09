@@ -8323,6 +8323,8 @@ topics = [];
 	// find the specs that each topic is included in
 	for (var index = 0; index < controllers.length; ++index)
 	{		
+		logger.info((index / controllers.length * 100).toFixed(2) + "% Done Loading Content Spec Topics");
+		
 		var controller = controllers[index];
 		var topicCount = controller.getChildCount("items");
 		
