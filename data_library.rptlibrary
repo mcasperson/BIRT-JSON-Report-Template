@@ -8051,6 +8051,11 @@ return false;]]></method>
                     <property name="name">ProductCount</property>
                     <property name="dataType">integer</property>
                 </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">ReferenceCount</property>
+                    <property name="dataType">integer</property>
+                </structure>
             </list-property>
             <list-property name="columnHints">
                 <structure>
@@ -8061,6 +8066,9 @@ return false;]]></method>
                 </structure>
                 <structure>
                     <property name="columnName">ProductCount</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ReferenceCount</property>
                 </structure>
             </list-property>
             <structure name="cachedMetaData">
@@ -8078,6 +8086,11 @@ return false;]]></method>
                     <structure>
                         <property name="position">3</property>
                         <property name="name">ProductCount</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">ReferenceCount</property>
                         <property name="dataType">integer</property>
                     </structure>
                 </list-property>
@@ -8164,11 +8177,12 @@ singleReferences = 0;
 				var thisTopicDetails = null;
 	
 				if (topicIds.customIndexOf(topicId) == -1) {
-					thisTopicDetails = {topicId: topicId, topicTitle: topicTitle, products: [productName]};
+					thisTopicDetails = {topicId: topicId, topicTitle: topicTitle, referenceCount: 1, products: [productName]};
 					topicDetails[topicId] = thisTopicDetails;
 					topicIds.push(topicId);
 				} else {
 					thisTopicDetails = topicDetails[topicId];
+					thisTopicDetails.referenceCount += 1;
 					if (thisTopicDetails.products.customIndexOf(productName) == -1) {
 						thisTopicDetails.products.push(productName);
 					}
@@ -8182,9 +8196,9 @@ singleReferences = 0;
 		topics.push(thisTopicDetails);
 		
 		if (thisTopicDetails.products.length == 1) {
-			++singleReferences;
+			singleReferences += thisTopicDetails.referenceCount;
 		} else {
-			reusedReferences += thisTopicDetails.products.length;
+			reusedReferences += thisTopicDetails.referenceCount;
 		}
 	}
 })();]]></method>
@@ -8195,6 +8209,7 @@ if (topicAndContentSpecCount < topics.length)
 	row["TopicID"] = topics[topicAndContentSpecCount].topicId.toString();
 	row["TopicTitle"] = topics[topicAndContentSpecCount].topicTitle.toString();
 	row["ProductCount"] = topics[topicAndContentSpecCount].products.length;
+	row["ReferenceCount"] = topics[topicAndContentSpecCount].referenceCount;
 	
 	++topicAndContentSpecCount;
 	return true;

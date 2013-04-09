@@ -851,7 +851,7 @@
           <Visible>false</Visible>
         </Label>
         <DataDefinition>
-          <Definition>row[&quot;ProductCount&quot;]</Definition>
+          <Definition>row[&quot;ReferenceCount&quot;]</Definition>
           <Grouping>
             <Enabled>false</Enabled>
             <GroupType>Text</GroupType>
@@ -998,7 +998,33 @@
                     <expression name="expression" type="javascript">dataSetRow["ProductCount"]</expression>
                     <property name="dataType">integer</property>
                 </structure>
+                <structure>
+                    <property name="name">ReferenceCount</property>
+                    <expression name="expression">dataSetRow["ReferenceCount"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
             </list-property>
         </extended-item>
+        <text-data id="186">
+            <expression name="valueExpr">controllerCSPIDs + " content specifications across " + products.length + " product lines make " + totalTopicCount + 
+		"references to topics held by the CCMS. " + 
+		 reusedReferences + " of those references are shared by content specifications that are from different products (reuse between products is " 
+		+ (totalTopicCount/reusedReferences*100).toFixed(2) + "%). " +
+		singleReferences + " of those references are shared by content specifications that are from the same product (single use between products is " 
+		+ (totalTopicCount/singleReferences*100).toFixed(2) + "%). ";</expression>
+            <property name="contentType">html</property>
+        </text-data>
+        <text-data id="187">
+            <expression name="valueExpr">var message = "Product lines included in this report: ";
+var productsList = "";
+for (var i = 0; i &lt; products.length; ++i) {
+	if (productsList.length != 0) {
+		productsList += ", ";
+	}
+	productsList += products[i];
+}
+message + productsList;</expression>
+            <property name="contentType">html</property>
+        </text-data>
     </body>
 </report>
