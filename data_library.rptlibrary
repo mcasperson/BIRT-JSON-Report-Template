@@ -8043,17 +8043,17 @@ return false;]]></method>
                 </structure>
                 <structure>
                     <property name="position">2</property>
+                    <property name="name">ReferenceCount</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
                     <property name="name">TopicTitle</property>
                     <property name="dataType">string</property>
                 </structure>
                 <structure>
-                    <property name="position">3</property>
-                    <property name="name">ProductCount</property>
-                    <property name="dataType">integer</property>
-                </structure>
-                <structure>
                     <property name="position">4</property>
-                    <property name="name">ReferenceCount</property>
+                    <property name="name">ProductCount</property>
                     <property name="dataType">integer</property>
                 </structure>
             </list-property>
@@ -8062,13 +8062,13 @@ return false;]]></method>
                     <property name="columnName">TopicID</property>
                 </structure>
                 <structure>
+                    <property name="columnName">ReferenceCount</property>
+                </structure>
+                <structure>
                     <property name="columnName">TopicTitle</property>
                 </structure>
                 <structure>
                     <property name="columnName">ProductCount</property>
-                </structure>
-                <structure>
-                    <property name="columnName">ReferenceCount</property>
                 </structure>
             </list-property>
             <structure name="cachedMetaData">
@@ -8080,17 +8080,17 @@ return false;]]></method>
                     </structure>
                     <structure>
                         <property name="position">2</property>
+                        <property name="name">ReferenceCount</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
                         <property name="name">TopicTitle</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
-                        <property name="position">3</property>
-                        <property name="name">ProductCount</property>
-                        <property name="dataType">integer</property>
-                    </structure>
-                    <structure>
                         <property name="position">4</property>
-                        <property name="name">ReferenceCount</property>
+                        <property name="name">ProductCount</property>
                         <property name="dataType">integer</property>
                     </structure>
                 </list-property>
@@ -8103,7 +8103,7 @@ extendedTopicsAndContentSpecsUUID = Packages.java.util.UUID.randomUUID().toStrin
 
 logger.info("[BIRT Report Viewer] [beforeOpen] [" + extendedTopicsAndContentSpecsUUID + "] [Data Set] [ExtendedTopicsAndContentSpecs]");]]></method>
             <property name="dataSource">SpecsTopics</property>
-            <method name="open"><![CDATA[logger.info("[open] [" + extendedTopicsAndContentSpecsUUID + "] [Data Set] [ExtendedTopicsAndContentSpecs]");
+            <method name="open"><![CDATA[logger.info("[open] [" + extendedTopicsAndContentSpecsUUID + "] [Data Set] [TopicsAndProductLines]");
 
 /*
 	--------------------- Global variables ---------------------
@@ -8202,13 +8202,232 @@ singleReferences = 0;
 		}
 	}
 })();]]></method>
-            <method name="fetch"><![CDATA[logger.info("[BIRT Report Viewer] [fetch] [" + extendedTopicsAndContentSpecsUUID + "] [Data Set] [ExtendedTopicsAndContentSpecs]");
+            <method name="fetch"><![CDATA[logger.info("[BIRT Report Viewer] [fetch] [" + extendedTopicsAndContentSpecsUUID + "] [Data Set] [TopicsAndProductLines]");
 
 if (topicAndContentSpecCount < topics.length)
 {
 	row["TopicID"] = topics[topicAndContentSpecCount].topicId.toString();
 	row["TopicTitle"] = topics[topicAndContentSpecCount].topicTitle.toString();
 	row["ProductCount"] = topics[topicAndContentSpecCount].products.length;
+	row["ReferenceCount"] = topics[topicAndContentSpecCount].referenceCount;
+	
+	++topicAndContentSpecCount;
+	return true;
+}
+
+return false;]]></method>
+        </script-data-set>
+        <script-data-set name="TopicsAndProductLinesGrouped" id="237">
+            <list-property name="resultSetHints">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">TopicID</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">ReferenceCount</property>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">Product</property>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">OtherProduct</property>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">TopicID</property>
+                </structure>
+                <structure>
+                    <property name="columnName">ReferenceCount</property>
+                </structure>
+                <structure>
+                    <property name="columnName">Product</property>
+                </structure>
+                <structure>
+                    <property name="columnName">OtherProduct</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">TopicID</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">ReferenceCount</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">Product</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">OtherProduct</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[importPackage(Packages.java.util.logging);
+logger = Logger.getLogger("BIRT");
+logger.setLevel(Level.INFO);
+
+extendedTopicsAndContentSpecsUUID = Packages.java.util.UUID.randomUUID().toString();
+
+logger.info("[BIRT Report Viewer] [beforeOpen] [" + extendedTopicsAndContentSpecsUUID + "] [Data Set] [ExtendedTopicsAndContentSpecs]");]]></method>
+            <property name="dataSource">SpecsTopics</property>
+            <method name="open"><![CDATA[logger.info("[open] [" + extendedTopicsAndContentSpecsUUID + "] [Data Set] [TopicsAndProductLines]");
+
+/*
+	--------------------- Global variables ---------------------
+*/
+
+// This will track your current row later on
+topicAndContentSpecCount = 0;
+
+// A list of processed topic ids
+topicIds = [];
+// A list of products
+products = [];
+// A map of topic details
+topicDetails = {};
+
+// The topic details
+topics = [];
+
+/*
+	--------------------- Processing ---------------------
+*/
+
+
+// here we take the results of the queries against the spec ids
+// and combine them into a single table
+
+// use a function to limit variable scopes
+(function()
+{
+	var cspRestUlrPrefix = "1/topic/get/json/";
+	var productRegex = /\nProduct\s*=\s*(.*?)\n/;
+	var versionRegex = /\nVersion\s*=\s*(.*?)\n/;
+	
+	// find the specs that each topic is included in
+	for (var index = 0; index < controllers.length; ++index)
+	{		
+		var controller = controllers[index];
+		var topicCount = controller.getChildCount("items");
+		
+		contentSpecController = new Packages.com.actuate.json.JSONParser();
+			
+		var cspUrl = baseUrl + cspRestUlrPrefix + controllerCSPIDs[index];
+		logger.info("Content Spec URL: " + cspUrl);
+		
+		// Load the JSON Source
+		contentSpecController.loadData(cspUrl);
+		
+		var xml = contentSpecController.getValue("xml");
+		var productMatches = productRegex.exec(xml);
+		var versionMatches = versionRegex.exec(xml);
+		
+		if (productMatches != null &amp;&amp; productMatches.length == 2) {// &amp;&amp; versionMatches != null &amp;&amp; versionMatches.length == 2) {
+		
+			//var productName = productMatches[1].trim() + " " + versionMatches[1].trim();
+			var productName = productMatches[1].trim();
+				
+			if (products.customIndexOf(productName) == -1) {
+				products.push(productName);
+			}
+			
+			logger.info(productName);
+		
+			for (var topicIndex = 0; topicIndex < topicCount; ++topicIndex) {
+
+				var topicId = controller.getValue("items", "item/id", topicIndex);
+				var topicTitle = controller.getValue("items", "item/title", topicIndex);
+	
+				if (topicIds.customIndexOf(topicId) == -1) {
+					/*
+						We have found a reference to this topic for the first time
+					*/
+					var productMap = {};
+					productMap['productName'] = productName;
+					productMap['referenceCount'] = 1;
+					topicDetails[topicId] = [productMap];
+					topicIds.push(topicId);
+				} else {
+					/*
+						This topic has already been referenced. We need to check to see if
+						it has already been referenced from this product.
+					*/
+					var productMapArray = topicDetails[topicId];
+					var found = false;					
+					for (var productMapIndex = 0; productMapIndex < productMapArray.length; ++productMapArray) {
+						if (productMapArray[productMapIndex]['productName'] == productName) {
+							found == true;
+							productMapArray[productMapIndex]['referenceCount'] += 1;
+							break;
+						}												
+					}
+					
+					/*
+						The topic has not been referenced by this product.
+					*/
+					if (!found) {
+						var productMap = {};
+						productMap['productName'] = productName;
+						productMap['referenceCount'] = 1;
+						topicDetails[topicId].push(productMap);
+					}
+				}
+			}
+		}
+	}
+	
+	for (var processedTopicIndex = 0; processedTopicIndex < topicIds.length; ++processedTopicIndex) {
+		var topicId = topicIds[processedTopicIndex];
+		var productMapArray = topicDetails[topicId];
+		
+		for (var productIndex = 0; productIndex < products.length; ++productIndex) {
+			var product = products[productIndex];
+			var productFoundInTopic = false;
+			var tempTopics =[];
+			
+			for (var productMapIndex = 0; productMapIndex < productMapArray.length; ++productMapArray) {
+				var productMap = productMapArray[productMapIndex];
+				if (productMap.productName == product) {
+					productFoundInTopic = true;	
+				}
+				tempTopics.push({topicId: topicId, product: product, otherProduct: productMap.productName, referenceCount: productMap.referenceCount});
+			}
+			
+			/*
+				If the product we are processing did in fact make a reference to this topic, then add
+				it to the data set.
+			*/
+			if (productFoundInTopic) {
+				for (var tempTopicIndex = 0; tempTopicIndex < tempTopics.length; ++tempTopicIndex) {
+					topics.push(tempTopics[tempTopicIndex]);
+				}
+			}
+		}
+	}
+})();]]></method>
+            <method name="fetch"><![CDATA[logger.info("[BIRT Report Viewer] [fetch] [" + extendedTopicsAndContentSpecsUUID + "] [Data Set] [TopicsAndProductLines]");
+
+if (topicAndContentSpecCount < topics.length)
+{
+	row["TopicID"] = topics[topicAndContentSpecCount].topicId.toString();
+	row["Product"] = topics[topicAndContentSpecCount].product.toString();
+	row["OtherProduct"] = topics[topicAndContentSpecCount].otherProduct.toString();	
 	row["ReferenceCount"] = topics[topicAndContentSpecCount].referenceCount;
 	
 	++topicAndContentSpecCount;
