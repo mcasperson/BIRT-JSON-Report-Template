@@ -8374,9 +8374,10 @@ topics = [];
 					var productMapArray = topicDetails[topicId];
 					var found = false;					
 					for (var productMapIndex = 0; productMapIndex < productMapArray.length; ++productMapArray) {
-						if (productMapArray[productMapIndex]['productName'] == productName) {
-							found == true;
-							productMapArray[productMapIndex]['referenceCount'] += 1;
+						var productMap = productMapArray[productMapIndex];
+						if (productMap.productName == productName) {
+							found = true;
+							productMap.referenceCount += 1;
 							break;
 						}												
 					}
@@ -8403,9 +8404,10 @@ topics = [];
 		var productMapArray = topicDetails[topicId];
 		
 		for (var productIndex = 0; productIndex < products.length; ++productIndex) {
+			
 			var product = products[productIndex];
 			var productFoundInTopic = false;
-			var tempTopics =[];
+			var tempTopics = [];
 			
 			/*
 				Loop over all the references from all the products, and add them as temporary rows.
