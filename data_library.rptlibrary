@@ -5650,7 +5650,7 @@ specTopicAndRevisionsCount = 0;
 
 (function(){
 	var earliestEdit = new Date(0);
-	var latestEdit = Date.today();
+	var latestEdit = new Date();
 	
 	if (params["EditedInLastXDays"] != null)
 	{
