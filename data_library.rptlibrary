@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <library xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.2.1.v201209101448 Build &lt;4.2.1.v20120912-1721></property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.2.2.v201301221637 Build &lt;4.2.2.v20130206-1509></property>
     <list-property name="includeScripts">
         <property>Resources/date.js</property>
     </list-property>
@@ -7840,8 +7840,8 @@ topics = [];
 // use a function to limit variable scopes
 (function()
 {
-	var specQueryURLPrefix = "1/topics/get/json/query;tag268=1;topicXml=%5B";
-	var specQueryURLPostfix = "%5D;logic=And?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%20%22topics%22%7D%7D%5D%7D";
+	var specQueryURLPrefix = "1/contentspecnodes/get/json/query;csNodeType=0,9,10;csNodeEntityId=";
+	var specQueryURLPostfix = "?expand=%7B%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%20%22nodes%22%7D%2C%20%22branches%22%3A%5B%7B%22trunk%22%3A%7B%22name%22%3A%20%22contentSpec%22%7D%7D%5D%7D%5D%7D";
 	
 	// find the specs that each topic is included in
 	for (var index = 0; index < totalCount; ++index)
@@ -7860,7 +7860,7 @@ topics = [];
 		
 		var specIds = "";
 		for (var specIndex = 0; specIndex < totalSpecCount; ++specIndex) {
-			var specId = specController.getValue("items", "item/id", specIndex);	
+			var specId = specController.getValue("items", "item/contentSpec/id", specIndex);	
 			if (specIds.length != 0) {
 				specIds += ",";
 			}
@@ -8137,8 +8137,8 @@ singleReferences = 0;
 
 // use a function to limit variable scopes
 (function()
-{
-	var cspRestUlrPrefix = "1/topic/get/json/";
+{	
+	var cspRestUlrPrefix = "1/contentspec/get/json+text/";
 	var productRegex = /\nProduct\s*=\s*(.*?)\n/;
 	var versionRegex = /\nVersion\s*=\s*(.*?)\n/;
 	
@@ -8156,7 +8156,7 @@ singleReferences = 0;
 		// Load the JSON Source
 		contentSpecController.loadData(cspUrl);
 		
-		var xml = contentSpecController.getValue("xml");
+		var xml = contentSpecController.getValue("text");
 		var productMatches = productRegex.exec(xml);
 		var versionMatches = versionRegex.exec(xml);
 		
@@ -8318,7 +8318,7 @@ topics = [];
 // use a function to limit variable scopes
 (function()
 {
-	var cspRestUlrPrefix = "1/topic/get/json/";
+	var cspRestUlrPrefix = "1/contentspec/get/json+text/";
 	var productRegex = /\nProduct\s*=\s*(.*?)\n/;
 	var versionRegex = /\nVersion\s*=\s*(.*?)\n/;
 	
@@ -8338,7 +8338,7 @@ topics = [];
 		// Load the JSON Source
 		contentSpecController.loadData(cspUrl);
 		
-		var xml = contentSpecController.getValue("xml");
+		var xml = contentSpecController.getValue("text");
 		var productMatches = productRegex.exec(xml);
 		var versionMatches = versionRegex.exec(xml);
 		
